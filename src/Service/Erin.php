@@ -1,0 +1,105 @@
+<?php
+namespace App\Service;
+
+use App\GroupMe\DirectMessage;
+use App\GroupMe\GroupMessage;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+
+class Erin
+{
+    private const IDENTIFIABLE_MESSAGES = [
+        "/hello/" => "hello",
+        "/hi/" => "hi",
+        "/\bpick\b/i" => "pick",
+    ];
+    /**
+     * @var GroupMe
+     */
+    private $groupMe;
+    /**
+     * @var Picks
+     */
+    private $picks;
+
+    public function __construct(GroupMe $groupMe, Picks $picks)
+    {
+        $this->groupMe = $groupMe;
+        $this->picks = $picks;
+    }
+
+    public function receiveDirectMessage($groupMeMessage)
+    {
+
+        if ($groupMeMessage["sender_id"] === "47997687" || $groupMeMessage["sender_id"] === "585743") {
+            return false;
+        }
+
+        $replyText = $this->parseMessage($groupMeMessage["text"]);
+
+        $reply = new DirectMessage();
+        $reply->setRecipientId($groupMeMessage["sender_id"]);
+        $reply->setText($replyText);
+        $this->groupMe->sendDirectMessage($reply);
+        return true;
+    }
+
+    public function receiveGroupMessage($groupMeMessage)
+    {
+
+        if ($groupMeMessage["sender_id"] === "47997687" || $groupMeMessage["sender_id"] === "585743") {
+            return false;
+        }
+
+        if (!preg_match("/^erin/i", $groupMeMessage["text"]) && !preg_match("/erin\??$/i", $groupMeMessage["text"])) {
+            return false;
+        }
+
+        $replyText = $this->parseMessage($groupMeMessage["text"]);
+        $reply = new GroupMessage();
+        $reply->setText($replyText);
+        $this->groupMe->sendGroupMessage($reply);
+    }
+
+    private function parseMessage(string $messageText)
+    {
+        foreach(static::IDENTIFIABLE_MESSAGES as $pattern => $callback) {
+            if (preg_match($pattern, $messageText)) {
+                return $this->$callback($messageText);
+            }
+        }
+        return "I don't know";
+    }
+
+    private function hello()
+    {
+        return "Oh hey there";
+    }
+
+    private function hi()
+    {
+        return "Oh hi there";
+    }
+
+    private function pick($message)
+    {
+
+        preg_match("/(\d+)\.(\d+)/", $message, $matches);
+
+        if (!$matches) {
+            return "I can't work out which pick you mean - make sure you're formatting it as round.number - e.g. pick 2.02";
+        }
+
+        $round = (int)$matches[1];
+        $pick = (int)$matches[2];
+        $overall = (($round-1)*12) + $pick;
+
+        $owner = $this->picks->getPickOwner($overall);
+
+        if ($owner) {
+            return sprintf("The %s currently own pick %s.%s", $owner, $round, str_pad($pick, 2, "0", STR_PAD_LEFT));
+        } else {
+            return "That pick's not set up properly on the spreadsheet - commish messed up somehow, or that's a non-existent pick.";
+        }
+    }
+}
