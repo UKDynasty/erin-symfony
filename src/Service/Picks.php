@@ -31,8 +31,9 @@ class Picks
     {
         $picks = [];
         foreach ($this->rows as $row) {
-            if ($row['gsx$owner'] === $franchiseCanonicalName) {
-                $picks[] = sprintf("%s%s", $row['gsx$x'], $row['gsx$comments'] ? " " . $row['gsx$comments'] : "");
+            if (trim($row['gsx$owner']['$t']) === $franchiseCanonicalName) {
+                $row['gsx$x']['$t'];
+                $picks[] = sprintf("%s%s", $row['gsx$x']['$t'], $row['gsx$comments']['$t'] ? " " . $row['gsx$comments']['$t'] : "");
             }
         }
         return $picks;

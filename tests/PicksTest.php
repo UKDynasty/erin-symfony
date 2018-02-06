@@ -18,4 +18,13 @@ class PicksTest extends TestCase
         $this->assertInternalType('string', $res, "Got a " . gettype($res) . " instead of a string");
 
     }
+
+    public function testGetPicksReturnsArray()
+    {
+        $picks = new Picks();
+
+        $res = $picks->getPicksList("Oxford Pythons");
+
+        $this->assertInternalType('array', $res, "Got a " . gettype($res) . " instead of an array");
+    }
 }
