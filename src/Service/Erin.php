@@ -12,6 +12,7 @@ class Erin
         "/hello/" => "hello",
         "/hi/" => "hi",
         "/\bpick\b/i" => "pick",
+        "/\bpicks\b/i" => "picks",
     ];
     /**
      * @var GroupMe
@@ -21,11 +22,16 @@ class Erin
      * @var Picks
      */
     private $picks;
+    /**
+     * @var MessageDataExtractor
+     */
+    private $messageDataExtractor;
 
-    public function __construct(GroupMe $groupMe, Picks $picks)
+    public function __construct(GroupMe $groupMe, Picks $picks, MessageDataExtractor $messageDataExtractor)
     {
         $this->groupMe = $groupMe;
         $this->picks = $picks;
+        $this->messageDataExtractor = $messageDataExtractor;
     }
 
     public function receiveDirectMessage($groupMeMessage)
@@ -101,5 +107,18 @@ class Erin
         } else {
             return "That pick's not set up properly on the spreadsheet - commish messed up somehow, or that's a non-existent pick.";
         }
+    }
+
+    private function picks($message)
+    {
+        // Identify the franchise that's mentioned in the message
+        $franchise = $this->messageDataExtractor->extractFranchiseName($message);
+        // If the franchise can't be identified, return a message saying as much
+        if (!$franchise) {
+            return "Sorry, I don't know which franchise you're asking about. I could guess, but that would be less than useful.";
+        }
+        // If we have a canonical franchise name, get a list of their picks and return it
+        $picks = $this->picks->getPicksList($franchise);
+        return "Picks for the " . $franchise . ":\n\n" . implode("\n", $picks);
     }
 }

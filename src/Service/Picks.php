@@ -22,4 +22,19 @@ class Picks
 
         return $this->rows[$pick-1]['gsx$owner']['$t'];
     }
+
+    /**
+     * @param $franchiseCanonicalName string
+     * @return array
+     */
+    public function getPicksList($franchiseCanonicalName)
+    {
+        $picks = [];
+        foreach ($this->rows as $row) {
+            if ($row['gsx$owner'] === $franchiseCanonicalName) {
+                $picks[] = sprintf("%s%s", $row['gsx$x'], $row['gsx$comments'] ? " " . $row['gsx$comments'] : "");
+            }
+        }
+        return $picks;
+    }
 }
