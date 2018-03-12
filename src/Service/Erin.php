@@ -13,6 +13,7 @@ class Erin
         "/hi/" => "hi",
         "/\bpick\b/i" => "pick",
         "/\bpicks\b/i" => "picks",
+        "/\bthanks\b/i" => "thanks",
     ];
     /**
      * @var GroupMe
@@ -120,5 +121,11 @@ class Erin
         // If we have a canonical franchise name, get a list of their picks and return it
         $picks = $this->picks->getPicksList($franchise);
         return "Picks for the " . $franchise . ":\n\n" . implode("\n", $picks);
+    }
+
+    private function thanks($message)
+    {
+        $messages = ["No problem!", "Happy to help.", "Don't mention it!"];
+        return $messages[array_rand($messages)];
     }
 }
