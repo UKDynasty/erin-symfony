@@ -21,13 +21,12 @@ class ReceiveMessageController extends Controller
     /**
      * @Route("/test")
      * @Method("GET")
-     * @param Request $request
-     * @param Erin $erin
+     * @param GroupMe $groupMe
      * @return JsonResponse
      */
-    public function test(Request $request, Erin $erin, GroupMe $groupMe)
+    public function test(GroupMe $groupMe)
     {
-        $res = $erin->receiveDirectMessage(["sender_id" => "36266918", "text" => "pick 2.02"]);
+        $res = $groupMe->getGroupMembers();
         return new JsonResponse($res);
     }
 

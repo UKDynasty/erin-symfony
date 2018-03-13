@@ -1,8 +1,10 @@
 <?php
 namespace App\Service;
 
+use App\Entity\Owner;
 use App\GroupMe\DirectMessage;
 use App\GroupMe\GroupMessage;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -28,12 +30,24 @@ class Erin
      * @var MessageDataExtractor
      */
     private $messageDataExtractor;
+    /**
+     * @var EntityManagerInterface
+     */
+    private $em;
 
-    public function __construct(GroupMe $groupMe, Picks $picks, MessageDataExtractor $messageDataExtractor)
+    public function __construct(GroupMe $groupMe, Picks $picks, MessageDataExtractor $messageDataExtractor, EntityManagerInterface $em)
     {
         $this->groupMe = $groupMe;
         $this->picks = $picks;
         $this->messageDataExtractor = $messageDataExtractor;
+        $this->em = $em;
+    }
+
+    public function getOwnerFromMessageSenderId($senderId)
+    {
+        return $this->em->getRepository(Owner::class)->findOneBy([
+            "groupMeUserId" => $senderId,
+        ]);
     }
 
     public function receiveDirectMessage($groupMeMessage)
@@ -43,10 +57,13 @@ class Erin
             return false;
         }
 
-        $replyText = $this->parseMessage($groupMeMessage["text"]);
+        $replyText = $this->parseMessage($groupMeMessage);
 
         $reply = new DirectMessage();
         $reply->setRecipientId($groupMeMessage["sender_id"]);
+        if ($owner = $this->getOwnerFromMessageSenderId($groupMeMessage["sender_id"])) {
+            $replyText = "Hey " . $owner->getName() . ". " . $replyText;
+        }
         $reply->setText($replyText);
         $this->groupMe->sendDirectMessage($reply);
         return true;
@@ -64,16 +81,19 @@ class Erin
         }
 
         $replyText = $this->parseMessage($groupMeMessage["text"]);
+        if ($owner = $this->getOwnerFromMessageSenderId($groupMeMessage["sender_id"])) {
+            $replyText = "Hey " . $owner->getName() . ". " . $replyText;
+        }
         $reply = new GroupMessage();
         $reply->setText($replyText);
         $this->groupMe->sendGroupMessage($reply);
     }
 
-    private function parseMessage(string $messageText)
+    private function parseMessage(array $groupMeMessage)
     {
         foreach(static::IDENTIFIABLE_MESSAGES as $pattern => $callback) {
-            if (preg_match($pattern, $messageText)) {
-                return $this->$callback($messageText);
+            if (preg_match($pattern, $groupMeMessage["text"])) {
+                return $this->$callback($groupMeMessage);
             }
         }
         return "I don't know";
@@ -92,7 +112,7 @@ class Erin
     private function pick($message)
     {
 
-        preg_match("/(\d+)\.(\d+)/", $message, $matches);
+        preg_match("/(\d+)\.(\d+)/", $message["text"], $matches);
 
         if (!$matches) {
             return "I can't work out which pick you mean - make sure you're formatting it as round.number - e.g. pick 2.02";
@@ -114,7 +134,7 @@ class Erin
     private function picks($message)
     {
         // Identify the franchise that's mentioned in the message
-        $franchise = $this->messageDataExtractor->extractFranchiseName($message);
+        $franchise = $this->messageDataExtractor->extractFranchiseName($message["text"]);
         // If the franchise can't be identified, return a message saying as much
         if (!$franchise) {
             return "Sorry, I don't know which franchise you're asking about. I could guess, but that would be less than useful.";
@@ -132,6 +152,6 @@ class Erin
 
     private function whoOwns($message)
     {
-
+        return "Hi " . $message["sender_id"];
     }
 }

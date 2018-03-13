@@ -17,6 +17,20 @@ class GroupMe
         $this->groupMeBotId = $groupMeBotId;
     }
 
+    public function getGroupMembers()
+    {
+        $client = new Client();
+
+        $url = "https://api.groupme.com/v3/groups?token=" . $this->token;
+
+        $res = $client->get($url);
+
+        echo $res->getBody()->getContents();
+        exit();
+
+        return $res->getBody();
+    }
+
     public function sendDirectMessage(DirectMessage $directMessage)
     {
         $client = new Client();

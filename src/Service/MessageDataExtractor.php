@@ -34,7 +34,7 @@ class MessageDataExtractor
         foreach($franchises as $franchise) {
             $overlap = array_intersect($franchise->getIdentifiers(), $tokenizedMessage);
             if (count($overlap) > 0) {
-                return $franchise["canonical"];
+                return $franchise->getName();
             }
         }
 
