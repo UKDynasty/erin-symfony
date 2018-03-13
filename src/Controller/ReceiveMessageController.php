@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Player;
 use App\GroupMe\DirectMessage;
 use App\Service\Erin;
 use App\Service\GroupMe;
@@ -26,8 +27,8 @@ class ReceiveMessageController extends Controller
      */
     public function test(GroupMe $groupMe)
     {
-        $res = $groupMe->getGroupMembers();
-        return new JsonResponse($res);
+        $res = $this->getDoctrine()->getRepository(Player::class)->findAll();
+        return new JsonResponse(json_encode($res));
     }
 
 
