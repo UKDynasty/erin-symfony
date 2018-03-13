@@ -14,6 +14,7 @@ class Erin
         "/\bpick\b/i" => "pick",
         "/\bpicks\b/i" => "picks",
         "/\bthanks\b/i" => "thanks",
+        "/\bwho owns\b/i" => "whoOwns",
     ];
     /**
      * @var GroupMe
@@ -127,5 +128,10 @@ class Erin
     {
         $messages = ["No problem!", "Happy to help.", "Don't mention it!"];
         return $messages[array_rand($messages)];
+    }
+
+    private function whoOwns($message)
+    {
+
     }
 }
