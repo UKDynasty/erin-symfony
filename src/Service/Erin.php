@@ -2,8 +2,10 @@
 namespace App\Service;
 
 use App\Entity\Owner;
+use App\Entity\Player;
 use App\GroupMe\DirectMessage;
 use App\GroupMe\GroupMessage;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -61,7 +63,7 @@ class Erin
 
         $reply = new DirectMessage();
         $reply->setRecipientId($groupMeMessage["sender_id"]);
-        if ($owner = $this->getOwnerFromMessageSenderId($groupMeMessage["sender_id"])) {
+        if (($owner = $this->getOwnerFromMessageSenderId($groupMeMessage["sender_id"])) && (0 === rand(0,5))) {
             $replyText = "Hey " . $owner->getName() . ". " . $replyText;
         }
         $reply->setText($replyText);
@@ -152,6 +154,27 @@ class Erin
 
     private function whoOwns($message)
     {
-        return "Hi " . $message["sender_id"];
+        preg_match("/\bwho owns\b(.*)/", rtrim($message["text"], "?"), $matches);
+        if ($matches) {
+            $playerName = trim($matches[1]);
+            $explodedName = explode(" ", $playerName);
+            /** @var ArrayCollection $results */
+            $results = $this->em->getRepository(Player::class)->findBy([
+                "firstName" => $explodedName[0],
+                "lastName" => $explodedName[1],
+            ]);
+            if (0 === count($results)) {
+                return "I can't find a player by that name, sorry.";
+            }
+            if (1 === count($results)) {
+                if ($results[0]->getFranchise()) {
+                    return sprintf("%s is owned by %s", $results[0]->getName(), $results[0]->getFranchise()->getName());
+                }
+                return sprintf("%s is a free agent", $results[0]->getName());
+            }
+            // There is more than one match (this is unlikely)
+            return "There's more than one player that matches that name. I'm not clever enough to continue.";
+        }
+        return "I can't understand that message. Keep it simple - just ask \"who owns Player Name?\"";
     }
 }
