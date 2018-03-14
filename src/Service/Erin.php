@@ -82,8 +82,11 @@ class Erin
             return false;
         }
 
-        $replyText = $this->parseMessage($groupMeMessage["text"]);
-        if ($owner = $this->getOwnerFromMessageSenderId($groupMeMessage["sender_id"])) {
+        $replyText = $this->parseMessage($groupMeMessage);
+
+        $reply = new DirectMessage();
+        $reply->setRecipientId($groupMeMessage["sender_id"]);
+        if (($owner = $this->getOwnerFromMessageSenderId($groupMeMessage["sender_id"])) && (0 === rand(0,5))) {
             $replyText = "Hey " . $owner->getName() . ". " . $replyText;
         }
         $reply = new GroupMessage();
