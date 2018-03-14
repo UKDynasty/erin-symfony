@@ -4,10 +4,32 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\IdTrait;
 
-/** @ORM\Entity() */
+/** @ORM\Entity(repositoryClass="PlayerRepository") */
 class Player
 {
     use IdTrait;
+
+    /**
+     * @var Franchise
+     * @ORM\ManyToOne(targetEntity="Franchise", inversedBy="players")
+     */
+    private $franchise;
+
+    /**
+     * @return null|Franchise
+     */
+    public function getFranchise(): ?Franchise
+    {
+        return $this->franchise;
+    }
+
+    /**
+     * @param null|Franchise $franchise
+     */
+    public function setFranchise(?Franchise $franchise): void
+    {
+        $this->franchise = $franchise;
+    }
 
     /**
      * @var string
@@ -52,8 +74,8 @@ class Player
     private $draftTeam;
 
     /**
-     * @var null|string
-     * @ORM\Column(type="string", nullable=true)
+     * @var Position
+     * @ORM\ManyToOne(targetEntity="Position")
      */
     private $position;
 
@@ -276,17 +298,17 @@ class Player
     }
 
     /**
-     * @return null|string
+     * @return Position
      */
-    public function getPosition(): ?string
+    public function getPosition(): Position
     {
         return $this->position;
     }
 
     /**
-     * @param null|string $position
+     * @param Position $position
      */
-    public function setPosition(?string $position): void
+    public function setPosition(Position $position): void
     {
         $this->position = $position;
     }

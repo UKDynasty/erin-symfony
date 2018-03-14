@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Franchise;
 use App\Entity\Player;
 use App\GroupMe\DirectMessage;
 use App\Service\Erin;
@@ -27,8 +28,12 @@ class ReceiveMessageController extends Controller
      */
     public function test(GroupMe $groupMe)
     {
-        $res = $this->getDoctrine()->getRepository(Player::class)->findAll();
-        return new JsonResponse(json_encode($res));
+        $franchiseRepo = $this->getDoctrine()->getRepository(Player::class);
+        $franchise = $this->getDoctrine()->getRepository(Franchise::class)->findOneBy(["mflFranchiseId" => "0001"]);
+        foreach($franchiseRepo->getPlayersForFranchiseOrdered($franchise) as $player) {
+            dump($player->getName());
+        }
+        exit();
     }
 
 

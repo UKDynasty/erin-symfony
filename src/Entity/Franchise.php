@@ -3,8 +3,10 @@ namespace App\Entity;
 
 use App\Entity\Owner;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\IdTrait;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * Class Franchise
@@ -51,7 +53,7 @@ class Franchise
     private $identifiers;
 
     /**
-     * @var ArrayCollection
+     * @var ArrayCollection|PersistentCollection
      * @ORM\OneToMany(targetEntity="Player", mappedBy="franchise")
      */
     private $players;
@@ -121,9 +123,9 @@ class Franchise
     }
 
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection|PersistentCollection
      */
-    public function getPlayers(): ArrayCollection
+    public function getPlayers()
     {
         return $this->players;
     }

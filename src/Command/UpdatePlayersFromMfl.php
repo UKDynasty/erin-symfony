@@ -2,6 +2,7 @@
 namespace App\Command;
 
 use App\Entity\Player;
+use App\Entity\Position;
 use App\Service\MFLApi;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
@@ -56,12 +57,17 @@ class UpdatePlayersFromMfl extends Command
     {
         $playerRepository = $this->em->getRepository(Player::class);
         $player = $playerRepository->findOneBy(["externalIdMfl" => $mflPlayer["id"]]);
+        $positionRepository = $this->em->getRepository(Position::class);
+        $position = $positionRepository->findOneBy([
+            "name" => $mflPlayer["position"],
+        ]);
 
         if (!$player) {
             $player = new Player();
             $player->setExternalIdMfl($mflPlayer["id"]);
             $this->em->persist($player);
         }
+        $player->setPosition($position);
         $nameArray = explode(", ", $mflPlayer["name"]);
         $player->setFirstName($nameArray[1]);
         $player->setLastName($nameArray[0]);

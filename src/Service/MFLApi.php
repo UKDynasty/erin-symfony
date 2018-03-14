@@ -14,11 +14,16 @@ class MFLApi
      * @var int
      */
     private $year;
+    /**
+     * @var string
+     */
+    private $mflLeagueId;
 
-    public function __construct(int $mflYear)
+    public function __construct(int $mflYear, string $mflLeagueId)
     {
         $this->client = new Client();
         $this->year = $mflYear;
+        $this->mflLeagueId = $mflLeagueId;
     }
 
     private function request($url)
@@ -54,5 +59,15 @@ class MFLApi
         $res = $this->request($url);
 
         return $res["rosters"]["franchise"]["player"];
+    }
+
+    public function getRosters()
+    {
+        $url = sprintf("http://www66.myfantasyleague.com/%s/export?TYPE=rosters&L=%s&JSON=1", $this->year, $this->mflLeagueId);
+
+        $res = $this->client->request("GET", $url);
+        $resBody = $res->getBody();
+        $json = json_decode($resBody, true);
+        return $json["rosters"]["franchise"];
     }
 }
