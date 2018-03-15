@@ -198,7 +198,7 @@ class Erin
             }
             if (1 === count($results)) {
                 if ($results[0]->getFranchise()) {
-                    return sprintf("%s is owned by %s", $results[0]->getName(), $results[0]->getFranchise()->getName());
+                    return sprintf("%s is owned by the %s", $results[0]->getName(), $results[0]->getFranchise()->getName());
                 }
                 return sprintf("%s is a free agent", $results[0]->getName());
             }
