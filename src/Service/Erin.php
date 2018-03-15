@@ -1,6 +1,7 @@
 <?php
 namespace App\Service;
 
+use App\Entity\Franchise;
 use App\Entity\Owner;
 use App\Entity\Player;
 use App\GroupMe\DirectMessage;
@@ -18,6 +19,7 @@ class Erin
         "/\bpick\b/i" => "pick",
         "/\bpicks\b/i" => "picks",
         "/\bthanks\b/i" => "thanks",
+        "/\broster\b/i" => "roster",
         "/\bwho owns\b/i" => "whoOwns",
     ];
     /**
@@ -149,6 +151,31 @@ class Erin
         return "Picks for the " . $franchise . ":\n\n" . implode("\n", $picks);
     }
 
+    private function roster($message)
+    {
+        // Identify the franchise that's mentioned in the message
+        $franchise = $this->messageDataExtractor->extractFranchise($message["text"]);
+        // If the franchise can't be identified, return a message saying as much
+        if (!$franchise) {
+            return "Sorry, I don't know which franchise you're asking about. I could guess, but that would be less than useful.";
+        }
+        $players = $this->em->getRepository(Player::class)->getPlayersForFranchiseOrdered($franchise);
+        return sprintf(
+            "Roster for the %s: \n\n%s\n\n(%s players)",
+            $franchise->getName(),
+            implode(
+                "\n",
+                array_map(
+                    function($player) {
+                        return sprintf("%s, %s", $player->getName(), $player->getPosition()->getName());
+                    },
+                    $players
+                )
+            ),
+            count($players)
+        );
+    }
+
     private function thanks($message)
     {
         $messages = ["No problem!", "Happy to help.", "Don't mention it!"];
@@ -157,7 +184,7 @@ class Erin
 
     private function whoOwns($message)
     {
-        preg_match("/\bwho owns\b(.*)/", rtrim($message["text"], "?"), $matches);
+        preg_match("/\bwho owns\b(.*)/", rtrim(trim($message["text"]), "?"), $matches);
         if ($matches) {
             $playerName = trim($matches[1]);
             $explodedName = explode(" ", $playerName);

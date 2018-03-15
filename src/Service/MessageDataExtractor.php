@@ -20,7 +20,7 @@ class MessageDataExtractor
         $this->em = $em;
     }
 
-    public function extractFranchiseName($message): ?string
+    public function extractFranchise($message): ?Franchise
     {
         $franchises = $this->em->getRepository(Franchise::class)->findAll();
 
@@ -34,11 +34,20 @@ class MessageDataExtractor
         foreach($franchises as $franchise) {
             $overlap = array_intersect($franchise->getIdentifiers(), $tokenizedMessage);
             if (count($overlap) > 0) {
-                return $franchise->getName();
+                return $franchise;
             }
         }
 
         return null;
+    }
+
+    public function extractFranchiseName($message): ?string
+    {
+        $franchise = $this->extractFranchise($message);
+        if (!$franchise) {
+            return null;
+        }
+        return $franchise->getName();
     }
 
 }
