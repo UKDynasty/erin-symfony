@@ -183,6 +183,11 @@ class Erin
             return "Sorry, I don't know which franchise you're asking about. I could guess, but that would be less than useful.";
         }
         $players = $this->em->getRepository(Player::class)->getTradeBaitByFranchiseOrdered($franchise);
+
+        if (0 === count($players)) {
+            return sprintf("%s don't currently have any players listed as trade bait.", $franchise->getName());
+        }
+
         return sprintf(
             "Trade bait for the %s: \n\n%s",
             $franchise->getName(),
