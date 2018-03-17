@@ -216,10 +216,13 @@ class Erin
                 return "I can't find a player by that name, sorry.";
             }
             if (1 === count($results)) {
-                if ($results[0]->getFranchise()) {
-                    return sprintf("%s is owned by the %s", $results[0]->getName(), $results[0]->getFranchise()->getName());
+                if ($results[0]->getFranchise() && $results[0]->isListedAsTradeBait()) {
+                    return sprintf("%s is owned by the %s, and is currently listed as trade bait.", $results[0]->getName(), $results[0]->getFranchise()->getName());
                 }
-                return sprintf("%s is a free agent", $results[0]->getName());
+                if ($results[0]->getFranchise()) {
+                    return sprintf("%s is owned by the %s.", $results[0]->getName(), $results[0]->getFranchise()->getName());
+                }
+                return sprintf("%s is a free agent.", $results[0]->getName());
             }
             // There is more than one match (this is unlikely)
             return "There's more than one player that matches that name. I'm not clever enough to continue.";
