@@ -20,7 +20,8 @@ class Erin
         "/\bpicks\b/i" => "picks",
         "/\bthanks\b/i" => "thanks",
         "/\broster\b/i" => "roster",
-        "/\bwho owns\b/i" => "whoOwns",
+        "/\bowns\b/i" => "whoOwns",
+        "/\bbait\b/i" => "tradeBait",
     ];
     /**
      * @var GroupMe
@@ -38,13 +39,18 @@ class Erin
      * @var EntityManagerInterface
      */
     private $em;
+    /**
+     * @var HumanReadableHelpers
+     */
+    private $helpers;
 
-    public function __construct(GroupMe $groupMe, Picks $picks, MessageDataExtractor $messageDataExtractor, EntityManagerInterface $em)
+    public function __construct(GroupMe $groupMe, Picks $picks, MessageDataExtractor $messageDataExtractor, EntityManagerInterface $em, HumanReadableHelpers $helpers)
     {
         $this->groupMe = $groupMe;
         $this->picks = $picks;
         $this->messageDataExtractor = $messageDataExtractor;
         $this->em = $em;
+        $this->helpers = $helpers;
     }
 
     public function getOwnerFromMessageSenderId($senderId)
@@ -163,16 +169,24 @@ class Erin
         return sprintf(
             "Roster for the %s: \n\n%s\n\n(%s players)",
             $franchise->getName(),
-            implode(
-                "\n",
-                array_map(
-                    function($player) {
-                        return sprintf("%s, %s", $player->getName(), $player->getPosition()->getName());
-                    },
-                    $players
-                )
-            ),
+            $this->helpers->playersToList($players),
             count($players)
+        );
+    }
+
+    private function tradeBait($message)
+    {
+        // Identify the franchise that's mentioned in the message
+        $franchise = $this->messageDataExtractor->extractFranchise($message["text"]);
+        // If the franchise can't be identified, return a message saying as much
+        if (!$franchise) {
+            return "Sorry, I don't know which franchise you're asking about. I could guess, but that would be less than useful.";
+        }
+        $players = $this->em->getRepository(Player::class)->getTradeBaitByFranchiseOrdered($franchise);
+        return sprintf(
+            "Trade bait for the %s: \n\n%s",
+            $franchise->getName(),
+            $this->helpers->playersToList($players)
         );
     }
 

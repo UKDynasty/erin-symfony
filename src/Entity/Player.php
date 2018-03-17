@@ -1,11 +1,12 @@
 <?php
 namespace App\Entity;
 
+use App\Entity\Interfaces\TradeBaitInterface;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\IdTrait;
 
 /** @ORM\Entity(repositoryClass="PlayerRepository") */
-class Player
+class Player implements TradeBaitInterface
 {
     use IdTrait;
 
@@ -179,6 +180,12 @@ class Player
      * @ORM\Column(type="string", nullable=true)
      */
     private $twitterHandle;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean")
+     */
+    private $listedAsTradeBait = false;
 
     /**
      * @return string
@@ -585,6 +592,21 @@ class Player
         $this->twitterHandle = $twitterHandle;
     }
 
+    /**
+     * @return bool
+     */
+    public function isListedAsTradeBait(): bool
+    {
+        return $this->listedAsTradeBait;
+    }
+
+    /**
+     * @param bool $listedAsTradeBait
+     */
+    public function setListedAsTradeBait(bool $listedAsTradeBait): void
+    {
+        $this->listedAsTradeBait = $listedAsTradeBait;
+    }
 
 
 }

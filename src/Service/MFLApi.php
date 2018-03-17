@@ -70,4 +70,14 @@ class MFLApi
         $json = json_decode($resBody, true);
         return $json["rosters"]["franchise"];
     }
+
+    public function getTradeBait()
+    {
+        $url = sprintf("http://www66.myfantasyleague.com/%s/export?TYPE=tradeBait&L=%s&INCLUDE_DRAFT_PICKS=0&JSON=1", $this->year, $this->mflLeagueId);
+
+        $res = $this->client->request("GET", $url);
+        $resBody = $res->getBody();
+        $json = json_decode($resBody, true);
+        return $json["tradeBaits"]["tradeBait"];
+    }
 }
