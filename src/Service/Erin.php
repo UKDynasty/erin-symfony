@@ -169,7 +169,7 @@ class Erin
         ]);
 
         if ($pick) {
-            return sprintf("The %s currently own pick %s.%s", $pick->getOwner()->getName(), $round, str_pad($pick, 2, "0", STR_PAD_LEFT));
+            return sprintf("The %s currently own pick %s.%s", $pick->getOwner()->getName(), $round, str_pad($pick->getNumber(), 2, "0", STR_PAD_LEFT));
         } else {
             return "That pick doesn't exist in the database. Ask the commish what's going on.";
         }

@@ -94,7 +94,6 @@ class SyncAssetsDataFromMfl extends Command
                     $parts = explode("_", $mflIdentifier);
                     $round = $parts[1] + 1;
                     $number = $parts[2] + 1;
-                    $overall = (($round-1)*12) + $number;
                     $year = explode(" ", $currentYearDraftPick["description"])[1];
                     $draft = $draftRepo->findOneBy([
                         "year" => $year,
@@ -104,6 +103,9 @@ class SyncAssetsDataFromMfl extends Command
                         "round" => $round,
                         "number" => $number,
                     ]);
+                    if ($round === 1 && $number === 1) {
+                        dump($currentYearDraftPicks);
+                    }
                     $pick->setOwner($franchise);
                 }
             }
