@@ -16,6 +16,7 @@ services:
             $groupMeBotId: "%env(GROUPME_BOT_ID)%"
             $mflYear: 2018
             $mflLeagueId: "11959"
+            $mflApiKey: "%env(MFL_API_KEY)%"
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name

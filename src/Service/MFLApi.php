@@ -18,12 +18,17 @@ class MFLApi
      * @var string
      */
     private $mflLeagueId;
+    /**
+     * @var string
+     */
+    private $mflApiKey;
 
-    public function __construct(int $mflYear, string $mflLeagueId)
+    public function __construct(int $mflYear, string $mflLeagueId, string $mflApiKey)
     {
         $this->client = new Client();
         $this->year = $mflYear;
         $this->mflLeagueId = $mflLeagueId;
+        $this->mflApiKey = $mflApiKey;
     }
 
     private function request($url)
@@ -79,5 +84,15 @@ class MFLApi
         $resBody = $res->getBody();
         $json = json_decode($resBody, true);
         return $json["tradeBaits"]["tradeBait"];
+    }
+
+    public function getAssets()
+    {
+        $url = sprintf("http://www66.myfantasyleague.com/%s/export?TYPE=assets&L=%s&JSON=1&APIKEY=%s", $this->year, $this->mflLeagueId, $this->mflApiKey);
+
+        $res = $this->client->request("GET", $url);
+        $resBody = $res->getBody();
+        $json = json_decode($resBody, true);
+        return $json["assets"]["franchise"];
     }
 }
