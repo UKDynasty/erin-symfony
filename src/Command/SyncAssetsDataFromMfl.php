@@ -70,7 +70,7 @@ class SyncAssetsDataFromMfl extends Command
                 foreach($futureYearDraftPicks as $futureYearDraftPick) {
                     $mflIdentifier = $futureYearDraftPick["pick"];
                     $parts = explode("_", $mflIdentifier);
-                    $franchise = $franchiseRepo->findOneBy([
+                    $originalOwnerFranchise = $franchiseRepo->findOneBy([
                         "mflFranchiseId" => $parts[1],
                     ]);
                     $draft = $draftRepo->findOneBy([
@@ -78,7 +78,7 @@ class SyncAssetsDataFromMfl extends Command
                     ]);
                     /** @var DraftPick $pick */
                     $pick = $this->em->getRepository(DraftPick::class)->findOneBy([
-                        "originalOwner" => $franchise,
+                        "originalOwner" => $originalOwnerFranchise,
                         "draft" => $draft,
                         "round" => $parts[3],
                     ]);
@@ -103,9 +103,6 @@ class SyncAssetsDataFromMfl extends Command
                         "round" => $round,
                         "number" => $number,
                     ]);
-                    if ($round === 1 && $number === 1) {
-                        dump($currentYearDraftPicks);
-                    }
                     $pick->setOwner($franchise);
                 }
             }

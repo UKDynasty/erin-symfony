@@ -32,7 +32,7 @@ class ReceiveMessageController extends Controller
     {
         $draftPickRepo = $this->getDoctrine()->getRepository(DraftPick::class);
         $franchiseRepo = $this->getDoctrine()->getRepository(Player::class);
-        $franchise = $this->getDoctrine()->getRepository(Franchise::class)->findOneBy(["mflFranchiseId" => "0001"]);
+        $franchise = $this->getDoctrine()->getRepository(Franchise::class)->findOneBy(["mflFranchiseId" => "0003"]);
         foreach($draftPickRepo->getUnusedPicksForFranchise($franchise) as $pick) {
             echo $pick;
         }
