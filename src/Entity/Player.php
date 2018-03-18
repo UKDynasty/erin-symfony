@@ -1,12 +1,12 @@
 <?php
 namespace App\Entity;
 
-use App\Entity\Interfaces\TradeBaitInterface;
+use App\Entity\Interfaces\AssetInterface;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\IdTrait;
 
 /** @ORM\Entity(repositoryClass="PlayerRepository") */
-class Player implements TradeBaitInterface
+class Player implements AssetInterface
 {
     use IdTrait;
 
@@ -608,5 +608,8 @@ class Player implements TradeBaitInterface
         $this->listedAsTradeBait = $listedAsTradeBait;
     }
 
-
+    public function isOwned(): bool
+    {
+        return null !== $this->franchise;
+    }
 }
