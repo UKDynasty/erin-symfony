@@ -1,6 +1,7 @@
 <?php
 namespace App\Service;
 
+use App\Entity\DraftPick;
 use App\Entity\Franchise;
 use App\Entity\Owner;
 use App\Entity\Player;
@@ -43,14 +44,19 @@ class Erin
      * @var HumanReadableHelpers
      */
     private $helpers;
+    /**
+     * @var DraftManager
+     */
+    private $draftManager;
 
-    public function __construct(GroupMe $groupMe, Picks $picks, MessageDataExtractor $messageDataExtractor, EntityManagerInterface $em, HumanReadableHelpers $helpers)
+    public function __construct(GroupMe $groupMe, Picks $picks, MessageDataExtractor $messageDataExtractor, EntityManagerInterface $em, HumanReadableHelpers $helpers, DraftManager $draftManager)
     {
         $this->groupMe = $groupMe;
         $this->picks = $picks;
         $this->messageDataExtractor = $messageDataExtractor;
         $this->em = $em;
         $this->helpers = $helpers;
+        $this->draftManager = $draftManager;
     }
 
     public function getOwnerFromMessageSenderId($senderId)
@@ -122,6 +128,28 @@ class Erin
         return "Oh hi there";
     }
 
+//    private function pick($message)
+//    {
+//
+//        preg_match("/(\d+)\.(\d+)/", $message["text"], $matches);
+//
+//        if (!$matches) {
+//            return "I can't work out which pick you mean - make sure you're formatting it as round.number - e.g. pick 2.02";
+//        }
+//
+//        $round = (int)$matches[1];
+//        $pick = (int)$matches[2];
+//        $overall = (($round-1)*12) + $pick;
+//
+//        $owner = $this->picks->getPickOwner($overall);
+//
+//        if ($owner) {
+//            return sprintf("The %s currently own pick %s.%s", $owner, $round, str_pad($pick, 2, "0", STR_PAD_LEFT));
+//        } else {
+//            return "That pick's not set up properly on the spreadsheet - commish messed up somehow, or that's a non-existent pick.";
+//        }
+//    }
+
     private function pick($message)
     {
 
@@ -132,15 +160,18 @@ class Erin
         }
 
         $round = (int)$matches[1];
-        $pick = (int)$matches[2];
-        $overall = (($round-1)*12) + $pick;
+        $number = (int)$matches[2];
 
-        $owner = $this->picks->getPickOwner($overall);
+        $pick = $this->em->getRepository(DraftPick::class)->findOneBy([
+            "draft" => $this->draftManager->getCurrentDraft(),
+            "round" => $round,
+            "number" => $number,
+        ]);
 
-        if ($owner) {
-            return sprintf("The %s currently own pick %s.%s", $owner, $round, str_pad($pick, 2, "0", STR_PAD_LEFT));
+        if ($pick) {
+            return sprintf("The %s currently own pick %s.%s", $pick->getOwner()->getName(), $round, str_pad($pick, 2, "0", STR_PAD_LEFT));
         } else {
-            return "That pick's not set up properly on the spreadsheet - commish messed up somehow, or that's a non-existent pick.";
+            return "That pick doesn't exist in the database. Ask the commish what's going on.";
         }
     }
 

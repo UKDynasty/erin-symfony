@@ -42,7 +42,7 @@ class DraftPick
 
     /**
      * @var Franchise
-     * @ORM\ManyToOne(targetEntity="Franchise")
+     * @ORM\ManyToOne(targetEntity="Franchise", inversedBy="draftPicks")
      */
     private $owner;
 
