@@ -175,17 +175,33 @@ class Erin
         }
     }
 
+//    private function picks($message)
+//    {
+//        // Identify the franchise that's mentioned in the message
+//        $franchise = $this->messageDataExtractor->extractFranchiseName($message["text"]);
+//        // If the franchise can't be identified, return a message saying as much
+//        if (!$franchise) {
+//            return "Sorry, I don't know which franchise you're asking about. I could guess, but that would be less than useful.";
+//        }
+//        // If we have a canonical franchise name, get a list of their picks and return it
+//        $picks = $this->picks->getPicksList($franchise);
+//        return "Picks for the " . $franchise . ":\n\n" . implode("\n", $picks);
+//    }
+
     private function picks($message)
     {
         // Identify the franchise that's mentioned in the message
-        $franchise = $this->messageDataExtractor->extractFranchiseName($message["text"]);
+        $franchise = $this->messageDataExtractor->extractFranchise($message["text"]);
         // If the franchise can't be identified, return a message saying as much
         if (!$franchise) {
             return "Sorry, I don't know which franchise you're asking about. I could guess, but that would be less than useful.";
         }
-        // If we have a canonical franchise name, get a list of their picks and return it
-        $picks = $this->picks->getPicksList($franchise);
-        return "Picks for the " . $franchise . ":\n\n" . implode("\n", $picks);
+        // If we have a franchise, get a list of their picks and return it
+
+        /** @var Picks[] $picks */
+        $picks = $this->em->getRepository(DraftPick::class)->getUnusedPicksForFranchise($franchise);
+
+        return "Picks for the " . $franchise->getName() . ":\n\n" . implode("\n", $picks);
     }
 
     private function roster($message)

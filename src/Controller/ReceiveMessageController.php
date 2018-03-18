@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\DraftPick;
 use App\Entity\Franchise;
 use App\Entity\Player;
 use App\GroupMe\DirectMessage;
@@ -10,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -28,12 +30,13 @@ class ReceiveMessageController extends Controller
      */
     public function test(GroupMe $groupMe)
     {
+        $draftPickRepo = $this->getDoctrine()->getRepository(DraftPick::class);
         $franchiseRepo = $this->getDoctrine()->getRepository(Player::class);
         $franchise = $this->getDoctrine()->getRepository(Franchise::class)->findOneBy(["mflFranchiseId" => "0001"]);
-        foreach($franchiseRepo->getPlayersForFranchiseOrdered($franchise) as $player) {
-            dump($player->getName());
+        foreach($draftPickRepo->getUnusedPicksForFranchise($franchise) as $pick) {
+            echo $pick;
         }
-        exit();
+        return new Response("<html><body></body></html>");
     }
 
 

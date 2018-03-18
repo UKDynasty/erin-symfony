@@ -49,6 +49,7 @@ class SetDraftOrder extends Command
 
             $picks = $this->em->getRepository(DraftPick::class)->findBy([
                 "originalOwner" => $franchise,
+                "draft" => $draft,
             ]);
 
             $question = new Question(sprintf("What position do the %s have in this draft?", $franchise->getName()));
