@@ -17,4 +17,21 @@ class HumanReadableHelpers
             )
         );
     }
+
+    public function roundOfPicksToList(array $picks)
+    {
+        return implode(
+            "\n",
+            array_map(
+                function($pick) {
+                    $ownerText = $pick->getOwner();
+                    if ($pick->getOwner() !== $pick->getOriginalOwner()) {
+                        $ownerText .= sprintf(" from the (%s)", $pick->getOriginalOwner);
+                    }
+                    return sprintf("%.%: %s", $pick->getRound(), $pick->getNumber(), $ownerText);
+                },
+                $picks
+            )
+        );
+    }
 }

@@ -17,6 +17,7 @@ class Erin
     private const IDENTIFIABLE_MESSAGES = [
         "/hello/" => "hello",
         "/hi/" => "hi",
+        "/\bround\b/i" => "picksRound",
         "/\bpick\b/i" => "pick",
         "/\bpicks\b/i" => "picks",
         "/\bthanks\b/i" => "thanks",
@@ -202,6 +203,25 @@ class Erin
         $picks = $this->em->getRepository(DraftPick::class)->getUnusedPicksForFranchise($franchise);
 
         return "Picks for the " . $franchise->getName() . ":\n\n" . implode("\n", $picks);
+    }
+
+    private function picksRound($message)
+    {
+        $draft = $this->draftManager->getCurrentDraft();
+
+        preg_match('/\d+/',$message["text"],$matches);
+        if (!$matches) {
+            return "Which round do you want to see the draft order for? Say something like \"Show me the picks for round 3\"";
+        }
+        $round = $matches[0];
+
+        /** @var Picks[] $picks */
+        $picks = $this->em->getRepository(DraftPick::class)->findBy([
+            "draft" => $draft,
+            "round" => $round,
+        ]);
+
+        return sprintf("%s Draft Round %s:\n\n%s", $draft->getYear(), $round, $this->helpers->roundOfPicksToList($picks));
     }
 
     private function roster($message)
