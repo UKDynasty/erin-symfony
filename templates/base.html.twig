@@ -2,11 +2,13 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% if title is defined %}{{ title }} - {% endif %}Erin - UK Dynasty bot</title>
+        <link rel="stylesheet" href="{{ asset("/build/css/app.css") }}">
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+        <script src="{{ asset("/build/js/app.js") }}"></script>
     </body>
 </html>

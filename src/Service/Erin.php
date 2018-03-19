@@ -67,6 +67,16 @@ class Erin
         ]);
     }
 
+    public function receiveSandboxMessage(string $message) : string
+    {
+        // Mock a $groupMeMessage
+        $mockGroupMeMessage = [
+            "sender_id" => "sandbox",
+            "text" => $message,
+        ];
+        return $this->parseMessage($mockGroupMeMessage);
+    }
+
     public function receiveDirectMessage($groupMeMessage)
     {
 

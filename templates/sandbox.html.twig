@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+<h2>You say:</h2>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit">Say</button>
+    {{ form_end(form) }}
+    {% if reply is defined %}
+        <h2>Erin says:</h2>
+        <p>{{ reply }}</p>
+    {% endif %}
+
+{% endblock %}
