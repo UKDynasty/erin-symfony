@@ -164,17 +164,51 @@ class DraftPick
         $this->player = $player;
     }
 
-    public function __toString()
+    /**
+     * Return the shorthand
+     * @return string
+     */
+    public function getPickText()
     {
         if ($this->number) {
-            $pickText = sprintf("%s %s.%s", $this->getDraft()->getYear(), $this->getRound(), str_pad($this->getNumber(), 2, "0", STR_PAD_LEFT));
-        } else {
-            $pickText = sprintf("%s %s%s", $this->getDraft()->getYear(), $this->getRound(), date("S", mktime(0, 0, 0, 0, $this->getRound(), 0)));
+            return sprintf(
+                "%s %s.%s",
+                $this->getDraft()->getYear(),
+                $this->getRound(),
+                str_pad($this->getNumber(), 2, "0", STR_PAD_LEFT)
+            );
         }
+        return sprintf(
+            "%s %s%s",
+            $this->getDraft()->getYear(),
+            $this->getRound(),
+            date("S", mktime(0, 0, 0, 0, $this->getRound(), 0)
+            )
+        );
+    }
+
+    public function getPickTextIncludingOriginalOwner()
+    {
+        $pickText = $this->getPickText();
         if ($this->owner !== $this->originalOwner) {
             $pickText .= sprintf(" (from the %s)", $this->getOriginalOwner()->getName());
         }
         return $pickText;
+    }
+
+    public function getPickTextIncludingOwnerAndOriginalOwner()
+    {
+        $pickText = $this->getPickText();
+        $pickText .= ": " . $this->getOwner()->getName();
+        if ($this->owner !== $this->originalOwner) {
+            $pickText .= sprintf(" (from the %s)", $this->getOriginalOwner()->getName());
+        }
+        return $pickText;
+    }
+
+    public function __toString()
+    {
+        return $this->getPickTextIncludingOriginalOwner();
     }
 
 }
