@@ -10,7 +10,7 @@
     {{ form_end(form) }}
     {% if reply is defined %}
         <h2>Erin says:</h2>
-        <p>{{ reply }}</p>
+        <p>{{ reply | nl2br }}</p>
     {% endif %}
 
 {% endblock %}
