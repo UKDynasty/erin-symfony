@@ -26,7 +26,7 @@ class HumanReadableHelpers
                 function($pick) {
                     $ownerText = $pick->getOwner()->getName();
                     if ($pick->getOwner() !== $pick->getOriginalOwner()) {
-                        $ownerText .= sprintf(" from the (%s)", $pick->getOriginalOwner->getName());
+                        $ownerText .= sprintf(" from the (%s)", $pick->getOriginalOwner()->getName());
                     }
                     return sprintf("%.%: %s", $pick->getRound(), $pick->getNumber(), $ownerText);
                 },
