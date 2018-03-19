@@ -219,7 +219,7 @@ class Erin
         $picks = $this->em->getRepository(DraftPick::class)->findBy([
             "draft" => $draft,
             "round" => $round,
-        ]);
+        ], ["number" => "ASC"]);
 
         return sprintf("%s Draft Round %s:\n\n%s", $draft->getYear(), $round, $this->helpers->roundOfPicksToList($picks));
     }
