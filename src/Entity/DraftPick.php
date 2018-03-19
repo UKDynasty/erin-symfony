@@ -172,8 +172,7 @@ class DraftPick
     {
         if ($this->number) {
             return sprintf(
-                "%s %s.%s",
-                $this->getDraft()->getYear(),
+                "%s.%s",
                 $this->getRound(),
                 str_pad($this->getNumber(), 2, "0", STR_PAD_LEFT)
             );
