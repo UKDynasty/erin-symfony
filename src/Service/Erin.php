@@ -296,7 +296,12 @@ class Erin
                 if ($results[0]->getFranchise() && $results[0]->isListedAsTradeBait()) {
                     return sprintf("%s is owned by the %s, and is currently listed as trade bait.", $results[0]->getName(), $results[0]->getFranchise()->getName());
                 }
-                if ($results[0]->getFranchise()) {
+                /** @var Franchise $franchise */
+                $franchise = $results[0]->getFranchise();
+                if ($franchise) {
+                    if ($franchise->getOwner() === $this->getOwnerFromMessageSenderId($message['sender_id'])) {
+                        return sprintf("%s is owned by the %s, but you already know that, don't you?", $results[0]->getName(), $results[0]->getFranchise()->getName());
+                    }
                     return sprintf("%s is owned by the %s.", $results[0]->getName(), $results[0]->getFranchise()->getName());
                 }
                 return sprintf("%s is a free agent.", $results[0]->getName());
