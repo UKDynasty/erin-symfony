@@ -9,6 +9,7 @@ use App\GroupMe\DirectMessage;
 use App\GroupMe\GroupMessage;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 
 class Erin
 {
@@ -47,8 +48,12 @@ class Erin
      * @var DraftManager
      */
     private $draftManager;
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
 
-    public function __construct(GroupMe $groupMe, Picks $picks, MessageDataExtractor $messageDataExtractor, EntityManagerInterface $em, HumanReadableHelpers $helpers, DraftManager $draftManager)
+    public function __construct(GroupMe $groupMe, Picks $picks, MessageDataExtractor $messageDataExtractor, EntityManagerInterface $em, HumanReadableHelpers $helpers, DraftManager $draftManager, LoggerInterface $logger)
     {
         $this->groupMe = $groupMe;
         $this->picks = $picks;
@@ -56,6 +61,7 @@ class Erin
         $this->em = $em;
         $this->helpers = $helpers;
         $this->draftManager = $draftManager;
+        $this->logger = $logger;
     }
 
     public function getOwnerFromMessageSenderId($senderId)
@@ -102,6 +108,10 @@ class Erin
     public function receiveGroupMessage($groupMeMessage): ?bool
     {
 
+        $this->logger->debug($groupMeMessage);
+
+        return false;
+
         if ($groupMeMessage['sender_id'] === '47997687' || $groupMeMessage['sender_id'] === '585743') {
             return false;
         }
@@ -112,8 +122,6 @@ class Erin
 
         $replyText = $this->parseMessage($groupMeMessage);
 
-        $reply = new DirectMessage();
-        $reply->setRecipientId($groupMeMessage['sender_id']);
         if (($owner = $this->getOwnerFromMessageSenderId($groupMeMessage['sender_id'])) && (0 === rand(0,5))) {
             $replyText = 'Hey ' . $owner->getName() . '. ' . $replyText;
         }
