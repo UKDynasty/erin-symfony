@@ -107,12 +107,7 @@ class Erin
 
     public function receiveGroupMessage($groupMeMessage): ?bool
     {
-        $debugMessage = new DirectMessage();
-        $debugMessage->setRecipientId(36266918);
-        $debugMessage->setText('sender_id is ' . $groupMeMessage['sender_id']);
-        $this->groupMe->sendDirectMessage($debugMessage);
-
-        if ($groupMeMessage['sender_id'] === '47997687' || $groupMeMessage['sender_id'] === '585743') {
+        if (!preg_match("/^erin/i", $groupMeMessage["text"]) && !preg_match("/erin\??$/i", $groupMeMessage["text"])) {
             return false;
         }
 

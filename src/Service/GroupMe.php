@@ -50,12 +50,6 @@ class GroupMe
 
     public function sendGroupMessage(GroupMessage $groupMessage)
     {
-        $debugMessage = new DirectMessage();
-        $debugMessage->setRecipientId(36266918);
-        $debugMessage->setText('sending reply: \n\n' . json_encode($groupMessage));
-
-        return false;
-
         $client = new Client();
 
         $url = "https://api.groupme.com/v3/bots/post";
