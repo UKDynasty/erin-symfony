@@ -126,7 +126,7 @@ class Erin
         }
         $reply = new GroupMessage();
         $reply->setText($replyText);
-        $this->groupMe->sendGroupMessage($reply);
+        return $this->groupMe->sendGroupMessage($reply);
     }
 
     private function parseMessage(array $groupMeMessage)
