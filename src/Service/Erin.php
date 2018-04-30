@@ -107,10 +107,9 @@ class Erin
 
     public function receiveGroupMessage($groupMeMessage): ?bool
     {
-
-        $this->logger->debug($groupMeMessage);
-
-        return false;
+        $debugMessage = new DirectMessage();
+        $debugMessage->setRecipientId(36266918);
+        $debugMessage->setText('sender_id is ' . $groupMeMessage['sender_id']);
 
         if ($groupMeMessage['sender_id'] === '47997687' || $groupMeMessage['sender_id'] === '585743') {
             return false;
