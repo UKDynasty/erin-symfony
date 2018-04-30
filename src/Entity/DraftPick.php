@@ -53,6 +53,28 @@ class DraftPick
     private $player;
 
     /**
+     * @var null|\DateTime
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $pickMadeAt;
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getPickMadeAt(): ?\DateTime
+    {
+        return $this->pickMadeAt;
+    }
+
+    /**
+     * @param \DateTime|null $pickMadeAt
+     */
+    public function setPickMadeAt(?\DateTime $pickMadeAt): void
+    {
+        $this->pickMadeAt = $pickMadeAt;
+    }
+
+    /**
      * @return Draft
      */
     public function getDraft(): Draft

@@ -71,6 +71,7 @@ class UpdatePlayersFromMfl extends Command
         $nameArray = explode(", ", $mflPlayer["name"]);
         $player->setFirstName($nameArray[1]);
         $player->setLastName($nameArray[0]);
+        $player->setTeam($mflPlayer["team"] ?? 'FA');
         $player->setExternalIdMfl($mflPlayer["id"]);
         $player->setExternalIdEspn($mflPlayer["espn_id"] ?? null);
         $player->setExternalIdRotoworld($mflPlayer["rotoworld_id"] ?? null);

@@ -75,6 +75,12 @@ class Player implements AssetInterface
     private $draftTeam;
 
     /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    private $team = 'FA';
+
+    /**
      * @var Position
      * @ORM\ManyToOne(targetEntity="Position")
      */
@@ -611,5 +617,21 @@ class Player implements AssetInterface
     public function isOwned(): bool
     {
         return null !== $this->franchise;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTeam(): string
+    {
+        return $this->team;
+    }
+
+    /**
+     * @param string $team
+     */
+    public function setTeam(string $team): void
+    {
+        $this->team = $team;
     }
 }
