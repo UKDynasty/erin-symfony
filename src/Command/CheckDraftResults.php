@@ -109,7 +109,7 @@ class CheckDraftResults extends Command
 
             if ($player->getDraftRound() && $player->getCollege()) {
                 $text .= sprintf(
-                    '\n\n %s was selected with the %s pick in the %s round of the NFL Draft, out of %s.',
+                    '\\n\\n %s was selected with the %s pick in the %s round of the NFL Draft, out of %s.',
                     $player->getLastName(),
                     $this->humanReadableHelpers->ordinal($player->getDraftPick()),
                     $this->humanReadableHelpers->ordinal($player->getDraftRound()),
