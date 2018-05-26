@@ -117,6 +117,15 @@ class CheckDraftResults extends Command
                 );
             }
 
+            $nextPick = $this->entityManager->getRepository(DraftPick::class)->findOneBy([
+                'draft' => $draft,
+                'overall' => $pick->getOverall() + 1
+            ]);
+
+            if ($nextPick instanceof DraftPick) {
+                $text .= sprintf('\\n\\nThe %s are now on the clock.', $nextPick->getOwner()->getName());
+            }
+
             $groupMeMessage = new GroupMessage();
             $groupMeMessage->setText($text);
             $this->groupMe->sendGroupMessage($groupMeMessage);
