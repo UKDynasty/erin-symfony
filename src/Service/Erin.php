@@ -23,6 +23,7 @@ class Erin
         "/\broster\b/i" => 'roster',
         "/\bowns\b/i" => 'whoOwns',
         "/\bbait\b/i" => 'tradeBait',
+        "/\bclock\b/i" => 'clock',
     ];
     /**
      * @var GroupMe
@@ -286,6 +287,15 @@ class Erin
     {
         $messages = ['No problem!', 'Happy to help.', "Don't mention it!"];
         return $messages[array_rand($messages)];
+    }
+
+    private function clock($message)
+    {
+        $pickOnClock = $this->draftManager->getPickOnClock($this->draftManager->getCurrentDraft());
+        if ($pickOnClock instanceof DraftPick) {
+            return sprintf('The %s are on the clock with pick %s.', $pickOnClock->getOwner()->getName(), $pickOnClock->getPickText());
+        }
+        return 'The draft is over, guys. Better luck next year.';
     }
 
     private function whoOwns($message)

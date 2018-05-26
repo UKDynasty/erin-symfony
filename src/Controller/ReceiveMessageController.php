@@ -5,6 +5,7 @@ use App\Entity\DraftPick;
 use App\Entity\Franchise;
 use App\Entity\Player;
 use App\GroupMe\DirectMessage;
+use App\Service\DraftManager;
 use App\Service\Erin;
 use App\Service\GroupMe;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -28,15 +29,10 @@ class ReceiveMessageController extends Controller
      * @param GroupMe $groupMe
      * @return JsonResponse
      */
-    public function test(GroupMe $groupMe)
+    public function test(DraftManager $draftManager)
     {
-        $draftPickRepo = $this->getDoctrine()->getRepository(DraftPick::class);
-        $franchiseRepo = $this->getDoctrine()->getRepository(Player::class);
-        $franchise = $this->getDoctrine()->getRepository(Franchise::class)->findOneBy(["mflFranchiseId" => "0003"]);
-        foreach($draftPickRepo->getUnusedPicksForFranchise($franchise) as $pick) {
-            echo $pick;
-        }
-        return new Response("<html><body></body></html>");
+         $pickOnClock = $draftManager->getPickOnClock($draftManager->getCurrentDraft());
+         dump($pickOnClock);
     }
 
 
