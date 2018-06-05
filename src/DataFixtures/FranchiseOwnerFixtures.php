@@ -19,12 +19,12 @@ class FranchiseOwnerFixtures extends Fixture
             "groupMeUserId" => "36266918",
         ],
         [
-            "ownerName" => "Hamza",
+            "ownerName" => "Mike",
             "mflFranchiseId" => "0002",
             "espnFranchiseId" => "2",
-            "name" => "Bradford Championz",
-            "identifiers" => ["bradford", "championz"],
-            "groupMeUserId" => "37597619",
+            "name" => "Flitwick Fireflies",
+            "identifiers" => ["flitwick", "fireflies"],
+            "groupMeUserId" => "60310674",
         ],
         [
             "ownerName" => "Chris",
