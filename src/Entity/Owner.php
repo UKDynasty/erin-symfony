@@ -35,6 +35,12 @@ class Owner
     private $groupMeUserId;
 
     /**
+     * @var boolean
+     * @ORM\Column(type="boolean")
+     */
+    private $archived = false;
+
+    /**
      * @return string
      */
     public function getName(): string
@@ -80,5 +86,21 @@ class Owner
     public function setGroupMeUserId(?string $groupMeUserId): void
     {
         $this->groupMeUserId = $groupMeUserId;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isArchived(): bool
+    {
+        return $this->archived;
+    }
+
+    /**
+     * @param bool $archived
+     */
+    public function setArchived(bool $archived): void
+    {
+        $this->archived = $archived;
     }
 }

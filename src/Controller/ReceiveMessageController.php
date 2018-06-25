@@ -29,10 +29,10 @@ class ReceiveMessageController extends Controller
      * @param GroupMe $groupMe
      * @return JsonResponse
      */
-    public function test(DraftManager $draftManager)
+    public function test(GroupMe $groupMe)
     {
-         $pickOnClock = $draftManager->getPickOnClock($draftManager->getCurrentDraft());
-         dump($pickOnClock);
+         $res = $groupMe->getGroupMessagesChunkRecent();
+         var_dump($res);
     }
 
 

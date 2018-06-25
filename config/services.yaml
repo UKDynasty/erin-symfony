@@ -14,6 +14,7 @@ services:
         bind:
             $groupMeDirectMessageToken: "%env(GROUPME_DIRECT_MESSAGE_TOKEN)%"
             $groupMeBotId: "%env(GROUPME_BOT_ID)%"
+            $groupMeGroupId: "%env(GROUPME_GROUP_ID)%"
             $mflYear: 2018
             $mflLeagueId: "11959"
             $mflApiKey: "%env(MFL_API_KEY)%"

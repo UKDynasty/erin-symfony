@@ -5,6 +5,7 @@ use App\GroupMe\DirectMessage;
 use App\GroupMe\GroupMessage;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
 use Psr\Log\LoggerInterface;
 
@@ -16,26 +17,59 @@ class GroupMe
      * @var LoggerInterface
      */
     private $logger;
+    private $groupMeGroupId;
 
-    public function __construct($groupMeDirectMessageToken, $groupMeBotId, LoggerInterface $logger)
+    public function __construct($groupMeDirectMessageToken, $groupMeBotId, $groupMeGroupId, LoggerInterface $logger)
     {
         $this->token = $groupMeDirectMessageToken;
         $this->groupMeBotId = $groupMeBotId;
         $this->logger = $logger;
+        $this->groupMeGroupId = $groupMeGroupId;
+    }
+
+    private function get($url)
+    {
+        $client = new Client();
+
+        try {
+            $response = $client->request('GET', $url);
+            $content = json_decode($response->getBody()->getContents(), true);
+            if (200 === $content['meta']['code']) {
+                return $content['response'];
+            }
+        } catch (GuzzleException $exception) {
+            dump($exception);
+        }
     }
 
     public function getGroupMembers()
     {
-        $client = new Client();
-
         $url = "https://api.groupme.com/v3/groups?token=" . $this->token;
 
-        $res = $client->get($url);
+        return $this->get($url);
+    }
 
-        echo $res->getBody()->getContents();
-        exit();
+    public function getGroupMessagesChunkRecent()
+    {
+        $url = sprintf(
+            'https://api.groupme.com/v3/groups/%s/messages?limit=100&token=%s',
+            $this->groupMeGroupId,
+            $this->token
+        );
 
-        return $res->getBody();
+        return $this->get($url);
+    }
+
+    public function getGroupMessagesChunkBefore(int $groupMeMessageId)
+    {
+        $url = sprintf(
+            'https://api.groupme.com/v3/groups/%s/messages?before_id=%s&limit=100&token=%s',
+            $this->groupMeGroupId,
+            $groupMeMessageId,
+            $this->token
+        );
+
+        return $this->get($url);
     }
 
     public function sendDirectMessage(DirectMessage $directMessage)
