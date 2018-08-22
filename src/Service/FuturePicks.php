@@ -41,7 +41,6 @@ class FuturePicks
                     $originalOwner = $franchiseRepository->findOneBy(['name' => $parsedPickText['franchiseName']]);
                     $pick = $pickRepository->getPickByYearRoundOriginalOwnerFranchise($parsedPickText['year'], $parsedPickText['round'], $originalOwner);
                     $pick->setOwner($franchise);
-                    dump($pick->getOwner()->getName());
                 }
             }
         }
