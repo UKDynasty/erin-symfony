@@ -3,15 +3,15 @@ namespace App\Service;
 
 class Picks
 {
-    private const SHEET_JSON_URL = 'http://spreadsheets.google.com/feeds/list/1tsYQSMBHSD3nFUQS6urrnqYPJQs94c-IdjJi1CznX1c/4/public/values?alt=json';
+    private const SHEET_JSON_URL = 'http://spreadsheets.google.com/feeds/list/1tsYQSMBHSD3nFUQS6urrnqYPJQs94c-IdjJi1CznX1c/3/public/values?alt=json';
 
     private $rows;
 
     public function __construct()
     {
-        $file= file_get_contents(static::SHEET_JSON_URL);
-        $json = json_decode($file, true);
-        $this->rows = $json["feed"]["entry"];
+//        $file= file_get_contents(static::SHEET_JSON_URL);
+//        $json = json_decode($file, true);
+//        $this->rows = $json["feed"]["entry"];
     }
 
     public function getPickOwner($pick)

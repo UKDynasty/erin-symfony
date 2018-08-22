@@ -35,6 +35,20 @@ class DraftPickRepository extends EntityRepository
         return $this->addDefaultOrderBy($qb)->getQuery()->getResult();
     }
 
+    public function getPickByYearRoundOriginalOwnerFranchise(int $year, int $round, Franchise $franchise)
+    {
+        $qb = $this->createQueryBuilder("draftPick")
+            ->andWhere('draft.year = :year')
+            ->andWhere("draftPick.originalOwner = :franchise")
+            ->andWhere("draftPick.round = :round")
+            ->setParameter("franchise", $franchise)
+            ->setParameter("year", $year)
+            ->setParameter("round", $round)
+        ;
+
+        return $this->addDefaultOrderBy($qb)->getQuery()->getOneOrNullResult();
+    }
+
     public function findPickOnClockForDraft(Draft $draft)
     {
         try {

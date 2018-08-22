@@ -24,6 +24,7 @@ class Erin
         "/\bowns\b/i" => 'whoOwns',
         "/\bbait\b/i" => 'tradeBait',
         "/\bclock\b/i" => 'clock',
+        "/\bscorigami\b/i" => 'scorigami',
     ];
     /**
      * @var GroupMe
@@ -146,27 +147,6 @@ class Erin
         return 'Oh hi there';
     }
 
-//    private function pick($message)
-//    {
-//
-//        preg_match("/(\d+)\.(\d+)/", $message["text"], $matches);
-//
-//        if (!$matches) {
-//            return "I can't work out which pick you mean - make sure you're formatting it as round.number - e.g. pick 2.02";
-//        }
-//
-//        $round = (int)$matches[1];
-//        $pick = (int)$matches[2];
-//        $overall = (($round-1)*12) + $pick;
-//
-//        $owner = $this->picks->getPickOwner($overall);
-//
-//        if ($owner) {
-//            return sprintf("The %s currently own pick %s.%s", $owner, $round, str_pad($pick, 2, "0", STR_PAD_LEFT));
-//        } else {
-//            return "That pick's not set up properly on the spreadsheet - commish messed up somehow, or that's a non-existent pick.";
-//        }
-//    }
 
     /**
      * @param $message
@@ -174,6 +154,7 @@ class Erin
      */
     private function pick($message)
     {
+        return "The draft order isn't set yet!";
 
         preg_match("/(\d+)\.(\d+)/", $message['text'], $matches);
 
@@ -196,19 +177,6 @@ class Erin
 
         return "That pick doesn't exist in the database. Ask the commish what's going on.";
     }
-
-//    private function picks($message)
-//    {
-//        // Identify the franchise that's mentioned in the message
-//        $franchise = $this->messageDataExtractor->extractFranchiseName($message["text"]);
-//        // If the franchise can't be identified, return a message saying as much
-//        if (!$franchise) {
-//            return "Sorry, I don't know which franchise you're asking about. I could guess, but that would be less than useful.";
-//        }
-//        // If we have a canonical franchise name, get a list of their picks and return it
-//        $picks = $this->picks->getPicksList($franchise);
-//        return "Picks for the " . $franchise . ":\n\n" . implode("\n", $picks);
-//    }
 
     private function picks($message)
     {
@@ -247,6 +215,7 @@ class Erin
 
     private function roster($message)
     {
+        return 'Sorry, I can\'t do this anymore. I can only answer this question if we\'re using MyFantasyLeague.';
         // Identify the franchise that's mentioned in the message
         $franchise = $this->messageDataExtractor->extractFranchise($message['text']);
         // If the franchise can't be identified, return a message saying as much
@@ -264,6 +233,7 @@ class Erin
 
     private function tradeBait($message)
     {
+        return 'Sorry, I can\'t do this anymore. I can only answer this question if we\'re using MyFantasyLeague.';
         // Identify the franchise that's mentioned in the message
         $franchise = $this->messageDataExtractor->extractFranchise($message['text']);
         // If the franchise can't be identified, return a message saying as much
@@ -291,6 +261,7 @@ class Erin
 
     private function clock($message)
     {
+        return 'There isn\'t a draft currently running.';
         $pickOnClock = $this->draftManager->getPickOnClock($this->draftManager->getCurrentDraft());
         if ($pickOnClock instanceof DraftPick) {
             return sprintf('The %s are on the clock with pick %s.', $pickOnClock->getOwner()->getName(), $pickOnClock->getPickText());
@@ -300,6 +271,7 @@ class Erin
 
     private function whoOwns($message)
     {
+        return 'Sorry, I can\'t do this anymore. I can only answer this question if we\'re using MyFantasyLeague.';
         preg_match("/\bwho owns\b(.*)/i", rtrim(trim($message['text']), '?'), $matches);
         if ($matches) {
             $playerName = trim($matches[1]);

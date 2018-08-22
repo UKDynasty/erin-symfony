@@ -41,7 +41,7 @@ class MFLApi
     public function getPlayers(array $playerIds = [])
     {
         $url = sprintf('http://www03.myfantasyleague.com/%s/export?TYPE=players&DETAILS=1&JSON=1', $this->year);
-        if (count($playerIds) > 0) {
+        if (\count($playerIds) > 0) {
             $url .= '&PLAYERS=' . implode(',', $playerIds);
         }
         $res = $this->client->request('GET', $url);
