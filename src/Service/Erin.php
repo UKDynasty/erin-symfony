@@ -25,6 +25,7 @@ class Erin
         "/\bbait\b/i" => 'tradeBait',
         "/\bclock\b/i" => 'clock',
         "/\bscorigami\b/i" => 'scorigami',
+        '/\bscores\b/i' => 'scores',
     ];
     /**
      * @var GroupMe
@@ -54,8 +55,12 @@ class Erin
      * @var LoggerInterface
      */
     private $logger;
+    /**
+     * @var ESPN
+     */
+    private $espn;
 
-    public function __construct(GroupMe $groupMe, Picks $picks, MessageDataExtractor $messageDataExtractor, EntityManagerInterface $em, HumanReadableHelpers $helpers, DraftManager $draftManager, LoggerInterface $logger)
+    public function __construct(GroupMe $groupMe, Picks $picks, MessageDataExtractor $messageDataExtractor, EntityManagerInterface $em, HumanReadableHelpers $helpers, DraftManager $draftManager, LoggerInterface $logger, ESPN $espn)
     {
         $this->groupMe = $groupMe;
         $this->picks = $picks;
@@ -64,6 +69,7 @@ class Erin
         $this->helpers = $helpers;
         $this->draftManager = $draftManager;
         $this->logger = $logger;
+        $this->espn = $espn;
     }
 
     public function getOwnerFromMessageSenderId($senderId)
@@ -267,6 +273,11 @@ class Erin
             return sprintf('The %s are on the clock with pick %s.', $pickOnClock->getOwner()->getName(), $pickOnClock->getPickText());
         }
         return 'The draft is over, guys. Better luck next year.';
+    }
+
+    private function scores()
+    {
+        return $this->espn->getScoreboard();
     }
 
     private function whoOwns($message)
