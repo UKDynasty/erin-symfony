@@ -97,6 +97,8 @@ class Erin
     public function receiveDirectMessage($groupMeMessage)
     {
 
+        $this->logger->info('recieved direct message', $groupMeMessage);
+
         if ($groupMeMessage['sender_id'] === '47997687' || $groupMeMessage['sender_id'] === '585743') {
             return false;
         }
