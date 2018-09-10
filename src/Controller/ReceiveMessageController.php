@@ -8,6 +8,7 @@ use App\GroupMe\DirectMessage;
 use App\Service\DraftManager;
 use App\Service\Erin;
 use App\Service\GroupMe;
+use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -43,10 +44,10 @@ class ReceiveMessageController extends Controller
      * @param Erin $erin
      * @return JsonResponse
      */
-    public function direct(Request $request, Erin $erin, GroupMe $groupMe)
+    public function direct(Request $request, Erin $erin, GroupMe $groupMe, LoggerInterface $logger)
     {
         $groupMeMessage = json_decode($request->getContent(), true);
-
+        $logger->error('direct message controller', $groupMeMessage);
         $result = $erin->receiveDirectMessage($groupMeMessage);
 
         return new JsonResponse(["success" => (bool)$result]);
