@@ -47,7 +47,7 @@ class ReceiveMessageController extends Controller
     public function direct(Request $request, Erin $erin, GroupMe $groupMe, LoggerInterface $logger)
     {
         $groupMeMessage = json_decode($request->getContent(), true);
-        $logger->error('direct message controller', $groupMeMessage);
+
         $result = $erin->receiveDirectMessage($groupMeMessage);
 
         return new JsonResponse(["success" => (bool)$result]);
