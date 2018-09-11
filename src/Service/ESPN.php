@@ -39,6 +39,7 @@ class ESPN
         if (200 === $res->getStatusCode()) {
             $responseBody = $res->getBody();
             $jsonResponseBody = json_decode($responseBody, true);
+            dump($jsonResponseBody);
             $matchups = [];
             foreach($jsonResponseBody['scoreboard']['matchups'] as $matchup) {
                 $home = sprintf(
@@ -56,6 +57,6 @@ class ESPN
                 $matchups[] = sprintf('%s - %s', $home, $away);
             }
         }
-        return implode('\n', $matchups);
+        return implode("\r\n", $matchups);
     }
 }
