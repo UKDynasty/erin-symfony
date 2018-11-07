@@ -53,6 +53,31 @@ class Franchise
     private $identifiers;
 
     /**
+     * @var int
+     * @ORM\Column(type="integer")
+     */
+    private $espnRosterCountTotal = 0;
+
+    /**
+     * @var int
+     * @ORM\Column(type="integer")
+     */
+    private $espnRosterCountRegular = 0;
+
+    /**
+     * @var int
+     * @ORM\Column(type="integer")
+     */
+    private $espnRosterCountIR = 0;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $taxiSquadCount = 0;
+
+    /**
      * @var ArrayCollection|PersistentCollection
      * @ORM\OneToMany(targetEntity="Player", mappedBy="franchise")
      */
@@ -144,5 +169,69 @@ class Franchise
     public function setIdentifiers(array $identifiers): void
     {
         $this->identifiers = $identifiers;
+    }
+
+    /**
+     * @return int
+     */
+    public function getEspnRosterCountTotal(): int
+    {
+        return $this->espnRosterCountTotal;
+    }
+
+    /**
+     * @param int $espnRosterCountTotal
+     */
+    public function setEspnRosterCountTotal(int $espnRosterCountTotal): void
+    {
+        $this->espnRosterCountTotal = $espnRosterCountTotal;
+    }
+
+    /**
+     * @return int
+     */
+    public function getEspnRosterCountRegular(): int
+    {
+        return $this->espnRosterCountRegular;
+    }
+
+    /**
+     * @param int $espnRosterCountRegular
+     */
+    public function setEspnRosterCountRegular(int $espnRosterCountRegular): void
+    {
+        $this->espnRosterCountRegular = $espnRosterCountRegular;
+    }
+
+    /**
+     * @return int
+     */
+    public function getEspnRosterCountIR(): int
+    {
+        return $this->espnRosterCountIR;
+    }
+
+    /**
+     * @param int $espnRosterCountIR
+     */
+    public function setEspnRosterCountIR(int $espnRosterCountIR): void
+    {
+        $this->espnRosterCountIR = $espnRosterCountIR;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTaxiSquadCount(): int
+    {
+        return $this->taxiSquadCount;
+    }
+
+    /**
+     * @param int $taxiSquadCount
+     */
+    public function setTaxiSquadCount(int $taxiSquadCount): void
+    {
+        $this->taxiSquadCount = $taxiSquadCount;
     }
 }

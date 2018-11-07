@@ -11,7 +11,7 @@ class PicksTest extends TestCase
 
     public function testGetPickReturnsString()
     {
-        $picks = new Picks();
+        $picks = new GoogleSheet();
 
         $res = $picks->getPickOwner("2.02");
 
@@ -21,7 +21,7 @@ class PicksTest extends TestCase
 
     public function testGetPicksReturnsArray()
     {
-        $picks = new Picks();
+        $picks = new GoogleSheet();
 
         $res = $picks->getPicksList("Oxford Pythons");
 

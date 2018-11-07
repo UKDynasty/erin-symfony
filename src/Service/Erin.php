@@ -32,7 +32,7 @@ class Erin
      */
     private $groupMe;
     /**
-     * @var Picks
+     * @var GoogleSheet
      */
     private $picks;
     /**
@@ -60,7 +60,7 @@ class Erin
      */
     private $espn;
 
-    public function __construct(GroupMe $groupMe, Picks $picks, MessageDataExtractor $messageDataExtractor, EntityManagerInterface $em, HumanReadableHelpers $helpers, DraftManager $draftManager, LoggerInterface $logger, ESPN $espn)
+    public function __construct(GroupMe $groupMe, GoogleSheet $picks, MessageDataExtractor $messageDataExtractor, EntityManagerInterface $em, HumanReadableHelpers $helpers, DraftManager $draftManager, LoggerInterface $logger, ESPN $espn)
     {
         $this->groupMe = $groupMe;
         $this->picks = $picks;
@@ -193,10 +193,10 @@ class Erin
         }
         // If we have a franchise, get a list of their picks and return it
 
-        /** @var Picks[] $picks */
+        /** @var GoogleSheet[] $picks */
         $picks = $this->em->getRepository(DraftPick::class)->getUnusedPicksForFranchise($franchise);
 
-        return 'Picks for the ' . $franchise->getName() . ":\n\n" . implode("\n", $picks);
+        return 'GoogleSheet for the ' . $franchise->getName() . ":\n\n" . implode("\n", $picks);
     }
 
     private function picksRound($message)
@@ -209,7 +209,7 @@ class Erin
         }
         $round = $matches[0];
 
-        /** @var Picks[] $picks */
+        /** @var GoogleSheet[] $picks */
         $picks = $this->em->getRepository(DraftPick::class)->findBy([
             'draft' => $draft,
             'round' => $round,
