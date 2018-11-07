@@ -193,10 +193,10 @@ class Erin
         }
         // If we have a franchise, get a list of their picks and return it
 
-        /** @var GoogleSheet[] $picks */
+        /** @var DraftPick[] $picks */
         $picks = $this->em->getRepository(DraftPick::class)->getUnusedPicksForFranchise($franchise);
 
-        return 'GoogleSheet for the ' . $franchise->getName() . ":\n\n" . implode("\n", $picks);
+        return 'Picks for the ' . $franchise->getName() . ":\n\n" . implode("\n", $picks);
     }
 
     private function picksRound($message)
@@ -209,7 +209,7 @@ class Erin
         }
         $round = $matches[0];
 
-        /** @var GoogleSheet[] $picks */
+        /** @var DraftPick[] $picks */
         $picks = $this->em->getRepository(DraftPick::class)->findBy([
             'draft' => $draft,
             'round' => $round,
