@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class FuturePicks
 {
-    private const SHEET_JSON_URL = 'https://spreadsheets.google.com/feeds/list/1tsYQSMBHSD3nFUQS6urrnqYPJQs94c-IdjJi1CznX1c/1/public/values?alt=json';
+    private const SHEET_JSON_URL = 'https://spreadsheets.google.com/feeds/list/1tsYQSMBHSD3nFUQS6urrnqYPJQs94c-IdjJi1CznX1c/2/public/values?alt=json';
 
     private $rows;
     /**
