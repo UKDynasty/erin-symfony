@@ -42,15 +42,17 @@ class HumanReadableHelpers
                     ', ',
                     array_map(
                         function(Player $player) {
-                            return $player->getLastName();
+                            return sprintf(
+                                '%s. %s',
+                                mb_substr($player->getFirstName(), 0, 1),
+                                $player->getLastName()
+                            );
                         },
                         $positionPlayers
                     )
                 )
             );
         }
-
-
 
         return implode(
             "\n",

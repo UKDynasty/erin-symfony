@@ -7,6 +7,7 @@ use App\Entity\Owner;
 use App\Entity\Player;
 use App\GroupMe\DirectMessage;
 use App\GroupMe\GroupMessage;
+use App\Service\MFL\UrlProvider;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
@@ -59,8 +60,12 @@ class Erin
      * @var ESPN
      */
     private $espn;
+    /**
+     * @var UrlProvider
+     */
+    private $mflUrlProvider;
 
-    public function __construct(GroupMe $groupMe, GoogleSheet $picks, MessageDataExtractor $messageDataExtractor, EntityManagerInterface $em, HumanReadableHelpers $helpers, DraftManager $draftManager, LoggerInterface $logger, ESPN $espn)
+    public function __construct(GroupMe $groupMe, GoogleSheet $picks, MessageDataExtractor $messageDataExtractor, EntityManagerInterface $em, HumanReadableHelpers $helpers, DraftManager $draftManager, LoggerInterface $logger, ESPN $espn, UrlProvider $mflUrlProvider)
     {
         $this->groupMe = $groupMe;
         $this->picks = $picks;
@@ -70,6 +75,7 @@ class Erin
         $this->draftManager = $draftManager;
         $this->logger = $logger;
         $this->espn = $espn;
+        $this->mflUrlProvider = $mflUrlProvider;
     }
 
     public function getOwnerFromMessageSenderId($senderId)
@@ -228,10 +234,11 @@ class Erin
         }
         $players = $this->em->getRepository(Player::class)->getPlayersForFranchiseOrdered($franchise);
         return sprintf(
-            "Roster for the %s: \n\n%s\n\n(%s players)",
+            "Roster for the %s (%s players): \n\n%s\n\n%s",
             $franchise->getName(),
+            count($players),
             $this->helpers->playersToPositionSeparatedList($players),
-            count($players)
+            $this->mflUrlProvider->franchiseRoster($franchise)
         );
     }
 
