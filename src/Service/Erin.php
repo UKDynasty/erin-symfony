@@ -159,8 +159,7 @@ class Erin
      */
     private function pick($message)
     {
-        return "The draft order isn't set yet!";
-
+//        return "The draft order isn't set yet!";
         preg_match("/(\d+)\.(\d+)/", $message['text'], $matches);
 
         if (!$matches) {
@@ -220,7 +219,7 @@ class Erin
 
     private function roster($message)
     {
-        return 'Sorry, I can\'t do this anymore. I can only answer this question if we\'re using MyFantasyLeague.';
+//        return 'Sorry, I can\'t do this anymore. I can only answer this question if we\'re using MyFantasyLeague.';
         // Identify the franchise that's mentioned in the message
         $franchise = $this->messageDataExtractor->extractFranchise($message['text']);
         // If the franchise can't be identified, return a message saying as much
@@ -238,7 +237,7 @@ class Erin
 
     private function tradeBait($message)
     {
-        return 'Sorry, I can\'t do this anymore. I can only answer this question if we\'re using MyFantasyLeague.';
+//        return 'Sorry, I can\'t do this anymore. I can only answer this question if we\'re using MyFantasyLeague.';
         // Identify the franchise that's mentioned in the message
         $franchise = $this->messageDataExtractor->extractFranchise($message['text']);
         // If the franchise can't be identified, return a message saying as much
@@ -266,7 +265,7 @@ class Erin
 
     private function clock($message)
     {
-        return 'There isn\'t a draft currently running.';
+//        return 'There isn\'t a draft currently running.';
         $pickOnClock = $this->draftManager->getPickOnClock($this->draftManager->getCurrentDraft());
         if ($pickOnClock instanceof DraftPick) {
             return sprintf('The %s are on the clock with pick %s.', $pickOnClock->getOwner()->getName(), $pickOnClock->getPickText());
@@ -281,7 +280,7 @@ class Erin
 
     private function whoOwns($message)
     {
-        return 'Sorry, I can\'t do this anymore. I can only answer this question if we\'re using MyFantasyLeague.';
+//        return 'Sorry, I can\'t do this anymore. I can only answer this question if we\'re using MyFantasyLeague.';
         preg_match("/\bwho owns\b(.*)/i", rtrim(trim($message['text']), '?'), $matches);
         if ($matches) {
             $playerName = trim($matches[1]);
