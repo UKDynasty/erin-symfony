@@ -27,6 +27,7 @@ class Erin
         "/\bclock\b/i" => 'clock',
         "/\bscorigami\b/i" => 'scorigami',
         '/\bscores\b/i' => 'scores',
+        '/\blottery\b/i' => 'lottery',
     ];
     /**
      * @var GroupMe
@@ -268,6 +269,16 @@ class Erin
     {
         $messages = ['No problem!', 'Happy to help.', "Don't mention it!"];
         return $messages[array_rand($messages)];
+    }
+
+    private function lottery($message)
+    {
+        $numbers = array_rand(array_flip(range(1,59)),7);
+        return sprintf(
+            "My crystal ball can reveal the winning lottery numbers:\n\n%s, Bonus Ball: %s",
+            implode(', ', array_slice($numbers, 0, 6)),
+            $numbers[6]
+        );
     }
 
     private function clock($message)
