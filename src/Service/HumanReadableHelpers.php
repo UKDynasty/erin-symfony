@@ -3,6 +3,8 @@ namespace App\Service;
 
 
 
+use App\Entity\Player;
+
 class HumanReadableHelpers
 {
     public function playersToList(array $players)
@@ -15,6 +17,44 @@ class HumanReadableHelpers
                 },
                 $players
             )
+        );
+    }
+
+    /**
+     * @param array|Player[] $players
+     * @return string
+     */
+    public function playersToPositionSeparatedList(array $players)
+    {
+        $positions = [];
+
+        foreach($players as $player) {
+            $positions[$player->getPosition()->getName()][] = $player;
+        }
+
+        $parts = [];
+
+        foreach($positions as $position => $positionPlayers) {
+            $parts[] = sprintf(
+                '%s: %s',
+                $position,
+                implode(
+                    ', ',
+                    array_map(
+                        function(Player $player) {
+                            return $player->getLastName();
+                        },
+                        $positionPlayers
+                    )
+                )
+            );
+        }
+
+
+
+        return implode(
+            "\n",
+            $parts
         );
     }
 

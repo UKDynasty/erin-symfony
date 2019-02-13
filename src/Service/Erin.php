@@ -230,7 +230,7 @@ class Erin
         return sprintf(
             "Roster for the %s: \n\n%s\n\n(%s players)",
             $franchise->getName(),
-            $this->helpers->playersToList($players),
+            $this->helpers->playersToPositionSeparatedList($players),
             count($players)
         );
     }
