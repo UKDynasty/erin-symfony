@@ -1,19 +1,12 @@
 <?php
 namespace App\Controller;
 
-use App\Entity\DraftPick;
-use App\Entity\Franchise;
-use App\Entity\Player;
-use App\GroupMe\DirectMessage;
-use App\Service\DraftManager;
 use App\Service\Erin;
 use App\Service\GroupMe;
 use Psr\Log\LoggerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -21,28 +14,17 @@ use Symfony\Component\Routing\Annotation\Route;
  * @package App\Controller
  * @Route("/talk")
  */
-class ReceiveMessageController extends Controller
+class ReceiveMessageController extends AbstractController
 {
-
-    /**
-     * @Route("/test")
-     * @Method("GET")
-     * @param GroupMe $groupMe
-     * @return JsonResponse
-     */
-    public function test(DraftManager $draftManager)
-    {
-         $pickOnClock = $draftManager->getPickOnClock($draftManager->getCurrentDraft());
-         dump($pickOnClock);
-    }
-
-
     /**
      * @Route("/direct")
      * @Method("POST")
      * @param Request $request
      * @param Erin $erin
+     * @param GroupMe $groupMe
+     * @param LoggerInterface $logger
      * @return JsonResponse
+     * @throws \Exception
      */
     public function direct(Request $request, Erin $erin, GroupMe $groupMe, LoggerInterface $logger)
     {
@@ -54,8 +36,7 @@ class ReceiveMessageController extends Controller
     }
 
     /**
-     * @Route("/group")
-     * @Method("POST")
+     * @Route("/group", methods={"POST"})
      */
     public function group(Request $request, Erin $erin, GroupMe $groupMe)
     {
