@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="Add first character of first name to rosters, and link to MFL roster">
-      <change beforePath="$PROJECT_DIR$/.idea/erin-php.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/erin-php.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ReceiveMessageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ReceiveMessageController.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/bin/.phpunit/" />
@@ -181,8 +179,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/ReceiveMessageController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="240">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
               <folding>
                 <element signature="e#33#54#0#PHP" expanded="true" />
               </folding>
@@ -213,7 +211,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>kernel.logs_dir</find>
       <find>oh hi</find>
       <find>draft</find>
       <find>dra</find>
@@ -243,6 +240,7 @@
       <find>scorigami</find>
       <find>doctrine</find>
       <find>get</find>
+      <find>o</find>
     </findStrings>
     <replaceStrings>
       <replace>name</replace>
@@ -585,7 +583,7 @@
       <workItem from="1550834878008" duration="1362000" />
       <workItem from="1550844014477" duration="1410000" />
       <workItem from="1556654197155" duration="686000" />
-      <workItem from="1556965988899" duration="2036000" />
+      <workItem from="1556965988899" duration="2092000" />
     </task>
     <task id="LOCAL-00012" summary="Trade bait">
       <created>1521301099757</created>
@@ -934,7 +932,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="146592000" />
+    <option name="totallyTimeSpent" value="146648000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="27" width="1680" height="1023" extended-state="6" />
@@ -1366,8 +1364,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/ReceiveMessageController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="240">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
           <folding>
             <element signature="e#33#54#0#PHP" expanded="true" />
           </folding>

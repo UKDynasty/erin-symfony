@@ -17,8 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReceiveMessageController extends AbstractController
 {
     /**
-     * @Route("/direct")
-     * @Method("POST")
+     * @Route("/direct", methods={"POST"})
      * @param Request $request
      * @param Erin $erin
      * @param GroupMe $groupMe
