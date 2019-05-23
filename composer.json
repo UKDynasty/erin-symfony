@@ -3,9 +3,11 @@
     "license": "proprietary",
     "require": {
         "php": "^7.1.3",
-        "ext-json": "*",
         "ext-iconv": "*",
+        "ext-json": "*",
+        "doctrine/doctrine-fixtures-bundle": "^3.0",
         "doctrine/doctrine-migrations-bundle": "^1.3",
+        "easycorp/easyadmin-bundle": "^2.1",
         "guzzlehttp/guzzle": "~6.0",
         "nlp-tools/nlp-tools": "^0.1.3",
         "sensio/framework-extra-bundle": "^5.1",
@@ -28,8 +30,7 @@
         "symfony/web-link": "^4.0",
         "symfony/web-server-bundle": "^4.0",
         "symfony/webpack-encore-pack": "*",
-        "symfony/yaml": "^4.0",
-        "doctrine/doctrine-fixtures-bundle": "^3.0"
+        "symfony/yaml": "^4.0"
     },
     "require-dev": {
         "symfony/browser-kit": "^4.0",

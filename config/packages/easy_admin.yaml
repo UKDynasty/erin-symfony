@@ -1,0 +1,14 @@
+easy_admin:
+    disabled_actions: ['delete', 'edit', 'new']
+    entities:
+        # List the entity class name you want to manage
+        Player:
+            class: App\Entity\Player
+        Draft:
+            class: App\Entity\Draft
+        DraftPick:
+            class: App\Entity\DraftPick
+        Owner:
+            class: App\Entity\Owner
+        Franchise:
+            class: App\Entity\Franchise
