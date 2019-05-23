@@ -23,13 +23,13 @@ class DraftPick
     private $round;
 
     /**
-     * @var integer
+     * @var integer|null
      * @ORM\Column(type="integer", nullable=true)
      */
     private $number;
 
     /**
-     * @var integer
+     * @var integer|null
      * @ORM\Column(type="integer", nullable=true)
      */
     private $overall;
@@ -107,33 +107,33 @@ class DraftPick
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getNumber(): int
+    public function getNumber(): ?int
     {
         return $this->number;
     }
 
     /**
-     * @param int $number
+     * @param int|null $number
      */
-    public function setNumber(int $number): void
+    public function setNumber(?int $number): void
     {
         $this->number = $number;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getOverall(): int
+    public function getOverall(): ?int
     {
         return $this->overall;
     }
 
     /**
-     * @param int $overall
+     * @param int|null $overall
      */
-    public function setOverall(int $overall): void
+    public function setOverall(?int $overall): void
     {
         $this->overall = $overall;
     }
