@@ -47,7 +47,7 @@ class DraftPick
     private $owner;
 
     /**
-     * @var Player
+     * @var Player|null
      * @ORM\ManyToOne(targetEntity="Player")
      */
     private $player;
@@ -171,17 +171,17 @@ class DraftPick
     }
 
     /**
-     * @return Player
+     * @return Player|null
      */
-    public function getPlayer(): Player
+    public function getPlayer(): ?Player
     {
         return $this->player;
     }
 
     /**
-     * @param Player $player
+     * @param Player|null $player
      */
-    public function setPlayer(Player $player): void
+    public function setPlayer(?Player $player): void
     {
         $this->player = $player;
     }
