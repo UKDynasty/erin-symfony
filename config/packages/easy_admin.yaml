@@ -12,7 +12,7 @@ easy_admin:
             disabled_actions: ['edit', 'delete', 'new']
         DraftPick:
             class: App\Entity\DraftPick
-            disabled_actions: ['edit', 'delete', 'new']
+            disabled_actions: ['delete', 'new']
         Owner:
             class: App\Entity\Owner
             disabled_actions: ['delete', 'edit', 'new']
