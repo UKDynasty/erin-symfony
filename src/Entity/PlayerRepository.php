@@ -34,4 +34,17 @@ class PlayerRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getPlayersWithBirthdayToday()
+    {
+        $today = new \DateTime('now', new \DateTimeZone('UTC'));
+        return $this->createQueryBuilder('player')
+            ->andWhere('DAY(player.birthdate) = :day')
+            ->andWhere('MONTH(player.birthdate) = :month')
+            ->setParameter('day', $today->format('j'))
+            ->setParameter('month', $today->format('n'))
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

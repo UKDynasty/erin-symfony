@@ -651,4 +651,15 @@ class Player implements AssetInterface
 
         return $this;
     }
+
+    public function getAge(): ?int
+    {
+        if (!$this->getBirthdate()) {
+            return null;
+        }
+
+        $today = new \DateTime('now', new \DateTimeZone('UTC'));
+        $diff = $today->diff($this->getBirthdate());
+        return $diff->format('%y');
+    }
 }

@@ -28,6 +28,8 @@ class Erin
         "/\bscorigami\b/i" => 'scorigami',
         '/\bscores\b/i' => 'scores',
         '/\blottery\b/i' => 'lottery',
+        '/\bbirthday\b/i' => 'birthdays',
+        '/\bbirthdays\b/i' => 'birthdays',
     ];
     /**
      * @var GroupMe
@@ -294,6 +296,19 @@ class Erin
     private function scores()
     {
         return $this->espn->getScoreboard();
+    }
+
+    private function birthdays()
+    {
+        $players = $this->em->getRepository(Player::class)->getPlayersWithBirthdayToday();
+
+        if (count($players) < 1) {
+            return 'No players are celebrating their birthday today. How sad.';
+        }
+
+        return "Players celebrating their birthday today: \n\n" . implode("\n", array_map(function(Player $player) {
+            return sprintf('%s - %s (%s)', $player->getName(), $player->getAge(), $player->getFranchise() ? $player->getFranchise()->getName() : 'FA');
+        }, $players));
     }
 
     private function whoOwns($message)
