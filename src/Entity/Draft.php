@@ -49,4 +49,9 @@ class Draft
     {
         return $this->picks;
     }
+
+    public function __toString()
+    {
+        return sprintf('%s (id %s)', $this->getYear(), $this->getId());
+    }
 }
