@@ -1,5 +1,4 @@
 easy_admin:
-    disabled_actions: ['delete', 'new']
     entities:
         # List the entity class name you want to manage
         Player:
@@ -7,11 +6,16 @@ easy_admin:
             form:
                 fields:
                     - 'fact'
+            disabled_actions: ['delete', 'new']
         Draft:
             class: App\Entity\Draft
+            disabled_actions: ['delete', 'edit', 'new']
         DraftPick:
             class: App\Entity\DraftPick
+            disabled_actions: ['delete', 'edit', 'new']
         Owner:
             class: App\Entity\Owner
+            disabled_actions: ['delete', 'edit', 'new']
         Franchise:
             class: App\Entity\Franchise
+            disabled_actions: ['delete', 'edit', 'new']
