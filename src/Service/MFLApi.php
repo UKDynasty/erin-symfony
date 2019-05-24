@@ -59,7 +59,7 @@ class MFLApi
 
     public function getRoster(string $leagueId, string $rosterId)
     {
-        $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=rosters&L=%s&APIKEY=&FRANCHISE=%s&JSON=1', $this->year, $leagueId, $rosterId);
+        $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=rosters&L=%s&API_KEY=&FRANCHISE=%s&JSON=1', $this->year, $leagueId, $rosterId);
 
         $res = $this->request($url);
 
@@ -79,7 +79,6 @@ class MFLApi
     public function getTradeBait()
     {
         $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=tradeBait&L=%s&INCLUDE_DRAFT_PICKS=0&JSON=1', $this->year, $this->mflLeagueId);
-
         $res = $this->client->request('GET', $url);
         $resBody = $res->getBody();
         $json = json_decode($resBody, true);
@@ -88,11 +87,14 @@ class MFLApi
 
     public function getAssets()
     {
-        $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=assets&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
+        $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=assets&L=%s&JSON=1&API_KEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
+
+        dump($url);
 
         $res = $this->client->request('GET', $url);
         $resBody = $res->getBody();
         $json = json_decode($resBody, true);
+        dump($json);
         return $json['assets']['franchise'];
     }
 
@@ -103,6 +105,8 @@ class MFLApi
     public function getDraftResults(): array
     {
         $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=draftResults&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
+
+        dd($url);
 
         $res = $this->client->request('GET', $url);
         $resBody = $res->getBody();
