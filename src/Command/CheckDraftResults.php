@@ -117,6 +117,13 @@ class CheckDraftResults extends Command
                 );
             }
 
+            if ($player->getFact()) {
+                $text .= sprintf(
+                    "\n\n%s",
+                    $player->getFact()
+                );
+            }
+
             $nextPick = $this->entityManager->getRepository(DraftPick::class)->findOneBy([
                 'draft' => $draft,
                 'overall' => $pick->getOverall() + 1

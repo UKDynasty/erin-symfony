@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="Add first character of first name to rosters, and link to MFL roster">
-      <change beforePath="$PROJECT_DIR$/.idea/erin-php.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/erin-php.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Command/CheckDraftResults.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/CheckDraftResults.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/bin/.phpunit/" />
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
@@ -126,10 +123,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Command/CheckDraftResults.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="616">
+              <caret line="120" column="33" lean-forward="true" selection-start-line="120" selection-start-column="33" selection-end-line="120" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/packages/easy_admin.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="20" column="55" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
+            <state relative-caret-position="294">
+              <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -181,15 +187,6 @@
               <folding>
                 <element signature="e#29#59#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docker-compose.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="15" column="33" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -304,7 +301,6 @@
         <option value="$PROJECT_DIR$/src/Command/UpdateTaxiSquadCounts.php" />
         <option value="$PROJECT_DIR$/src/Command/CheckESPNRosterLimits.php" />
         <option value="$PROJECT_DIR$/config/services.yaml" />
-        <option value="$PROJECT_DIR$/src/Command/CheckDraftResults.php" />
         <option value="$PROJECT_DIR$/src/Service/FuturePicks.php" />
         <option value="$PROJECT_DIR$/src/Service/GroupMe.php" />
         <option value="$PROJECT_DIR$/src/Service/HumanReadableHelpers.php" />
@@ -321,6 +317,7 @@
         <option value="$PROJECT_DIR$/src/Entity/Franchise.php" />
         <option value="$PROJECT_DIR$/src/Entity/Position.php" />
         <option value="$PROJECT_DIR$/config/packages/easy_admin.yaml" />
+        <option value="$PROJECT_DIR$/src/Command/CheckDraftResults.php" />
       </list>
     </option>
   </component>
@@ -587,7 +584,7 @@
       <workItem from="1550844014477" duration="1410000" />
       <workItem from="1556654197155" duration="686000" />
       <workItem from="1556965988899" duration="2092000" />
-      <workItem from="1558628721110" duration="3655000" />
+      <workItem from="1558628721110" duration="3770000" />
     </task>
     <task id="LOCAL-00012" summary="Trade bait">
       <created>1521301099757</created>
@@ -936,7 +933,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="150303000" />
+    <option name="totallyTimeSpent" value="150418000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1853" height="1020" extended-state="6" />
@@ -1219,13 +1216,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Command/CheckDraftResults.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2016">
-          <caret line="108" selection-start-line="108" selection-end-line="108" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Service/MFLApi.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2142">
@@ -1369,8 +1359,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/packages/easy_admin.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="20" column="55" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
+        <state relative-caret-position="294">
+          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Command/CheckDraftResults.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="120" column="33" lean-forward="true" selection-start-line="120" selection-start-column="33" selection-end-line="120" selection-end-column="33" />
         </state>
       </provider>
     </entry>
