@@ -59,7 +59,7 @@ class MFLApi
 
     public function getRoster(string $leagueId, string $rosterId)
     {
-        $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=rosters&L=%s&API_KEY=&FRANCHISE=%s&JSON=1', $this->year, $leagueId, $rosterId);
+        $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=rosters&L=%s&APIKEY=&FRANCHISE=%s&JSON=1', $this->year, $leagueId, $rosterId);
 
         $res = $this->request($url);
 
@@ -87,7 +87,7 @@ class MFLApi
 
     public function getAssets()
     {
-        $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=assets&L=%s&JSON=1&API_KEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
+        $url = sprintf('http://www80.myfantasyleague.com/%s/export?TYPE=assets&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
         $res = $this->client->request('GET', $url);
         $resBody = $res->getBody();
         $json = json_decode($resBody, true);
