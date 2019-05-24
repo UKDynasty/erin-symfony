@@ -9,10 +9,10 @@ easy_admin:
             disabled_actions: ['delete', 'new']
         Draft:
             class: App\Entity\Draft
-            disabled_actions: ['delete', 'edit', 'new']
+            disabled_actions: ['edit', 'new']
         DraftPick:
             class: App\Entity\DraftPick
-            disabled_actions: ['delete', 'edit', 'new']
+            disabled_actions: ['edit', 'new']
         Owner:
             class: App\Entity\Owner
             disabled_actions: ['delete', 'edit', 'new']
