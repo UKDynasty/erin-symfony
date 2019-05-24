@@ -194,6 +194,11 @@ class Player implements AssetInterface
     private $listedAsTradeBait = false;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $fact;
+
+    /**
      * @return string
      */
     public function getFirstName(): string
@@ -633,5 +638,17 @@ class Player implements AssetInterface
     public function setTeam(string $team): void
     {
         $this->team = $team;
+    }
+
+    public function getFact(): ?string
+    {
+        return $this->fact;
+    }
+
+    public function setFact(?string $fact): self
+    {
+        $this->fact = $fact;
+
+        return $this;
     }
 }

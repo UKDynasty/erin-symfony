@@ -84,6 +84,12 @@ class Franchise
     private $players;
 
     /**
+     * @var ArrayCollection|PersistentCollection
+     * @ORM\OneToMany(targetEntity="DraftPick", mappedBy="owner")
+     */
+    private $draftPicks;
+
+    /**
      * @return string
      */
     public function getName(): string
@@ -233,5 +239,10 @@ class Franchise
     public function setTaxiSquadCount(int $taxiSquadCount): void
     {
         $this->taxiSquadCount = $taxiSquadCount;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

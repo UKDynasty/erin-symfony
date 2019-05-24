@@ -54,4 +54,9 @@ class Position
     {
         $this->priority = $priority;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }
