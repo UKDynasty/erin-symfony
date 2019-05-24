@@ -662,4 +662,9 @@ class Player implements AssetInterface
         $diff = $today->diff($this->getBirthdate());
         return $diff->format('%y');
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }
