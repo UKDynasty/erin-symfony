@@ -88,13 +88,9 @@ class MFLApi
     public function getAssets()
     {
         $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=assets&L=%s&JSON=1&API_KEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
-
-        dump($url);
-
         $res = $this->client->request('GET', $url);
         $resBody = $res->getBody();
         $json = json_decode($resBody, true);
-        dump($json);
         return $json['assets']['franchise'];
     }
 
@@ -105,9 +101,6 @@ class MFLApi
     public function getDraftResults(): array
     {
         $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=draftResults&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
-
-        dd($url);
-
         $res = $this->client->request('GET', $url);
         $resBody = $res->getBody();
         $json = json_decode($resBody, true);
