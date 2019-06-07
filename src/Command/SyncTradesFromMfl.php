@@ -95,6 +95,7 @@ class SyncTradesFromMfl extends Command
             // TODO: move to event listener
             $message[] = '🌭🌭🌭 TRADE ALERT 🌭🌭🌭';
             $message[] = $this->helpers->tradeToText($tradeEntity);
+            $message[] = sprintf('I like the %s\' side of that one!', $tradeEntity->getWinningSide()->getFranchise()->getName());
 
             $groupMeMessage = new GroupMessage();
             $groupMeMessage->setText(implode("\n\n", $message));
