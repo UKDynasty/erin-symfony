@@ -98,9 +98,9 @@ class HumanReadableHelpers
             $franchiseName = $side->getFranchise()->getName();
             $assetsList = implode("\n", $sideAssets);
             $text[] = <<<SIDE
-                ${franchiseName} gave up:
-                
-                ${assetsList}
+${franchiseName} gave up:
+
+${assetsList}
 SIDE;
         }
 
