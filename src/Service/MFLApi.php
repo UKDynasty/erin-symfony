@@ -96,7 +96,6 @@ class MFLApi
 
     /**
      * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getDraftResults(): array
     {
@@ -105,5 +104,17 @@ class MFLApi
         $resBody = $res->getBody();
         $json = json_decode($resBody, true);
         return $json['draftResults']['draftUnit']['draftPick'];
+    }
+
+    /**
+     * @return array
+     */
+    public function getTrades(): array
+    {
+        $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=transactions&TRANS_TYPE=TRADE&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
+        $res = $this->client->request('GET', $url);
+        $resBody = $res->getBody();
+        $json = json_decode($resBody, true);
+        return $json['transactions']['transaction'];
     }
 }

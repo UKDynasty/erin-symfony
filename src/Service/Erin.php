@@ -5,6 +5,7 @@ use App\Entity\DraftPick;
 use App\Entity\Franchise;
 use App\Entity\Owner;
 use App\Entity\Player;
+use App\Entity\Trade;
 use App\GroupMe\DirectMessage;
 use App\GroupMe\GroupMessage;
 use App\Service\MFL\UrlProvider;
@@ -31,6 +32,7 @@ class Erin
         '/\bvalue\b/i' => 'value',
         '/hello/' => 'hello',
         '/hi/' => 'hi',
+        '/\blast trade\b/i' => 'trade',
     ];
     /**
      * @var GroupMe
@@ -374,5 +376,32 @@ class Erin
             return "There's more than one player that matches that name. I'm not clever enough to continue.";
         }
         return "I can't understand that message. Keep it simple - just ask \"who owns Player Name?\"";
+    }
+
+    private function trade($message)
+    {
+        // Test method to be used for reporting latest trade in event-driven system
+        $latestTrade = $this->em->getRepository(Trade::class)->findOneBy([], ['date' => 'DESC'], 1);
+
+        $text = [];
+
+        foreach($latestTrade->getSides() as $side) {
+            $sideAssets = [];
+            foreach($side->getPlayers() as $player) {
+                $sideAssets[] = sprintf('%s (%s)', $player->getName(), $player->getPosition());
+            }
+            foreach($side->getPicks() as $pick) {
+                $sideAssets[] = $pick->getPickTextIncludingOriginalOwner();
+            }
+            $franchiseName = $side->getFranchise()->getName();
+            $assetsList = implode("\n", $sideAssets);
+            $text[] = <<<SIDE
+                ${franchiseName} gave up:
+                
+                ${assetsList}
+SIDE;
+        }
+
+        return implode("\n\n", $text);
     }
 }

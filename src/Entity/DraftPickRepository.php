@@ -57,6 +57,20 @@ class DraftPickRepository extends EntityRepository
         return $this->addDefaultOrderBy($qb)->getQuery()->getOneOrNullResult();
     }
 
+    public function getPickByYearRoundAndPick(int $year, int $round, int $number)
+    {
+        $qb = $this->createQueryBuilder("draftPick")
+            ->andWhere('draft.year = :year')
+            ->andWhere("draftPick.round = :round")
+            ->andWhere("draftPick.number = :number")
+            ->setParameter("year", $year)
+            ->setParameter("round", $round)
+            ->setParameter("number", $number)
+        ;
+
+        return $this->addDefaultOrderBy($qb)->getQuery()->getOneOrNullResult();
+    }
+
     public function findPickOnClockForDraft(Draft $draft)
     {
         try {
