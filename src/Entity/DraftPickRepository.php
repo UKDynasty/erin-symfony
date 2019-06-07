@@ -25,6 +25,14 @@ class DraftPickRepository extends EntityRepository
         ;
     }
 
+    public function getUnusedPicks()
+    {
+        $qb = $this->createQueryBuilder("draftPick")
+            ->andWhere("draftPick.player is NULL");
+
+        return $this->addDefaultOrderBy($qb)->getQuery()->getResult();
+    }
+
     public function getUnusedPicksForFranchise(Franchise $franchise)
     {
         $qb = $this->createQueryBuilder("draftPick")

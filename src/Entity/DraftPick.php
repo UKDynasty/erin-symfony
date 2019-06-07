@@ -59,6 +59,12 @@ class DraftPick
     private $pickMadeAt;
 
     /**
+     * @var integer|null
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $value;
+
+    /**
      * @return \DateTime|null
      */
     public function getPickMadeAt(): ?\DateTime
@@ -184,6 +190,22 @@ class DraftPick
     public function setPlayer(?Player $player): void
     {
         $this->player = $player;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getValue(): ?int
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param int|null $value
+     */
+    public function setValue(?int $value): void
+    {
+        $this->value = $value;
     }
 
     /**
