@@ -4,6 +4,7 @@ namespace App\Service;
 
 
 use App\Entity\Player;
+use App\Entity\Trade;
 
 class HumanReadableHelpers
 {
@@ -80,5 +81,29 @@ class HumanReadableHelpers
             return $number . 'th';
         }
         return $number . $ends[$number % 10];
+    }
+
+    public function tradeToText(Trade $trade)
+    {
+        $text = [];
+
+        foreach($trade->getSides() as $side) {
+            $sideAssets = [];
+            foreach($side->getPlayers() as $player) {
+                $sideAssets[] = sprintf('%s (%s)', $player->getName(), $player->getPosition());
+            }
+            foreach($side->getPicks() as $pick) {
+                $sideAssets[] = $pick->getPickTextIncludingOriginalOwner();
+            }
+            $franchiseName = $side->getFranchise()->getName();
+            $assetsList = implode("\n", $sideAssets);
+            $text[] = <<<SIDE
+                ${franchiseName} gave up:
+                
+                ${assetsList}
+SIDE;
+        }
+
+        return implode("\n\n", $text);
     }
 }

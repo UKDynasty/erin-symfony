@@ -6,6 +6,10 @@ use App\Entity\Franchise;
 use App\Entity\Player;
 use App\Entity\Trade;
 use App\Entity\TradeSide;
+use App\GroupMe\GroupMessage;
+use App\Service\Erin;
+use App\Service\GroupMe;
+use App\Service\HumanReadableHelpers;
 use App\Service\MFLApi;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
@@ -27,12 +31,23 @@ class SyncTradesFromMfl extends Command
      */
     private $mflYear;
 
-    public function __construct(MFLApi $MFLApi, EntityManagerInterface $em, string $mflYear)
+    /**
+     * @var GroupMe
+     */
+    private $groupMe;
+    /**
+     * @var HumanReadableHelpers
+     */
+    private $helpers;
+
+    public function __construct(MFLApi $MFLApi, EntityManagerInterface $em, string $mflYear, GroupMe $groupMe, HumanReadableHelpers $helpers)
     {
         parent::__construct();
         $this->MFLApi = $MFLApi;
         $this->em = $em;
         $this->mflYear = $mflYear;
+        $this->groupMe = $groupMe;
+        $this->helpers = $helpers;
     }
 
     public function configure()
@@ -76,6 +91,14 @@ class SyncTradesFromMfl extends Command
                     $tradeEntity->setWinningSide($side);
                 }
             }
+
+            // TODO: move to event listener
+            $message[] = '🌭🌭🌭 TRADE ALERT 🌭🌭🌭';
+            $message[] = $this->helpers->tradeToText($tradeEntity);
+
+            $groupMeMessage = new GroupMessage();
+            $groupMeMessage->setText(implode("\n\n", $message));
+            $this->groupMe->sendGroupMessage($groupMeMessage);
         }
 
         $this->em->flush();

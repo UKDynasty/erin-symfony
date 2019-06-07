@@ -382,26 +382,6 @@ class Erin
     {
         // Test method to be used for reporting latest trade in event-driven system
         $latestTrade = $this->em->getRepository(Trade::class)->findOneBy([], ['date' => 'DESC'], 1);
-
-        $text = [];
-
-        foreach($latestTrade->getSides() as $side) {
-            $sideAssets = [];
-            foreach($side->getPlayers() as $player) {
-                $sideAssets[] = sprintf('%s (%s)', $player->getName(), $player->getPosition());
-            }
-            foreach($side->getPicks() as $pick) {
-                $sideAssets[] = $pick->getPickTextIncludingOriginalOwner();
-            }
-            $franchiseName = $side->getFranchise()->getName();
-            $assetsList = implode("\n", $sideAssets);
-            $text[] = <<<SIDE
-                ${franchiseName} gave up:
-                
-                ${assetsList}
-SIDE;
-        }
-
-        return implode("\n\n", $text);
+        return $this->helpers->tradeToText($latestTrade);
     }
 }
