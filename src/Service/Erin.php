@@ -15,8 +15,6 @@ use Psr\Log\LoggerInterface;
 class Erin
 {
     private const IDENTIFIABLE_MESSAGES = [
-        '/hello/' => 'hello',
-        '/hi/' => 'hi',
         "/\bround\b/i" => 'picksRound',
         "/\bpick\b/i" => 'pick',
         "/\bpicks\b/i" => 'picks',
@@ -30,6 +28,9 @@ class Erin
         '/\blottery\b/i' => 'lottery',
         '/\bbirthday\b/i' => 'birthdays',
         '/\bbirthdays\b/i' => 'birthdays',
+        '/\bvalue\b/i' => 'value',
+        '/hello/' => 'hello',
+        '/hi/' => 'hi',
     ];
     /**
      * @var GroupMe
@@ -339,6 +340,35 @@ class Erin
                     return sprintf('%s is owned by the %s.', $results[0]->getName(), $results[0]->getFranchise()->getName());
                 }
                 return sprintf('%s is a free agent.', $results[0]->getName());
+            }
+            // There is more than one match (this is unlikely)
+            return "There's more than one player that matches that name. I'm not clever enough to continue.";
+        }
+        return "I can't understand that message. Keep it simple - just ask \"who owns Player Name?\"";
+    }
+
+    private function value($message)
+    {
+//        return 'Sorry, I can\'t do this anymore. I can only answer this question if we\'re using MyFantasyLeague.';
+        preg_match("/\bvalue\b(.*)/i", rtrim(trim($message['text']), '?'), $matches);
+        if ($matches) {
+            $playerName = trim($matches[1]);
+            $explodedName = explode(' ', $playerName);
+            /** @var ArrayCollection $results */
+            $results = $this->em->getRepository(Player::class)->findBy([
+                'firstName' => $explodedName[0],
+                'lastName' => $explodedName[1],
+            ]);
+            if (0 === count($results)) {
+                return "I can't find a player by that name, sorry.";
+            }
+            if (1 === count($results)) {
+                /** @var Player $player */
+                $player = $results[0];
+                if ($player->getValue()) {
+                    return sprintf('%s is worth %s.', $player->getName(), $player->getValue());
+                }
+                return "I don't know how to value " . $player->getName() . ", to be honest with you.";
             }
             // There is more than one match (this is unlikely)
             return "There's more than one player that matches that name. I'm not clever enough to continue.";
