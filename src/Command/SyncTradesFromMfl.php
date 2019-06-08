@@ -113,10 +113,10 @@ class SyncTradesFromMfl extends Command
             }
 
             $message[] = sprintf($analysis, $tradeEntity->getWinningSide()->getFranchise()->getName());
-            
+
             $groupMeMessage = new GroupMessage();
             $groupMeMessage->setText(implode("\n\n", $message));
-            $this->groupMe->sendGroupMessage($groupMeMessage);
+//            $this->groupMe->sendGroupMessage($groupMeMessage);
         }
 
 

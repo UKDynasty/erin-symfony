@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="Fix indent of trade side text">
+    <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="Move TradeSidePlayer and TradeSideDraftPick into separate entities not many-to-many, record player/pick values as time of trade, Erin changes her analysis based on the difference between highest/lowest value in trade">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Command/SyncTradesFromMfl.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/SyncTradesFromMfl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Trade.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Trade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TradeSide.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TradeSide.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/HumanReadableHelpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/HumanReadableHelpers.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/bin/.phpunit/" />
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
@@ -145,8 +140,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Service/HumanReadableHelpers.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="574">
-              <caret line="105" column="8" selection-start-line="105" selection-start-column="8" selection-end-line="105" selection-end-column="8" />
+            <state relative-caret-position="214">
+              <caret line="89" column="46" lean-forward="true" selection-start-line="89" selection-start-column="46" selection-end-line="89" selection-end-column="46" />
               <folding>
                 <element signature="e#32#54#0#PHP" expanded="true" />
               </folding>
@@ -166,8 +161,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Command/SyncTradesFromMfl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="186" column="65" selection-start-line="186" selection-start-column="65" selection-end-line="186" selection-end-column="65" />
+            <state relative-caret-position="644">
+              <caret line="119" column="9" lean-forward="true" selection-start-line="119" selection-start-column="9" selection-end-line="119" selection-end-column="9" />
               <folding>
                 <element signature="e#30#55#0#PHP" expanded="true" />
               </folding>
@@ -614,14 +609,7 @@
       <workItem from="1558628721110" duration="3770000" />
       <workItem from="1559912880711" duration="11865000" />
       <workItem from="1559934163297" duration="247000" />
-      <workItem from="1559989376282" duration="5548000" />
-    </task>
-    <task id="LOCAL-00014" summary="If someone asks who owns a player and they're listed as bait, tell 'em!">
-      <created>1521301907196</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1521301907196</updated>
+      <workItem from="1559989376282" duration="6287000" />
     </task>
     <task id="LOCAL-00015" summary="Run sync trade bait data on deploy">
       <created>1521302161091</created>
@@ -959,11 +947,18 @@
       <option name="project" value="LOCAL" />
       <updated>1559934321174</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Move TradeSidePlayer and TradeSideDraftPick into separate entities not many-to-many, record player/pick values as time of trade, Erin changes her analysis based on the difference between highest/lowest value in trade">
+      <created>1559995009309</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1559995009309</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="168686000" />
+    <option name="totallyTimeSpent" value="169425000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="27" width="1680" height="1023" extended-state="6" />
@@ -999,7 +994,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="debug further in production..." />
     <MESSAGE value="return something" />
     <MESSAGE value="send direct message to me" />
     <MESSAGE value="Revert cleanup done in 4d3e69f24, probably the cause of Erin meltdown" />
@@ -1024,7 +1018,8 @@
     <MESSAGE value="lottery number generator" />
     <MESSAGE value="Erin knows about trades!" />
     <MESSAGE value="Fix indent of trade side text" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix indent of trade side text" />
+    <MESSAGE value="Move TradeSidePlayer and TradeSideDraftPick into separate entities not many-to-many, record player/pick values as time of trade, Erin changes her analysis based on the difference between highest/lowest value in trade" />
+    <option name="LAST_COMMIT_MESSAGE" value="Move TradeSidePlayer and TradeSideDraftPick into separate entities not many-to-many, record player/pick values as time of trade, Erin changes her analysis based on the difference between highest/lowest value in trade" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
@@ -1402,8 +1397,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Service/HumanReadableHelpers.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
-          <caret line="105" column="8" selection-start-line="105" selection-start-column="8" selection-end-line="105" selection-end-column="8" />
+        <state relative-caret-position="214">
+          <caret line="89" column="46" lean-forward="true" selection-start-line="89" selection-start-column="46" selection-end-line="89" selection-end-column="46" />
           <folding>
             <element signature="e#32#54#0#PHP" expanded="true" />
           </folding>
@@ -1412,8 +1407,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Command/SyncTradesFromMfl.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="186" column="65" selection-start-line="186" selection-start-column="65" selection-end-line="186" selection-end-column="65" />
+        <state relative-caret-position="644">
+          <caret line="119" column="9" lean-forward="true" selection-start-line="119" selection-start-column="9" selection-end-line="119" selection-end-column="9" />
           <folding>
             <element signature="e#30#55#0#PHP" expanded="true" />
           </folding>
