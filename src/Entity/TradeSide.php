@@ -33,14 +33,14 @@ class TradeSide
     private $franchise;
 
     /**
-     * @var Collection|Player[]
-     * @ORM\ManyToMany(targetEntity="Player")
+     * @var Collection|TradeSidePlayer[]
+     * @ORM\OneToMany(targetEntity="App\Entity\TradeSidePlayer", mappedBy="side", cascade={"PERSIST"})
      */
     private $players;
 
     /**
-     * @var Collection|DraftPick[]
-     * @ORM\ManyToMany(targetEntity="DraftPick")
+     * @var Collection|TradeSideDraftPick[]
+     * @ORM\OneToMany(targetEntity="App\Entity\TradeSideDraftPick", mappedBy="side", cascade={"PERSIST"})
      */
     private $picks;
 
@@ -82,7 +82,7 @@ class TradeSide
     }
 
     /**
-     * @return Player[]|Collection
+     * @return TradeSidePlayer[]|Collection
      */
     public function getPlayers()
     {
@@ -90,9 +90,9 @@ class TradeSide
     }
 
     /**
-     * @param Player $player
+     * @param TradeSidePlayer $player
      */
-    public function addPlayer(Player $player): void
+    public function addPlayer(TradeSidePlayer $player): void
     {
         if (!$this->players->contains($player)) {
             $this->players->add($player);
@@ -100,7 +100,7 @@ class TradeSide
     }
 
     /**
-     * @return DraftPick[]|Collection
+     * @return TradeSideDraftPick[]|Collection
      */
     public function getPicks()
     {
@@ -108,9 +108,9 @@ class TradeSide
     }
 
     /**
-     * @param $pick
+     * @param TradeSideDraftPick $pick
      */
-    public function addPick(DraftPick $pick): void
+    public function addPick(TradeSideDraftPick $pick): void
     {
         if (!$this->picks->contains($pick)) {
             $this->picks->add($pick);

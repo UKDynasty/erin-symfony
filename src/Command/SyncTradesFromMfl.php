@@ -6,12 +6,16 @@ use App\Entity\Franchise;
 use App\Entity\Player;
 use App\Entity\Trade;
 use App\Entity\TradeSide;
+use App\Entity\TradeSideDraftPick;
+use App\Entity\TradeSidePlayer;
 use App\GroupMe\GroupMessage;
 use App\Service\Erin;
 use App\Service\GroupMe;
 use App\Service\HumanReadableHelpers;
 use App\Service\MFLApi;
 use Doctrine\ORM\EntityManagerInterface;
+use http\Exception\UnexpectedValueException;
+use mysql_xdevapi\Exception;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -92,20 +96,53 @@ class SyncTradesFromMfl extends Command
                 }
             }
 
+            $tradeEntity->setValueDifference($this->calculateValueDifference($tradeEntity));
+
             // TODO: move to event listener
             $message[] = '🌭🌭🌭 TRADE ALERT 🌭🌭🌭';
             $message[] = $this->helpers->tradeToText($tradeEntity);
-            $message[] = sprintf('I like the %s\' side of that one!', $tradeEntity->getWinningSide()->getFranchise()->getName());
+
+            if ($tradeEntity->getValueDifference() < 5) {
+                $analysis = "A good trade for both teams. I can't pick a winner of that one.";
+            } else if ($tradeEntity->getValueDifference() < 15) {
+                $analysis = "Nice trade! That's a tough one to call, but I think the %s won that trade by a sliver.";
+            } else if ($tradeEntity->getValueDifference() <= 50) {
+                $analysis = 'I love to see teams making moves! I really like this one for the %s.';
+            } else {
+                $analysis = "Wow! I'm a big fan of that trade for the %s.";
+            }
+
+            $message[] = sprintf($analysis, $tradeEntity->getWinningSide()->getFranchise()->getName());
+
+            $message[] = sprintf('Difference is %s', $tradeEntity->getValueDifference());
 
             $groupMeMessage = new GroupMessage();
             $groupMeMessage->setText(implode("\n\n", $message));
             $this->groupMe->sendGroupMessage($groupMeMessage);
         }
 
+
         $this->em->flush();
     }
 
-    private function tradeSideFromMflData(string $franchiseId, string $assetsGivenUp)
+    private function calculateValueDifference(Trade $trade): float
+    {
+        $lowestValue = $trade->getWinningSide()->getValue() > 0 ? $trade->getWinningSide()->getValue() : 1;
+
+        foreach($trade->getSides() as $tradeSide) {
+            if ($trade->getWinningSide() !== $tradeSide) {
+                $highestValue = $tradeSide->getValue() > 0 ? $tradeSide->getValue() : 1;
+            }
+        }
+
+        if (!isset($lowestValue)) {
+            throw new \Exception('No lowest value found, something is wrong here');
+        }
+
+        return (($highestValue - $lowestValue) / $lowestValue) * 100;
+    }
+
+    private function tradeSideFromMflData(string $franchiseId, string $assetsGivenUp): TradeSide
     {
         $side = new TradeSide();
         $franchise = $this->em->getRepository(Franchise::class)->findOneBy(['mflFranchiseId' => $franchiseId]);
@@ -126,7 +163,7 @@ class SyncTradesFromMfl extends Command
                  */
                 $franchise = $this->em->getRepository(Franchise::class)->findOneBy(['mflFranchiseId' => $pickData[1]]);
                 $pick = $this->em->getRepository(DraftPick::class)->getPickByYearRoundOriginalOwnerFranchise($pickData[2], $pickData[3], $franchise);
-                $side->addPick($pick);
+                $side->addPick(new TradeSideDraftPick($side, $pick, $pick->getValue() ?? 0));
             } else if (substr($assetIdentifier, 0, 3) === 'DP_') {
                 // Current draft pick
                 $pickData = explode('_', $assetIdentifier);
@@ -136,19 +173,19 @@ class SyncTradesFromMfl extends Command
                  * 2 = pick in round minus 1 (ZERO INDEXED!)
                  */
                 $pick = $this->em->getRepository(DraftPick::class)->getPickByYearRoundAndPick($this->mflYear, $pickData[1]+1, $pickData[2]+1);
-                $side->addPick($pick);
+                $side->addPick(new TradeSideDraftPick($side, $pick, $pick->getValue() ?? 0));
             } else {
                 $player = $this->em->getRepository(Player::class)->findOneBy(['externalIdMfl' => $assetIdentifier]);
-                $side->addPlayer($player);
+                $side->addPlayer(new TradeSidePlayer($side, $player, $player->getValue() ?? 0));
             }
         }
 
-        $playersValue = array_reduce($side->getPlayers()->toArray(), function($value, Player $player) {
-            return $value + $player->getValue();
+        $playersValue = array_reduce($side->getPlayers()->toArray(), function($value, TradeSidePlayer $player) {
+            return $value + $player->getPlayer()->getValue();
         }, 0);
 
-        $picksValue = array_reduce($side->getPicks()->toArray(), function($value, DraftPick $pick) {
-            return $value + $pick->getValue();
+        $picksValue = array_reduce($side->getPicks()->toArray(), function($value, TradeSideDraftPick $pick) {
+            return $value + $pick->getPick()->getValue();
         }, 0);
 
         $side->setValue($playersValue + $picksValue);

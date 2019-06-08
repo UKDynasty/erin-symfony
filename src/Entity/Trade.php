@@ -37,6 +37,12 @@ class Trade
     private $winningSide;
 
     /**
+     * @var float
+     * @ORM\Column(type="decimal", precision=10, scale=2)
+     */
+    private $valueDifference;
+
+    /**
      * @ORM\Column(type="text")
      */
     private $mflApiHash;
@@ -84,6 +90,22 @@ class Trade
     public function setDate(\DateTimeInterface $date)
     {
         $this->date = $date;
+    }
+
+    /**
+     * @return float
+     */
+    public function getValueDifference(): float
+    {
+        return $this->valueDifference;
+    }
+
+    /**
+     * @param float $valueDifference
+     */
+    public function setValueDifference(float $valueDifference): void
+    {
+        $this->valueDifference = $valueDifference;
     }
 
     public function getMflApiHash(): ?string

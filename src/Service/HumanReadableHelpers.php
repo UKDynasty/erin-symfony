@@ -90,10 +90,10 @@ class HumanReadableHelpers
         foreach($trade->getSides() as $side) {
             $sideAssets = [];
             foreach($side->getPlayers() as $player) {
-                $sideAssets[] = sprintf('%s (%s)', $player->getName(), $player->getPosition());
+                $sideAssets[] = sprintf('%s (%s)', $player->getPlayer()->getName(), $player->getPlayer()->getPosition());
             }
             foreach($side->getPicks() as $pick) {
-                $sideAssets[] = $pick->getPickTextIncludingOriginalOwner();
+                $sideAssets[] = $pick->getPick()->getPickTextIncludingOriginalOwner();
             }
             $franchiseName = $side->getFranchise()->getName();
             $assetsList = implode("\n", $sideAssets);
@@ -103,7 +103,7 @@ ${franchiseName} gave up:
 ${assetsList}
 SIDE;
         }
-
+        
         return implode("\n\n", $text);
     }
 }
