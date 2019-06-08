@@ -19,3 +19,11 @@ easy_admin:
         Franchise:
             class: App\Entity\Franchise
             disabled_actions: ['delete', 'edit', 'new']
+        Trade:
+            class: App\Entity\Trade
+        TradeSide:
+            class: App\Entity\TradeSide
+        TradeSidePlayer:
+            class: App\Entity\TradeSidePlayer
+        TradeSideDraftPick:
+            class: App\Entity\TradeSideDraftPick
