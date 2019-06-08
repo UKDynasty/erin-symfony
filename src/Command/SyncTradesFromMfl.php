@@ -116,7 +116,7 @@ class SyncTradesFromMfl extends Command
 
             $groupMeMessage = new GroupMessage();
             $groupMeMessage->setText(implode("\n\n", $message));
-//            $this->groupMe->sendGroupMessage($groupMeMessage);
+            $this->groupMe->sendGroupMessage($groupMeMessage);
         }
 
 

@@ -6,7 +6,7 @@ easy_admin:
             form:
                 fields:
                     - 'fact'
-            disabled_actions: ['delete', 'new']
+            disabled_actions: ['edit', 'delete', 'new']
         Draft:
             class: App\Entity\Draft
             disabled_actions: ['edit', 'delete', 'new']
@@ -21,9 +21,13 @@ easy_admin:
             disabled_actions: ['delete', 'edit', 'new']
         Trade:
             class: App\Entity\Trade
+            disabled_actions: ['edit', 'delete', 'new']
         TradeSide:
             class: App\Entity\TradeSide
+            disabled_actions: ['edit', 'delete', 'new']
         TradeSidePlayer:
             class: App\Entity\TradeSidePlayer
+            disabled_actions: ['edit', 'delete', 'new']
         TradeSideDraftPick:
             class: App\Entity\TradeSideDraftPick
+            disabled_actions: ['edit', 'delete', 'new']
