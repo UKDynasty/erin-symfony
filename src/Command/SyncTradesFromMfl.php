@@ -113,9 +113,7 @@ class SyncTradesFromMfl extends Command
             }
 
             $message[] = sprintf($analysis, $tradeEntity->getWinningSide()->getFranchise()->getName());
-
-            $message[] = sprintf('Difference is %s', $tradeEntity->getValueDifference());
-
+            
             $groupMeMessage = new GroupMessage();
             $groupMeMessage->setText(implode("\n\n", $message));
             $this->groupMe->sendGroupMessage($groupMeMessage);
