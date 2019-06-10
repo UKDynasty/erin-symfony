@@ -116,7 +116,11 @@ class SyncTradesFromMfl extends Command
 
             $groupMeMessage = new GroupMessage();
             $groupMeMessage->setText(implode("\n\n", $message));
-            $this->groupMe->sendGroupMessage($groupMeMessage);
+            if (getenv('APP_ENV') === 'prod') {
+                $this->groupMe->sendGroupMessage($groupMeMessage);
+            } else {
+                dump($groupMeMessage->getText());
+            }
         }
 
 
