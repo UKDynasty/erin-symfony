@@ -31,3 +31,12 @@ easy_admin:
         TradeSideDraftPick:
             class: App\Entity\TradeSideDraftPick
             disabled_actions: ['edit', 'delete', 'new']
+        FranchiseSnapshot:
+            class: App\Entity\TradeSideDraftPick
+            disabled_actions: ['edit', 'delete', 'new']
+        FranchiseSnapshotBestLineupPlayer:
+            class: App\Entity\TradeSideDraftPick
+            disabled_actions: ['edit', 'delete', 'new']
+        FranchiseSnapshotRosterPlayer:
+            class: App\Entity\TradeSideDraftPick
+            disabled_actions: ['edit', 'delete', 'new']
