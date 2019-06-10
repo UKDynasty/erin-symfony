@@ -21,6 +21,7 @@
 - `app:synctradebaitdata` fetches trade bait from MFL's API and flags players as listed as bait (cron: every 5 minutes)
 - `app:syncassetsdata` fetches all tradeable asset data from MFL's API (current draft picks, future draft picks, players), and updates owners of draft picks (cron: every 5 minutes)
 - `app:synctrades` checks trade data from MFL API and inserts a new Trade record into DB for each one that's not already there, sends a message announcing it to the GroupMe group (cron: every minute)
+- `app:franchisesnapshots` inserts a snapshot of the current franchise stats (rosters, values, best starting lineup) into the database. Intended to be run daily/weekly via cron (cron: every day)
 
 The above commands are all run on deployment if deploying via Dokku, via the pre/post-deploy commands set in `app.json`. They must be set up as cron jobs on the Dokku server.
 
