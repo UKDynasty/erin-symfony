@@ -80,7 +80,7 @@ class Franchise
     private $taxiSquadCount = 0;
 
     /**
-     * @var ArrayCollection|PersistentCollection
+     * @var Collection|Player[]
      * @ORM\OneToMany(targetEntity="Player", mappedBy="franchise")
      */
     private $players;

@@ -9,6 +9,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class FranchiseSnapshotBestLineupPlayer
 {
+    public function __construct(Player $player, int $value)
+    {
+        $this->player = $player;
+        $this->value = $value;
+    }
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
