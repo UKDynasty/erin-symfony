@@ -3,6 +3,7 @@ namespace App\Entity;
 
 use App\Entity\Owner;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\IdTrait;
@@ -20,6 +21,7 @@ class Franchise
     public function __construct()
     {
         $this->players = new ArrayCollection();
+        $this->snapshots = new ArrayCollection();
     }
 
     /**
@@ -90,6 +92,11 @@ class Franchise
     private $draftPicks;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\FranchiseSnapshot", mappedBy="franchise")
+     */
+    private $snapshots;
+
+    /**
      * @return string
      */
     public function getName(): string
@@ -154,7 +161,7 @@ class Franchise
     }
 
     /**
-     * @return ArrayCollection|PersistentCollection
+     * @return Collection|Player[]
      */
     public function getPlayers()
     {
@@ -244,5 +251,36 @@ class Franchise
     public function __toString()
     {
         return $this->getName();
+    }
+
+    /**
+     * @return Collection|FranchiseSnapshot[]
+     */
+    public function getSnapshots(): Collection
+    {
+        return $this->snapshots;
+    }
+
+    public function addSnapshot(FranchiseSnapshot $snapshot): self
+    {
+        if (!$this->snapshots->contains($snapshot)) {
+            $this->snapshots[] = $snapshot;
+            $snapshot->setFranchise($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSnapshot(FranchiseSnapshot $snapshot): self
+    {
+        if ($this->snapshots->contains($snapshot)) {
+            $this->snapshots->removeElement($snapshot);
+            // set the owning side to null (unless already changed)
+            if ($snapshot->getFranchise() === $this) {
+                $snapshot->setFranchise(null);
+            }
+        }
+
+        return $this;
     }
 }
