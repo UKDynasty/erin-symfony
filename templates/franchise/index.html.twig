@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UK Dynasty{% endblock %}
+
+{% block body %}
+    <h2>Franchises</h2>
+
+        {% for franchise in franchises %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ franchise.name }}</h5>
+                    <p class="card-text">{{ franchise.owner.name }}</p>
+                    <p>{{ franchise.latestSnapshot.bestLineupValue }} value best lineup</p>
+                </div>
+                <div class="card-footer text-muted">
+                    {{ franchise.players.count() }} players
+                </div>
+            </div>
+        {% endfor %}
+{% endblock %}

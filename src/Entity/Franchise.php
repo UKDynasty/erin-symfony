@@ -93,6 +93,7 @@ class Franchise
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\FranchiseSnapshot", mappedBy="franchise")
+     * @ORM\OrderBy({"date" = "DESC"})
      */
     private $snapshots;
 
@@ -282,5 +283,10 @@ class Franchise
         }
 
         return $this;
+    }
+
+    public function getLatestSnapshot(): ?FranchiseSnapshot
+    {
+        return $this->snapshots->first();
     }
 }
