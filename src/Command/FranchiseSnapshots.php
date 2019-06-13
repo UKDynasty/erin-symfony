@@ -51,6 +51,7 @@ class FranchiseSnapshots extends Command
         // Store player values too
         // TODO: break into separate command
         $players = $this->em->getRepository(Player::class)->findAll();
+        $date = new \DateTimeImmutable(new \DateTimeZone('UTC'));
         foreach($players as $player) {
             if (!$player->getValue()) {
                 continue;
@@ -58,6 +59,7 @@ class FranchiseSnapshots extends Command
             $playerValueSnapshot = new PlayerValueSnapshot();
             $playerValueSnapshot->setPlayer($player);
             $playerValueSnapshot->setValue($player->getValue());
+            $playerValueSnapshot->setDate($date);
             $this->em->persist($playerValueSnapshot);
         }
 

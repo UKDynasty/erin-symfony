@@ -6,7 +6,7 @@
     <h2>{{ franchise.name }}</h2>
     <h3>Owner: {{ franchise.owner.name }}</h3>
     {% for player in roster %}
-    {{ player.name }} <strong>{{ player.position.name }}</strong> - {{ player.value }}<br>
+    <a href="{{ path('app_player_show', {id: player.id}) }}">{{ player.name }}</a> <strong>{{ player.position.name }}</strong> - {{ player.value }}<br>
     {% endfor %}
     <h4>Snapshots</h4>
     {% for snapshot in franchise.snapshots %}

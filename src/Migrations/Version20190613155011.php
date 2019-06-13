@@ -22,7 +22,7 @@ final class Version20190613155011 extends AbstractMigration implements Container
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE player_value_snapshot (id INT AUTO_INCREMENT NOT NULL, player_id INT NOT NULL, value INT NOT NULL, INDEX IDX_ADCD41F199E6F5DF (player_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE player_value_snapshot (id INT AUTO_INCREMENT NOT NULL, player_id INT NOT NULL, value INT NOT NULL, date DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', INDEX IDX_ADCD41F199E6F5DF (player_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('ALTER TABLE player_value_snapshot ADD CONSTRAINT FK_ADCD41F199E6F5DF FOREIGN KEY (player_id) REFERENCES player (id)');
     }
 
@@ -32,10 +32,12 @@ final class Version20190613155011 extends AbstractMigration implements Container
         /** @var EntityManagerInterface $em */
         $em = $this->container->get('doctrine.orm.entity_manager');
         $rosterPlayerSnapshot = $em->getRepository(FranchiseSnapshotRosterPlayer::class)->findAll();
+        $date = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
         foreach($rosterPlayerSnapshot as $rosterPlayer) {
             $playerValueSnapshot = new PlayerValueSnapshot();
             $playerValueSnapshot->setPlayer($rosterPlayer->getPlayer());
             $playerValueSnapshot->setValue($rosterPlayer->getValue());
+            $playerValueSnapshot->setDate($date);
             $em->persist($playerValueSnapshot);
         }
         $em->flush();

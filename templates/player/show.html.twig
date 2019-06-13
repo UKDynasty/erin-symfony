@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ player.name }}{% endblock %}
+
+{% block body %}
+    <h2>{{ player.name }}</h2>
+    <h3>{{ player.position.name }} | {{ player.franchise ? player.franchise.name : 'FA' }}</h3>
+
+    <h4>Value</h4>
+    {% for snapshot in player.valueSnapshots %}
+        {{ snapshot.date | date }}: {{ snapshot.value }}<br>
+    {% endfor %}
+{% endblock %}
