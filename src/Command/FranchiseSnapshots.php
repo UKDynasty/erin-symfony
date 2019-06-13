@@ -4,6 +4,7 @@ namespace App\Command;
 
 use App\Entity\Franchise;
 use App\Entity\Player;
+use App\Entity\PlayerValueSnapshot;
 use App\Service\FranchiseSnapshotService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
@@ -46,6 +47,20 @@ class FranchiseSnapshots extends Command
             $snapshot = $this->franchiseSnapshotService->generateSnapshot($franchise);
             $this->em->persist($snapshot);
         }
+
+        // Store player values too
+        // TODO: break into separate command
+        $players = $this->em->getRepository(Player::class)->findAll();
+        foreach($players as $player) {
+            if (!$player->getValue()) {
+                continue;
+            }
+            $playerValueSnapshot = new PlayerValueSnapshot();
+            $playerValueSnapshot->setPlayer($player);
+            $playerValueSnapshot->setValue($player->getValue());
+            $this->em->persist($playerValueSnapshot);
+        }
+
         $this->em->flush();
     }
 }

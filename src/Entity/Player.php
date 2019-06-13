@@ -2,6 +2,8 @@
 namespace App\Entity;
 
 use App\Entity\Interfaces\AssetInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\IdTrait;
 
@@ -202,6 +204,16 @@ class Player implements AssetInterface
      * @ORM\Column(type="integer", nullable=true)
      */
     private $value;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\PlayerValueSnapshot", mappedBy="player", orphanRemoval=true)
+     */
+    private $valueSnapshots;
+
+    public function __construct()
+    {
+        $this->valueSnapshots = new ArrayCollection();
+    }
 
     /**
      * @return string
@@ -681,6 +693,37 @@ class Player implements AssetInterface
     public function setValue(?int $value): self
     {
         $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PlayerValueSnapshot[]
+     */
+    public function getValueSnapshots(): Collection
+    {
+        return $this->valueSnapshots;
+    }
+
+    public function addValueSnapshot(PlayerValueSnapshot $valueSnapshot): self
+    {
+        if (!$this->valueSnapshots->contains($valueSnapshot)) {
+            $this->valueSnapshots[] = $valueSnapshot;
+            $valueSnapshot->setPlayer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeValueSnapshot(PlayerValueSnapshot $valueSnapshot): self
+    {
+        if ($this->valueSnapshots->contains($valueSnapshot)) {
+            $this->valueSnapshots->removeElement($valueSnapshot);
+            // set the owning side to null (unless already changed)
+            if ($valueSnapshot->getPlayer() === $this) {
+                $valueSnapshot->setPlayer(null);
+            }
+        }
 
         return $this;
     }
