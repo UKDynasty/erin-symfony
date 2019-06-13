@@ -32,12 +32,11 @@ final class Version20190613155011 extends AbstractMigration implements Container
         /** @var EntityManagerInterface $em */
         $em = $this->container->get('doctrine.orm.entity_manager');
         $rosterPlayerSnapshot = $em->getRepository(FranchiseSnapshotRosterPlayer::class)->findAll();
-        $date = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
         foreach($rosterPlayerSnapshot as $rosterPlayer) {
             $playerValueSnapshot = new PlayerValueSnapshot();
             $playerValueSnapshot->setPlayer($rosterPlayer->getPlayer());
             $playerValueSnapshot->setValue($rosterPlayer->getValue());
-            $playerValueSnapshot->setDate($date);
+            $playerValueSnapshot->setDate($rosterPlayer->getSnapshot()->getDate());
             $em->persist($playerValueSnapshot);
         }
         $em->flush();
