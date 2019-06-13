@@ -39,6 +39,18 @@ class PlayerRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * @return Player[]|Collection
+     */
+    public function getFreeAgentsOrderedByValue()
+    {
+        return $this->createQueryBuilder("player")
+            ->andWhere("player.franchise IS NULL")
+            ->addOrderBy('player.value', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function getPlayersForFranchiseByPositionOrderedByValue(Franchise $franchise, Position $position, int $limit = null)
     {
         $qb = $this->createQueryBuilder("player")

@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UK Dynasty{% endblock %}
+
+{% block body %}
+    <h2>Free Agents</h2>
+    {% for player in players %}
+        <a href="{{ path('app_player_show', {id: player.id}) }}">{{ player.name }}</a> <strong>{{ player.position.name }}</strong> - {{ player.value }}<br>
+    {% endfor %}
+{% endblock %}
