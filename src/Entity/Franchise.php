@@ -1,10 +1,8 @@
 <?php
 namespace App\Entity;
 
-use App\Entity\Owner;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\IdTrait;
 use Doctrine\ORM\PersistentCollection;

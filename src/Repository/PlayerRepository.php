@@ -1,19 +1,40 @@
 <?php
 
-namespace App\Entity;
+namespace App\Repository;
+
+use App\Entity\Franchise;
+use App\Entity\Player;
+use App\Entity\Position;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
-class PlayerRepository extends EntityRepository
+/**
+ * @method Player|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Player|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Player[]    findAll()
+ * @method Player[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ */
+class PlayerRepository extends ServiceEntityRepository
 {
+    public function __construct(RegistryInterface $registry)
+    {
+        parent::__construct($registry, Player::class);
+    }
+
+    /**
+     * @param Franchise $franchise
+     * @return Player[]|Collection
+     */
     public function getPlayersForFranchiseOrdered(Franchise $franchise)
     {
         return $this->createQueryBuilder("player")
             ->join("player.position", "position")
             ->andWhere("player.franchise = :franchise")
             ->setParameter("franchise", $franchise)
-            ->orderBy("position.priority", "DESC")
+            ->addOrderBy("position.priority", "DESC")
+            ->addOrderBy('player.value', 'DESC')
             ->getQuery()
             ->getResult();
     }

@@ -8,7 +8,7 @@
         {% for franchise in franchises %}
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">{{ franchise.name }}</h5>
+                    <h5 class="card-title"><a href="{{ path('app_franchise_show', {'id': franchise.id}) }}">{{ franchise.name }}</a></h5>
                     <p class="card-text">{{ franchise.owner.name }}</p>
                     <p>{{ franchise.latestSnapshot.bestLineupValue }} value best lineup</p>
                 </div>

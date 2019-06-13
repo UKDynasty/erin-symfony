@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UK Dynasty{% endblock %}
+
+{% block body %}
+    <h2>{{ franchise.name }}</h2>
+    <h3>Owner: {{ franchise.owner.name }}</h3>
+    {% for player in roster %}
+    {{ player.name }} <strong>{{ player.position.name }}</strong> - {{ player.value }}<br>
+    {% endfor %}
+    <h4>Snapshots</h4>
+    {% for snapshot in franchise.snapshots %}
+        {{ snapshot.date | date }}: Best lineup {{ snapshot.bestLineupValue }} (average {{ snapshot.bestLineupValueAverage }}), Roster {{ snapshot.rosterValue }} (average {{ snapshot.rosterValueAverage }})<br>
+    {% endfor %}
+{% endblock %}

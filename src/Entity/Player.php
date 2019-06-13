@@ -5,7 +5,7 @@ use App\Entity\Interfaces\AssetInterface;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\IdTrait;
 
-/** @ORM\Entity(repositoryClass="PlayerRepository") */
+/** @ORM\Entity(repositoryClass="App\Repository\PlayerRepository") */
 class Player implements AssetInterface
 {
     use IdTrait;
