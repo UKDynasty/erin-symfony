@@ -1,0 +1,11 @@
+{% set position = null %}
+{% for player in players %}
+    {% set player = player.player %}
+    {% if player.position.name != position %}
+        {% set position = player.position.name %}
+        {% if not loop.first %}<br>{% endif %}
+        <strong>{{ position }}: </strong>
+    {% else %},
+    {% endif %}
+    {{ player.name }}
+{% endfor %}
