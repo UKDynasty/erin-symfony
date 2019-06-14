@@ -8,11 +8,8 @@ use App\Entity\PlayerValueSnapshot;
 use App\Service\FranchiseSnapshotService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 
 class FranchiseSnapshots extends Command
 {
@@ -48,10 +45,12 @@ class FranchiseSnapshots extends Command
             $this->em->persist($snapshot);
         }
 
+        $this->em->flush();
+
         // Store player values too
         // TODO: break into separate command
         $players = $this->em->getRepository(Player::class)->findAll();
-        $date = new \DateTimeImmutable(new \DateTimeZone('UTC'));
+        $date = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
         foreach($players as $player) {
             if (!$player->getValue()) {
                 continue;
