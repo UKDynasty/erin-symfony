@@ -5,6 +5,7 @@
 {% block body %}
     <h2>{{ player.name }}</h2>
     <h3>{{ player.position.name }} | {{ player.franchise ? player.franchise.name : 'FA' }}</h3>
+    <h4>Real-life team: {{ player.teamEntity ? player.teamEntity.name : 'FA' }}</h4>
 
     <h4>Value</h4>
     {% for snapshot in player.valueSnapshots %}
