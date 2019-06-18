@@ -210,6 +210,11 @@ class Player implements AssetInterface
      */
     private $valueSnapshots;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Team", inversedBy="players")
+     */
+    private $teamEntity;
+
     public function __construct()
     {
         $this->valueSnapshots = new ArrayCollection();
@@ -724,6 +729,18 @@ class Player implements AssetInterface
                 $valueSnapshot->setPlayer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTeamEntity(): ?Team
+    {
+        return $this->teamEntity;
+    }
+
+    public function setTeamEntity(?Team $teamEntity): self
+    {
+        $this->teamEntity = $teamEntity;
 
         return $this;
     }

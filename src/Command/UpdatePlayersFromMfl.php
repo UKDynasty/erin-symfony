@@ -3,6 +3,7 @@ namespace App\Command;
 
 use App\Entity\Player;
 use App\Entity\Position;
+use App\Entity\Team;
 use App\Service\MFLApi;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
@@ -72,6 +73,7 @@ class UpdatePlayersFromMfl extends Command
         $player->setFirstName($nameArray[1]);
         $player->setLastName($nameArray[0]);
         $player->setTeam($mflPlayer["team"] ?? 'FA');
+        $player->setTeamEntity($mflPlayer["team"] ? $this->em->getRepository(Team::class)->findOneBy(['abbreviation' => $player->getTeam()]) : null);
         $player->setExternalIdMfl($mflPlayer["id"]);
         $player->setExternalIdEspn($mflPlayer["espn_id"] ?? null);
         $player->setExternalIdRotoworld($mflPlayer["rotoworld_id"] ?? null);
