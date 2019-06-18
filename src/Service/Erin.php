@@ -63,15 +63,11 @@ class Erin
      */
     private $logger;
     /**
-     * @var ESPN
-     */
-    private $espn;
-    /**
      * @var UrlProvider
      */
     private $mflUrlProvider;
 
-    public function __construct(GroupMe $groupMe, GoogleSheet $picks, MessageDataExtractor $messageDataExtractor, EntityManagerInterface $em, HumanReadableHelpers $helpers, DraftManager $draftManager, LoggerInterface $logger, ESPN $espn, UrlProvider $mflUrlProvider)
+    public function __construct(GroupMe $groupMe, GoogleSheet $picks, MessageDataExtractor $messageDataExtractor, EntityManagerInterface $em, HumanReadableHelpers $helpers, DraftManager $draftManager, LoggerInterface $logger, UrlProvider $mflUrlProvider)
     {
         $this->groupMe = $groupMe;
         $this->picks = $picks;
@@ -80,7 +76,6 @@ class Erin
         $this->helpers = $helpers;
         $this->draftManager = $draftManager;
         $this->logger = $logger;
-        $this->espn = $espn;
         $this->mflUrlProvider = $mflUrlProvider;
     }
 
@@ -294,11 +289,6 @@ class Erin
             return sprintf('The %s are on the clock with pick %s.', $pickOnClock->getOwner()->getName(), $pickOnClock->getPickText());
         }
         return 'The draft is over, guys. Better luck next year.';
-    }
-
-    private function scores()
-    {
-        return $this->espn->getScoreboard();
     }
 
     private function birthdays()

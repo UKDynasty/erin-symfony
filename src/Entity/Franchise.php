@@ -41,41 +41,10 @@ class Franchise
     private $mflFranchiseId;
 
     /**
-     * @var string
-     * @ORM\Column(type="string")
-     */
-    private $espnFranchiseId;
-
-    /**
      * @var array
      * @ORM\Column(type="simple_array")
      */
     private $identifiers;
-
-    /**
-     * @var int
-     * @ORM\Column(type="integer")
-     */
-    private $espnRosterCountTotal = 0;
-
-    /**
-     * @var int
-     * @ORM\Column(type="integer")
-     */
-    private $espnRosterCountRegular = 0;
-
-    /**
-     * @var int
-     * @ORM\Column(type="integer")
-     */
-    private $espnRosterCountIR = 0;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(type="integer")
-     */
-    private $taxiSquadCount = 0;
 
     /**
      * @var Collection|Player[]
@@ -144,22 +113,6 @@ class Franchise
     }
 
     /**
-     * @return string
-     */
-    public function getEspnFranchiseId(): string
-    {
-        return $this->espnFranchiseId;
-    }
-
-    /**
-     * @param string $espnFranchiseId
-     */
-    public function setEspnFranchiseId(string $espnFranchiseId): void
-    {
-        $this->espnFranchiseId = $espnFranchiseId;
-    }
-
-    /**
      * @return Collection|Player[]
      */
     public function getPlayers()
@@ -181,70 +134,6 @@ class Franchise
     public function setIdentifiers(array $identifiers): void
     {
         $this->identifiers = $identifiers;
-    }
-
-    /**
-     * @return int
-     */
-    public function getEspnRosterCountTotal(): int
-    {
-        return $this->espnRosterCountTotal;
-    }
-
-    /**
-     * @param int $espnRosterCountTotal
-     */
-    public function setEspnRosterCountTotal(int $espnRosterCountTotal): void
-    {
-        $this->espnRosterCountTotal = $espnRosterCountTotal;
-    }
-
-    /**
-     * @return int
-     */
-    public function getEspnRosterCountRegular(): int
-    {
-        return $this->espnRosterCountRegular;
-    }
-
-    /**
-     * @param int $espnRosterCountRegular
-     */
-    public function setEspnRosterCountRegular(int $espnRosterCountRegular): void
-    {
-        $this->espnRosterCountRegular = $espnRosterCountRegular;
-    }
-
-    /**
-     * @return int
-     */
-    public function getEspnRosterCountIR(): int
-    {
-        return $this->espnRosterCountIR;
-    }
-
-    /**
-     * @param int $espnRosterCountIR
-     */
-    public function setEspnRosterCountIR(int $espnRosterCountIR): void
-    {
-        $this->espnRosterCountIR = $espnRosterCountIR;
-    }
-
-    /**
-     * @return int
-     */
-    public function getTaxiSquadCount(): int
-    {
-        return $this->taxiSquadCount;
-    }
-
-    /**
-     * @param int $taxiSquadCount
-     */
-    public function setTaxiSquadCount(int $taxiSquadCount): void
-    {
-        $this->taxiSquadCount = $taxiSquadCount;
     }
 
     public function __toString()
