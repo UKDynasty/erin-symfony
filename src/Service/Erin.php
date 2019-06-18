@@ -24,8 +24,6 @@ class Erin
         "/\bowns\b/i" => 'whoOwns',
         "/\bbait\b/i" => 'tradeBait',
         "/\bclock\b/i" => 'clock',
-        "/\bscorigami\b/i" => 'scorigami',
-        '/\bscores\b/i' => 'scores',
         '/\blottery\b/i' => 'lottery',
         '/\bbirthday\b/i' => 'birthdays',
         '/\bbirthdays\b/i' => 'birthdays',
