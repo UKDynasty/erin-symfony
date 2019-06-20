@@ -37,10 +37,6 @@ class Erin
      */
     private $groupMe;
     /**
-     * @var GoogleSheet
-     */
-    private $picks;
-    /**
      * @var MessageDataExtractor
      */
     private $messageDataExtractor;
@@ -65,10 +61,9 @@ class Erin
      */
     private $mflUrlProvider;
 
-    public function __construct(GroupMe $groupMe, GoogleSheet $picks, MessageDataExtractor $messageDataExtractor, EntityManagerInterface $em, HumanReadableHelpers $helpers, DraftManager $draftManager, LoggerInterface $logger, UrlProvider $mflUrlProvider)
+    public function __construct(GroupMe $groupMe, MessageDataExtractor $messageDataExtractor, EntityManagerInterface $em, HumanReadableHelpers $helpers, DraftManager $draftManager, LoggerInterface $logger, UrlProvider $mflUrlProvider)
     {
         $this->groupMe = $groupMe;
-        $this->picks = $picks;
         $this->messageDataExtractor = $messageDataExtractor;
         $this->em = $em;
         $this->helpers = $helpers;
