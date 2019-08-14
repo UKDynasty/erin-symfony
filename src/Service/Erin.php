@@ -334,7 +334,6 @@ class Erin
 
     private function value($message)
     {
-//        return 'Sorry, I can\'t do this anymore. I can only answer this question if we\'re using MyFantasyLeague.';
         preg_match("/\bvalue\b(.*)/i", rtrim(trim($message['text']), '?'), $matches);
         if ($matches) {
             $playerName = trim($matches[1]);

@@ -16,12 +16,14 @@ class GroupMe
      * @var LoggerInterface
      */
     private $logger;
+    private $groupMeLeagueChatGroupId;
 
-    public function __construct($groupMeDirectMessageToken, $groupMeBotId, LoggerInterface $logger)
+    public function __construct($groupMeDirectMessageToken, $groupMeBotId, $groupMeLeagueChatGroupId, LoggerInterface $logger)
     {
         $this->token = $groupMeDirectMessageToken;
         $this->groupMeBotId = $groupMeBotId;
         $this->logger = $logger;
+        $this->groupMeLeagueChatGroupId = $groupMeLeagueChatGroupId;
     }
 
     public function getGroupMembers()
@@ -36,6 +38,19 @@ class GroupMe
         exit();
 
         return $res->getBody();
+    }
+
+    public function getMessages(string $afterId = null, int $limit = 20)
+    {
+        $client = new Client();
+        $url = sprintf("https://api.groupme.com/v3/groups/%s/messages?token=%s", $this->groupMeLeagueChatGroupId, $this->token);
+        if ($afterId) {
+            $url .= sprintf('&after_id=%s', $afterId);
+        }
+        $res = $client->get($url);
+        $contents = json_decode($res->getBody()->getContents(), true);
+
+        return $contents['response']['messages'];
     }
 
     public function sendDirectMessage(DirectMessage $directMessage)
