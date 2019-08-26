@@ -89,6 +89,16 @@ class Erin
         return $this->parseMessage($mockGroupMeMessage);
     }
 
+    public function receiveAlexaMessage(string $message) : string
+    {
+        // Mock a $groupMeMessage
+        $mockGroupMeMessage = [
+            'sender_id' => 'alexa',
+            'text' => $message,
+        ];
+        return $this->parseMessage($mockGroupMeMessage);
+    }
+
     /**
      * @param $groupMeMessage
      * @return bool
@@ -304,6 +314,12 @@ class Erin
         if ($matches) {
             $playerName = trim($matches[1]);
             $explodedName = explode(' ', $playerName);
+
+            if (!isset($explodedName[1])) {
+                // No players have just 1 name, and it'll cause the following block to crash
+                return 'A player without a surname? Unlikely.';
+            }
+
             /** @var ArrayCollection $results */
             $results = $this->em->getRepository(Player::class)->findBy([
                 'firstName' => $explodedName[0],

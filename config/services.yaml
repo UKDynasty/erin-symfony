@@ -32,3 +32,10 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Alexa\WhoOwnsPlayerHandler:
+        class: App\Alexa\WhoOwnsPlayerHandler
+        arguments:
+            - '@maxbeckers_amazon_alexa.response_helper' # ResponseHelper
+        tags:
+            - 'maxbeckers_amazon_alexa.request_handler'
