@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="Remove errant #">
+    <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="use classes for launch/end session requests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Alexa/LaunchRequestHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Alexa/LaunchRequestHandler.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Alexa/SessionEndedRequestHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Alexa/SessionEndedRequestHandler.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -301,14 +300,7 @@
       <workItem from="1560868134695" duration="6907000" />
       <workItem from="1560931783839" duration="23000" />
       <workItem from="1561047433650" duration="35000" />
-      <workItem from="1566818575661" duration="6897000" />
-    </task>
-    <task id="LOCAL-00024" summary="Names, not objects">
-      <created>1521459569332</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1521459569332</updated>
+      <workItem from="1566818575661" duration="7619000" />
     </task>
     <task id="LOCAL-00025" summary="Missing parantheses damnit">
       <created>1521460025975</created>
@@ -646,7 +638,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566833402418</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="use classes for launch/end session requests">
+      <created>1566834708246</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1566834708246</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -682,7 +681,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Remove dump" />
     <MESSAGE value="scoreboard" />
     <MESSAGE value="add logging" />
     <MESSAGE value="upgrade to error" />
@@ -707,7 +705,8 @@
     <MESSAGE value="Add LaunchRequestHandler" />
     <MESSAGE value="Add SessionEndedRequestHandler" />
     <MESSAGE value="Remove errant #" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove errant #" />
+    <MESSAGE value="use classes for launch/end session requests" />
+    <option name="LAST_COMMIT_MESSAGE" value="use classes for launch/end session requests" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
