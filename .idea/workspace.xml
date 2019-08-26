@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="Free agents list">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="Endpoint for Alexa skill &quot;who owns player?&quot;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/Erin.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Erin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,50 +40,6 @@
         <option value="Command" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>foreach</find>
-      <find>roster</find>
-      <find>scorigami</find>
-      <find>doctrine</find>
-      <find>get</find>
-      <find>o</find>
-      <find>franchise</find>
-      <find>getnu</find>
-      <find>FP_</find>
-      <find>given</find>
-      <find>2019</find>
-      <find>getName()</find>
-      <find>whoowns</find>
-      <find>sendgroup</find>
-      <find>dump(</find>
-      <find>position</find>
-      <find>franchisesnaps</find>
-      <find>app:fran</find>
-      <find>Route</find>
-      <find>bestl</find>
-      <find>FranchiseSnapshotBestLineupPlayer</find>
-      <find>extensions</find>
-      <find>players</find>
-      <find>ordered</find>
-      <find>$date</find>
-      <find>playersso</find>
-      <find>espn</find>
-      <find>scorigam</find>
-      <find>sheet</find>
-      <find>picks</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>name</replace>
-      <replace>gave</replace>
-      <replace>Franchise</replace>
-    </replaceStrings>
-    <dirStrings>
-      <dir>$PROJECT_DIR$/src/Entity/Traits</dir>
-      <dir>$PROJECT_DIR$/src/Entity</dir>
-      <dir>$PROJECT_DIR$/src/Command</dir>
-    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -248,25 +198,25 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/franchise" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Alexa" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="Symfony2.SettingsForm" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Alexa" />
+      <recent name="$PROJECT_DIR$/templates/franchise" />
+      <recent name="$PROJECT_DIR$/src/Repository" />
+      <recent name="$PROJECT_DIR$/src/Command" />
+      <recent name="$PROJECT_DIR$/src/Service" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/Repository" />
       <recent name="$PROJECT_DIR$/src/Command/ESPN" />
       <recent name="$PROJECT_DIR$/src/Entity" />
       <recent name="$PROJECT_DIR$/mysql.conf.d" />
       <recent name="$PROJECT_DIR$/src/Controller/Admin" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/templates/franchise" />
-      <recent name="$PROJECT_DIR$/src/Repository" />
-      <recent name="$PROJECT_DIR$/src/Command" />
-      <recent name="$PROJECT_DIR$/src/Service" />
-      <recent name="$PROJECT_DIR$/templates" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -350,14 +300,7 @@
       <workItem from="1560868134695" duration="6907000" />
       <workItem from="1560931783839" duration="23000" />
       <workItem from="1561047433650" duration="35000" />
-      <workItem from="1566818575661" duration="3827000" />
-    </task>
-    <task id="LOCAL-00020" summary="Correct pick number in round typo">
-      <created>1521393087249</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1521393087249</updated>
+      <workItem from="1566818575661" duration="5273000" />
     </task>
     <task id="LOCAL-00021" summary="Use db for picks requests">
       <created>1521395627214</created>
@@ -695,7 +638,14 @@
       <option name="project" value="LOCAL" />
       <updated>1560443161444</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="Endpoint for Alexa skill &quot;who owns player?&quot;">
+      <created>1566830788870</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1566830788871</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -731,7 +681,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Answer &quot;who is on the clock?&quot;" />
     <MESSAGE value="Try switching to double quotes to fix \n not creating new lnies" />
     <MESSAGE value="Add logging when sending a message fails" />
     <MESSAGE value="Use Sheet to update picks" />
@@ -756,7 +705,8 @@
     <MESSAGE value="Add readme note about franchise snapshot command" />
     <MESSAGE value="Dummy homepage and update npm deps" />
     <MESSAGE value="Free agents list" />
-    <option name="LAST_COMMIT_MESSAGE" value="Free agents list" />
+    <MESSAGE value="Endpoint for Alexa skill &quot;who owns player?&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Endpoint for Alexa skill &quot;who owns player?&quot;" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
