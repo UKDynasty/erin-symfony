@@ -26,8 +26,7 @@ class SessionEndedRequestHandler extends AbstractRequestHandler
 
     public function supportsRequest(Request $request): bool
     {
-        return $request->request instanceOf IntentRequest &&
-            'SessionEndedRequestHandler' === $request->request->intent->name;
+        return $request->request instanceOf Request\Standard\SessionEndedRequest;
     }
 
     public function handleRequest(Request $request): Response

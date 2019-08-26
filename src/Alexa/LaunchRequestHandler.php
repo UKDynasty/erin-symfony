@@ -26,8 +26,7 @@ class LaunchRequestHandler extends AbstractRequestHandler
 
     public function supportsRequest(Request $request): bool
     {
-        return $request->request instanceOf IntentRequest &&
-            'LaunchRequest' === $request->request->intent->name;
+        return $request->request instanceOf Request\Standard\LaunchRequest;
     }
 
     public function handleRequest(Request $request): Response
