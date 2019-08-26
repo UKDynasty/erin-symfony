@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="Endpoint for Alexa skill &quot;who owns player?&quot;">
+    <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="Add LaunchRequestHandler">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
     </list>
@@ -300,14 +300,7 @@
       <workItem from="1560868134695" duration="6907000" />
       <workItem from="1560931783839" duration="23000" />
       <workItem from="1561047433650" duration="35000" />
-      <workItem from="1566818575661" duration="5273000" />
-    </task>
-    <task id="LOCAL-00021" summary="Use db for picks requests">
-      <created>1521395627214</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1521395627214</updated>
+      <workItem from="1566818575661" duration="5355000" />
     </task>
     <task id="LOCAL-00022" summary="Fix bug where $franchise was being overwritten">
       <created>1521399302110</created>
@@ -645,7 +638,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566830788871</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="Add LaunchRequestHandler">
+      <created>1566833081177</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1566833081177</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -681,7 +681,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Try switching to double quotes to fix \n not creating new lnies" />
     <MESSAGE value="Add logging when sending a message fails" />
     <MESSAGE value="Use Sheet to update picks" />
     <MESSAGE value="Remove dump" />
@@ -706,7 +705,8 @@
     <MESSAGE value="Dummy homepage and update npm deps" />
     <MESSAGE value="Free agents list" />
     <MESSAGE value="Endpoint for Alexa skill &quot;who owns player?&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Endpoint for Alexa skill &quot;who owns player?&quot;" />
+    <MESSAGE value="Add LaunchRequestHandler" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add LaunchRequestHandler" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">

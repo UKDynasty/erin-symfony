@@ -38,6 +38,13 @@ services:
         arguments:
             - '@maxbeckers_amazon_alexa.response_helper' # ResponseHelper
         tags:
+            - 'maxbeckers_amazon_alexa.request_handler'#
+
+    App\Alexa\SessionEndedRequestHandler:
+        class: App\Alexa\SessionEndedRequestHandler
+        arguments:
+            - '@maxbeckers_amazon_alexa.response_helper' # ResponseHelper
+        tags:
             - 'maxbeckers_amazon_alexa.request_handler'
 
     App\Alexa\WhoOwnsPlayerHandler:
