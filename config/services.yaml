@@ -33,22 +33,8 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    App\Alexa\LaunchRequestHandler:
-        class: App\Alexa\LaunchRequestHandler
-        arguments:
-            - '@maxbeckers_amazon_alexa.response_helper' # ResponseHelper
-        tags:
-            - 'maxbeckers_amazon_alexa.request_handler'
-
-    App\Alexa\SessionEndedRequestHandler:
-        class: App\Alexa\SessionEndedRequestHandler
-        arguments:
-            - '@maxbeckers_amazon_alexa.response_helper' # ResponseHelper
-        tags:
-            - 'maxbeckers_amazon_alexa.request_handler'
-
-    App\Alexa\WhoOwnsPlayerHandler:
-        class: App\Alexa\WhoOwnsPlayerHandler
+    App\Alexa\:
+        resource: '../src/Alexa'
         arguments:
             - '@maxbeckers_amazon_alexa.response_helper' # ResponseHelper
         tags:
