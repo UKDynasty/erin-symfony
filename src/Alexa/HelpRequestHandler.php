@@ -25,7 +25,7 @@ class HelpRequestHandler extends AbstractRequestHandler
 
         $this->responseHelper = $responseHelper;
 
-        $this->supportedApplicationIds = ['amzn1.ask.skill.5111ef87-31dc-461f-8455-23ca184dd885'];
+        $this->supportedApplicationIds = ['amzn1.ask.skill.fe61c251-70fe-43c6-9cd3-0b315b4ce327'];
     }
 
     public function supportsRequest(Request $request): bool
