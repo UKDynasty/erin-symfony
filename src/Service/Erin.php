@@ -3,6 +3,7 @@ namespace App\Service;
 
 use App\Entity\DraftPick;
 use App\Entity\Franchise;
+use App\Entity\Matchup;
 use App\Entity\Owner;
 use App\Entity\Player;
 use App\Entity\Trade;
@@ -31,6 +32,10 @@ class Erin
         '/hello/' => 'hello',
         '/hi/' => 'hi',
         '/\blast trade\b/i' => 'trade',
+        '/\bmatchup\b/i' => 'matchups',            # Rundown of the matchups/scores if started for the current week
+        '/\bmatchups\b/i' => 'matchups',            # Rundown of the matchups/scores if started for the current week
+        '/\bscore\b/i' => 'matchups',              # Rundown of the matchups/scores if started for the current week
+//        '/\bmatchup\b/i' => 'matchup',          # Who are franchise X playing this week? Score if started
     ];
     /**
      * @var GroupMe
@@ -60,8 +65,12 @@ class Erin
      * @var UrlProvider
      */
     private $mflUrlProvider;
+    /**
+     * @var ScheduleManager
+     */
+    private $scheduleManager;
 
-    public function __construct(GroupMe $groupMe, MessageDataExtractor $messageDataExtractor, EntityManagerInterface $em, HumanReadableHelpers $helpers, DraftManager $draftManager, LoggerInterface $logger, UrlProvider $mflUrlProvider)
+    public function __construct(GroupMe $groupMe, MessageDataExtractor $messageDataExtractor, EntityManagerInterface $em, HumanReadableHelpers $helpers, DraftManager $draftManager, LoggerInterface $logger, UrlProvider $mflUrlProvider, ScheduleManager $scheduleManager)
     {
         $this->groupMe = $groupMe;
         $this->messageDataExtractor = $messageDataExtractor;
@@ -70,6 +79,7 @@ class Erin
         $this->draftManager = $draftManager;
         $this->logger = $logger;
         $this->mflUrlProvider = $mflUrlProvider;
+        $this->scheduleManager = $scheduleManager;
     }
 
     public function getOwnerFromMessageSenderId($senderId)
@@ -382,5 +392,16 @@ class Erin
         // Test method to be used for reporting latest trade in event-driven system
         $latestTrade = $this->em->getRepository(Trade::class)->findOneBy([], ['date' => 'DESC'], 1);
         return $this->helpers->tradeToText($latestTrade);
+    }
+
+    private function matchups($message)
+    {
+        $week = $this->scheduleManager->getCurrentWeek();
+        $franchise = $this->messageDataExtractor->extractFranchise($message['text']);
+        $matchups = $this->em->getRepository(Matchup::class)->findByWeek($week, $franchise ?? null);
+
+        return implode("\n\n", array_map(function(Matchup $matchup) {
+            return $matchup->toStringForErin();
+        }, $matchups));
     }
 }

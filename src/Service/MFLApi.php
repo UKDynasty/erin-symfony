@@ -117,4 +117,16 @@ class MFLApi
         $json = json_decode($resBody, true);
         return $json['transactions']['transaction'];
     }
+
+    /**
+     * @return array
+     */
+    public function getSchedule(): array
+    {
+        $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=schedule&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
+        $res = $this->client->request('GET', $url);
+        $resBody = $res->getBody();
+        $json = json_decode($resBody, true);
+        return $json['schedule']['weeklySchedule'];
+    }
 }

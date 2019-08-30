@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="use classes for launch/end session requests">
+    <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="Update skill ID">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Alexa/SessionEndedRequestHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Alexa/SessionEndedRequestHandler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/Erin.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Erin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/MFLApi.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/MFLApi.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,6 +32,9 @@
     <expand />
     <select />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="erin-symfony" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -42,6 +46,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="ingest-chat-history" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IgnoredFileRootStore">
@@ -51,8 +60,11 @@
       </set>
     </option>
   </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpServers">
-    <servers />
+    <servers>
+      <server host="127.0.0.1" id="8ba3db3c-b7da-446c-a5d5-a44d1e68ec27" name="localhost" />
+    </servers>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -181,12 +193,6 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="298" />
-    <option name="y" value="111" />
-    <option name="width" value="1389" />
-    <option name="height" value="765" />
-  </component>
   <component name="ProjectId" id="1PxbCJfAU5Shy6IaN55O2Wcc3w5" />
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
@@ -201,22 +207,22 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Alexa" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
-    <property name="settings.editor.selected.configurable" value="Symfony2.SettingsForm" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/Alexa" />
-      <recent name="$PROJECT_DIR$/templates/franchise" />
-      <recent name="$PROJECT_DIR$/src/Repository" />
-      <recent name="$PROJECT_DIR$/src/Command" />
-      <recent name="$PROJECT_DIR$/src/Service" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/Repository" />
       <recent name="$PROJECT_DIR$/src/Command/ESPN" />
       <recent name="$PROJECT_DIR$/src/Entity" />
       <recent name="$PROJECT_DIR$/mysql.conf.d" />
       <recent name="$PROJECT_DIR$/src/Controller/Admin" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Alexa" />
+      <recent name="$PROJECT_DIR$/templates/franchise" />
+      <recent name="$PROJECT_DIR$/src/Repository" />
+      <recent name="$PROJECT_DIR$/src/Command" />
+      <recent name="$PROJECT_DIR$/src/Service" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -301,13 +307,11 @@
       <workItem from="1560931783839" duration="23000" />
       <workItem from="1561047433650" duration="35000" />
       <workItem from="1566818575661" duration="7619000" />
-    </task>
-    <task id="LOCAL-00025" summary="Missing parantheses damnit">
-      <created>1521460025975</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1521460025975</updated>
+      <workItem from="1567158612317" duration="5974000" />
+      <workItem from="1567170974719" duration="4372000" />
+      <workItem from="1567176035389" duration="935000" />
+      <workItem from="1567177014892" duration="1338000" />
+      <workItem from="1567179153193" duration="2576000" />
     </task>
     <task id="LOCAL-00026" summary="toString methods for DraftPicks">
       <created>1521461288926</created>
@@ -645,7 +649,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566834708246</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Update skill ID">
+      <created>1567074874251</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1567074874252</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -681,7 +692,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="scoreboard" />
     <MESSAGE value="add logging" />
     <MESSAGE value="upgrade to error" />
     <MESSAGE value="more logging" />
@@ -706,7 +716,8 @@
     <MESSAGE value="Add SessionEndedRequestHandler" />
     <MESSAGE value="Remove errant #" />
     <MESSAGE value="use classes for launch/end session requests" />
-    <option name="LAST_COMMIT_MESSAGE" value="use classes for launch/end session requests" />
+    <MESSAGE value="Update skill ID" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update skill ID" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
