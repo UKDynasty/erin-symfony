@@ -39,3 +39,6 @@ services:
             - '@maxbeckers_amazon_alexa.response_helper' # ResponseHelper
         tags:
             - 'maxbeckers_amazon_alexa.request_handler'
+
+    MaxBeckers\AmazonAlexa\Helper\SsmlGenerator:
+        alias: '@maxbeckers_amazon_alexa.ssml_generator'
