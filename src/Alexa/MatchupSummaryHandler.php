@@ -77,6 +77,6 @@ class MatchupSummaryHandler extends AbstractRequestHandler
             $this->ssmlGenerator->pauseTime('750ms');
         }
 
-       return $this->responseHelper->respond($this->ssmlGenerator->getSsml());
+       return $this->responseHelper->respondSsml($this->ssmlGenerator->getSsml());
     }
 }
