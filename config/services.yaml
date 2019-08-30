@@ -41,4 +41,4 @@ services:
             - 'maxbeckers_amazon_alexa.request_handler'
 
     MaxBeckers\AmazonAlexa\Helper\SsmlGenerator:
-        alias: '@maxbeckers_amazon_alexa.ssml_generator'
+        alias: 'maxbeckers_amazon_alexa.ssml_generator'
