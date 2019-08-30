@@ -69,7 +69,7 @@ class MatchupSummaryHandler extends AbstractRequestHandler
 
         foreach($matchups as $matchup) {
             $this->ssmlGenerator->say($matchup->toStringForAlexa());
-            $this->ssmlGenerator->pauseTime('0.75s');
+            $this->ssmlGenerator->pauseTime('750ms');
         }
 
        return $this->responseHelper->respond($this->ssmlGenerator->getSsml());
