@@ -66,8 +66,13 @@ class MatchupSummaryHandler extends AbstractRequestHandler
             $franchise = $this->messageDataExtractor->extractFranchise($request->request->intent->slots[0]->value);
         }
         $matchups = $this->matchupRepository->findByWeek($week, $franchise ?? null);
+        $index = 0;
 
         foreach($matchups as $matchup) {
+            $index++;
+            if ($index === count($matchups)) {
+                $this->ssmlGenerator->say('and finally');
+            }
             $this->ssmlGenerator->say($matchup->toStringForAlexa());
             $this->ssmlGenerator->pauseTime('750ms');
         }
