@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -125,8 +126,8 @@ class Matchup
      */
     public function isScoreless()
     {
-        return $this->getMatchupFranchises()->map(function(MatchupFranchise $matchupFranchise) {
-            return $matchupFranchise->getScore() === 0;
+        return $this->getMatchupFranchises()->filter(function(MatchupFranchise $matchupFranchise) {
+            return $matchupFranchise->getScore() === "0.00";
         })->count() === 2;
     }
 
@@ -148,9 +149,7 @@ class Matchup
         $homeTeam = $this->getMatchupFranchises()->first()->getFranchise();
         $awayTeam = $this->getMatchupFranchises()->last()->getFranchise();
 
-        if ($this->complete) {
-            // Return score
-        } elseif ($this->isScoreless()) {
+        if ($this->isScoreless()) {
             $messages = [
                 sprintf('The %s will host the %s', $homeTeam, $awayTeam),
                 sprintf('%s will visit the %s', $awayTeam, $homeTeam),
@@ -158,11 +157,33 @@ class Matchup
                 sprintf('%s welcome the %s', $homeTeam, $awayTeam),
                 sprintf('%s play the %s at home', $homeTeam, $awayTeam),
                 sprintf('%s travel to the %s', $awayTeam, $homeTeam),
-                sprintf('%s have home field advantage against the %s', $homeTeam, $awayTeam),
             ];
             return $messages[array_rand($messages)];
         } else {
-            // Return in-progress tense
+            $sortedTeams = $this->getMatchupFranchiseSortedByPoints();
+            /** @var MatchupFranchise $winningTeam */
+            $winningTeam = $sortedTeams->first();
+            /** @var MatchupFranchise $losingTeam */
+            $losingTeam = $sortedTeams->last();
+
+            if ($this->complete) {
+                $messages = [
+                    sprintf('The %s beat the %s by %s points to %s', $winningTeam->getFranchise(), $losingTeam->getFranchise(), $winningTeam->getScore(), $losingTeam->getScore()),
+                ];
+            } else {
+                $messages = [
+                    sprintf('The %s are beating the %s by %s points to %s', $winningTeam->getFranchise(), $losingTeam->getFranchise(), $winningTeam->getScore(), $losingTeam->getScore()),
+                    sprintf('The %s lead the %s by %s points to %s',  $winningTeam->getFranchise(), $losingTeam->getFranchise(), $winningTeam->getScore(), $losingTeam->getScore()),
+                ];
+            }
+
+            return $messages[array_rand($messages)];
         }
+    }
+
+    private function getMatchupFranchiseSortedByPoints()
+    {
+        $criteria = Criteria::create()->orderBy(['score' => 'DESC']);
+        return $this->matchupFranchises->matching($criteria);
     }
 }

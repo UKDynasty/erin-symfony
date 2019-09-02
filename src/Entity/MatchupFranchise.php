@@ -25,9 +25,9 @@ class MatchupFranchise
     private $matchup;
 
     /**
-     * @ORM\Column(type="decimal", precision=5, scale=2, nullable=true)
+     * @ORM\Column(type="decimal", precision=5, scale=2)
      */
-    private $score;
+    private $score = 0;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
