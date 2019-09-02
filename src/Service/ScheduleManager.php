@@ -4,6 +4,8 @@ namespace App\Service;
 use App\Entity\Franchise;
 use App\Entity\Matchup;
 use App\Entity\MatchupFranchise;
+use App\Entity\MatchupPlayer;
+use App\Entity\Player;
 use App\Entity\Season;
 use App\Entity\Week;
 use Doctrine\ORM\EntityManagerInterface;
@@ -68,6 +70,83 @@ class ScheduleManager
         }
 
         $this->em->flush();
+    }
+
+    /**
+     * @return array|Matchup[]
+     */
+    public function syncLiveScoring(): array
+    {
+        $liveScoring = $this->MFLApi->getLiveScoring();
+
+        $season = $this->em->getRepository(Season::class)->findOneBy(['year' => $this->mflYear]);
+        $week = $this->em->getRepository(Week::class)->findOneBy([
+            'number' => $liveScoring['week'],
+            'season' => $season,
+        ]);
+
+        if (!$week) {
+            // In case CRON is being run without schedule being updated yet (when season is just created)
+            return [];
+        }
+
+        $matchups = [];
+
+        foreach($liveScoring['matchup'] as $liveScoringMatchup) {
+            // Identify the matchup from the franchises involved. If we ever have double-headers, this won't work
+            $franchiseRepo = $this->em->getRepository(Franchise::class);
+            $matchupRepo = $this->em->getRepository(Matchup::class);
+            $matchupFranchiseRepo = $this->em->getRepository(MatchupFranchise::class);
+            $matchupPlayerRepo = $this->em->getRepository(MatchupPlayer::class);
+
+            $firstFranchise = $franchiseRepo->findOneBy([
+                'mflFranchiseId' => $liveScoringMatchup['franchise'][0]['id'],
+            ]);
+            /** @var Matchup $matchup */
+            $matchup = $matchupRepo->findOneByWeekForFranchise($week, $firstFranchise);
+
+            foreach($liveScoringMatchup['franchise'] as $liveScoringMatchupFranchise) {
+                // Identify MatchupFranchise
+                $franchise = $franchiseRepo->findOneBy([
+                    'mflFranchiseId' => $liveScoringMatchupFranchise['id'],
+                ]);
+
+                /** @var MatchupFranchise $matchupFranchise */
+                $matchupFranchise = $matchupFranchiseRepo->findOneBy([
+                    'matchup' => $matchup,
+                    'franchise' => $franchise,
+                ]);
+
+                $matchupFranchise->setScore($liveScoringMatchupFranchise['score']);
+
+                /**
+                 * Sync all the players
+                 */
+                foreach($liveScoringMatchupFranchise['players'] as $liveScoringMatchupPlayer) {
+                    if ($liveScoringMatchupPlayer['status'] !== 'starter') {
+                        // Skip bench players for now
+                        continue;
+                    }
+
+                    $matchupPlayer = $matchupPlayerRepo->findByMflPlayerIdAndMatchupFranchise($liveScoringMatchupPlayer['id'], $matchupFranchise);
+                    if (!$matchupPlayer) {
+                        $matchupPlayer = new MatchupPlayer();
+                        $matchupPlayer->setMatchupFranchise($matchupFranchise);
+                        $this->em->persist($matchupPlayer);
+                    }
+
+                    $matchupPlayer->setGameSecondsRemaining($liveScoringMatchupPlayer['gameSecondsRemaining']);
+                    $matchupPlayer->setScore($liveScoringMatchupPlayer['score']);
+                }
+            }
+
+            $matchups[] = $matchup;
+        }
+
+        $this->em->flush();
+
+        return $matchups;
+
     }
 
     public function getCurrentSeason(): Season

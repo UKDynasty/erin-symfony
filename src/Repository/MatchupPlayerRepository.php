@@ -2,7 +2,9 @@
 
 namespace App\Repository;
 
+use App\Entity\MatchupFranchise;
 use App\Entity\MatchupPlayer;
+use App\Entity\Player;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -17,6 +19,20 @@ class MatchupPlayerRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, MatchupPlayer::class);
+    }
+
+    public function findByMflPlayerIdAndMatchupFranchise(int $playerId, MatchupFranchise $matchupFranchise)
+    {
+        return $this->createQueryBuilder('matchup_player')
+            ->join('matchup_player.player', 'player')
+            ->where('player.externalIdMfl = :playerId')
+            ->andWhere('matchup_player.matchupFranchise = :matchupFranchise')
+            ->setParameter('playerId', $playerId)
+            ->setParameter('matchupFranchise', $matchupFranchise)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
     }
 
     // /**

@@ -40,6 +40,16 @@ class MatchupRepository extends ServiceEntityRepository
         return $week->getMatchups()->toArray();
     }
 
+    /**
+     * @param Week $week
+     * @param Franchise|NULL $franchise
+     * @return Matchup
+     */
+    public function findOneByWeekForFranchise(Week $week, Franchise $franchise): Matchup
+    {
+        return $this->findByWeek($week, $franchise)[0];
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Matchup

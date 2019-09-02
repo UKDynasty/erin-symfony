@@ -35,6 +35,7 @@ class Erin
         '/\bmatchup\b/i' => 'matchups',            # Rundown of the matchups/scores if started for the current week
         '/\bmatchups\b/i' => 'matchups',            # Rundown of the matchups/scores if started for the current week
         '/\bscore\b/i' => 'matchups',              # Rundown of the matchups/scores if started for the current week
+        '/\bscores\b/i' => 'matchups',              # Rundown of the matchups/scores if started for the current week
 //        '/\bmatchup\b/i' => 'matchup',          # Who are franchise X playing this week? Score if started
     ];
     /**

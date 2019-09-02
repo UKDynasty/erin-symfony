@@ -27,6 +27,11 @@ class MatchupPlayer
      */
     private $score;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $gameSecondsRemaining;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class MatchupPlayer
     public function setScore($score): self
     {
         $this->score = $score;
+
+        return $this;
+    }
+
+    public function getGameSecondsRemaining(): ?int
+    {
+        return $this->gameSecondsRemaining;
+    }
+
+    public function setGameSecondsRemaining(int $gameSecondsRemaining): self
+    {
+        $this->gameSecondsRemaining = $gameSecondsRemaining;
 
         return $this;
     }
