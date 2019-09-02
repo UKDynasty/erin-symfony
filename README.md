@@ -37,3 +37,7 @@ For a draft and its picks to exist and their owners to be updateable via the `ap
 MFL sees picks for the next draft as "current year picks", and the API doesn't provide the "original owner" of these picks in its responses. Therefore, as soon as a new league year begins, the draft order must be set for the upcoming draft using `app:setdraftorder xxxx`.
 
 `xxxx` in the above examples is the calendar year in which the draft will take place.
+
+### TODO for live scoring/results
+
+- calling weeklyResults endpoint to set matchups as 'complete'
