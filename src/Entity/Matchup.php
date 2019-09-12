@@ -186,4 +186,15 @@ class Matchup
         $criteria = Criteria::create()->orderBy(['score' => 'DESC']);
         return $this->matchupFranchises->matching($criteria);
     }
+
+    public function calculateWinner()
+    {
+        $sortedTeams = $this->getMatchupFranchiseSortedByPoints();
+        /** @var MatchupFranchise $winningTeam */
+        $winningTeam = $sortedTeams->first();
+        $losingTeam = $sortedTeams->last();
+
+        $winningTeam->setWinner(true);
+        $losingTeam->setWinner(false);
+    }
 }
