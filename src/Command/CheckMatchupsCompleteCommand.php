@@ -56,7 +56,7 @@ class CheckMatchupsCompleteCommand extends Command
             foreach($matchup->getMatchupFranchises() as $matchupFranchise) {
                 $playersLeftToPlay += (9 - $matchupFranchise->getMatchupPlayers()->filter(function(MatchupPlayer $matchupPlayer) {
                     return $matchupPlayer->getGameSecondsRemaining() > 0;
-                }));
+                })->count());
             }
 
             if ($playersLeftToPlay === 0) {

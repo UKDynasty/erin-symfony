@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="In-progress matchup responses for Alexa">
+    <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="add todo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Command/CheckMatchupsCompleteCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/CheckMatchupsCompleteCommand.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -209,19 +209,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/Command" />
-      <recent name="$PROJECT_DIR$/src/Alexa" />
-      <recent name="$PROJECT_DIR$/templates/franchise" />
-      <recent name="$PROJECT_DIR$/src/Repository" />
-      <recent name="$PROJECT_DIR$/src/Service" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/Repository" />
       <recent name="$PROJECT_DIR$/src/Command/ESPN" />
       <recent name="$PROJECT_DIR$/src/Entity" />
       <recent name="$PROJECT_DIR$/mysql.conf.d" />
       <recent name="$PROJECT_DIR$/src/Controller/Admin" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Command" />
+      <recent name="$PROJECT_DIR$/src/Alexa" />
+      <recent name="$PROJECT_DIR$/templates/franchise" />
+      <recent name="$PROJECT_DIR$/src/Repository" />
+      <recent name="$PROJECT_DIR$/src/Service" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -312,20 +312,7 @@
       <workItem from="1567177014892" duration="1338000" />
       <workItem from="1567179153193" duration="2576000" />
       <workItem from="1567187847743" duration="883000" />
-    </task>
-    <task id="LOCAL-00027" summary="Remove year from current year draft pick string representation - unnecessary">
-      <created>1521461792731</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1521461792731</updated>
-    </task>
-    <task id="LOCAL-00028" summary="sort picks by number">
-      <created>1521462041294</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1521462041294</updated>
+      <workItem from="1568281685349" duration="1547000" />
     </task>
     <task id="LOCAL-00029" summary="Sandbox, bootstrap">
       <created>1521471586726</created>
@@ -656,7 +643,21 @@
       <option name="project" value="LOCAL" />
       <updated>1567440910254</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="add todo">
+      <created>1567441802422</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1567441802422</updated>
+    </task>
+    <task id="LOCAL-00077" summary="check for complete matchups">
+      <created>1568282939406</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1568282939407</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -692,8 +693,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="upgrade to error" />
-    <MESSAGE value="more logging" />
     <MESSAGE value="remove logging" />
     <MESSAGE value="remove dumps, add linebreak" />
     <MESSAGE value="remove dump" />
@@ -717,7 +716,9 @@
     <MESSAGE value="use classes for launch/end session requests" />
     <MESSAGE value="Update skill ID" />
     <MESSAGE value="In-progress matchup responses for Alexa" />
-    <option name="LAST_COMMIT_MESSAGE" value="In-progress matchup responses for Alexa" />
+    <MESSAGE value="add todo" />
+    <MESSAGE value="check for complete matchups" />
+    <option name="LAST_COMMIT_MESSAGE" value="check for complete matchups" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
