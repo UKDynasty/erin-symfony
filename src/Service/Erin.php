@@ -32,9 +32,9 @@ class Erin
         '/hello/' => 'hello',
         '/hi/' => 'hi',
         '/\blast trade\b/i' => 'trade',
-        '/\bmatchup\b/i' => 'matchups',            # Rundown of the matchups/scores if started for the current week
+        '/\bmatchup\b/i' => 'matchup',            # Rundown of the matchups/scores if started for the current week
         '/\bmatchups\b/i' => 'matchups',            # Rundown of the matchups/scores if started for the current week
-        '/\bscore\b/i' => 'matchups',              # Rundown of the matchups/scores if started for the current week
+        '/\bscore\b/i' => 'matchup',              # Rundown of the matchups/scores if started for the current week
         '/\bscores\b/i' => 'matchups',              # Rundown of the matchups/scores if started for the current week
 //        '/\bmatchup\b/i' => 'matchup',          # Who are franchise X playing this week? Score if started
     ];
@@ -404,5 +404,30 @@ class Erin
         return implode("\n\n", array_map(function(Matchup $matchup) {
             return $matchup->toStringForErin();
         }, $matchups));
+    }
+
+    private function matchup($message)
+    {
+        $week = $this->scheduleManager->getCurrentWeek();
+        $franchise = $this->messageDataExtractor->extractFranchise($message['text']);
+
+        if (!$franchise) {
+            return "Sorry, I don't know which franchise you're asking about";
+        }
+
+        $matchup = $this->em->getRepository(Matchup::class)->findOneByWeekForFranchise($week, $franchise);
+
+        $lines = [];
+
+        foreach($matchup->getMatchupFranchises() as $matchupFranchise) {
+            $lines[] = $matchupFranchise->getFranchise()->getName() . ' ' . $matchupFranchise->getScore();
+            $lines[] = '';
+            foreach($matchupFranchise->getMatchupPlayers() as $matchupPlayer) {
+                $lines[] = $matchupPlayer->getPlayer()->getName() . ' ' . $matchupPlayer->getScore() . ($matchupPlayer->getGameSecondsRemaining() === 0 ? ' (F)' : '');
+            }
+            $lines[] = '';
+        }
+
+        return join("\n", $lines);
     }
 }

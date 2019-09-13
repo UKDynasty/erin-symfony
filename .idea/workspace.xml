@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="Hardcoded week 1 to fix livescoring">
+    <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="remove hardcoded week 1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/MFLApi.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/MFLApi.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/ScheduleManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ScheduleManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/Erin.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Erin.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -315,14 +314,7 @@
       <workItem from="1567187847743" duration="883000" />
       <workItem from="1568281685349" duration="2137000" />
       <workItem from="1568367908657" duration="151000" />
-      <workItem from="1568368225638" duration="1293000" />
-    </task>
-    <task id="LOCAL-00031" summary="nl2br">
-      <created>1521471855724</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1521471855724</updated>
+      <workItem from="1568368225638" duration="2726000" />
     </task>
     <task id="LOCAL-00032" summary="Add nodejs buildpack">
       <created>1521472105810</created>
@@ -660,7 +652,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568369206826</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="remove hardcoded week 1">
+      <created>1568369524224</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1568369524224</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -696,7 +695,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="remove dump" />
     <MESSAGE value="Correct some hastily refactored stuff" />
     <MESSAGE value="change tab id" />
     <MESSAGE value="More concise roster listing" />
@@ -721,7 +719,8 @@
     <MESSAGE value="check for complete matchups" />
     <MESSAGE value="Add count" />
     <MESSAGE value="Hardcoded week 1 to fix livescoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hardcoded week 1 to fix livescoring" />
+    <MESSAGE value="remove hardcoded week 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove hardcoded week 1" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
