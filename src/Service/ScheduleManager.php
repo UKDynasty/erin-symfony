@@ -81,7 +81,7 @@ class ScheduleManager
 
         $season = $this->em->getRepository(Season::class)->findOneBy(['year' => $this->mflYear]);
         $week = $this->em->getRepository(Week::class)->findOneBy([
-            'number' => 1,
+            'number' => $liveScoring['week'],
             'season' => $season,
         ]);
 
