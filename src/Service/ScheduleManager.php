@@ -81,7 +81,7 @@ class ScheduleManager
 
         $season = $this->em->getRepository(Season::class)->findOneBy(['year' => $this->mflYear]);
         $week = $this->em->getRepository(Week::class)->findOneBy([
-            'number' => $liveScoring['week'],
+            'number' => 1,
             'season' => $season,
         ]);
 
@@ -122,7 +122,7 @@ class ScheduleManager
                 /**
                  * Sync all the players
                  */
-                foreach($liveScoringMatchupFranchise['players'] as $liveScoringMatchupPlayer) {
+                foreach($liveScoringMatchupFranchise['players']['player'] as $liveScoringMatchupPlayer) {
                     if ($liveScoringMatchupPlayer['status'] !== 'starter') {
                         // Skip bench players for now
                         continue;
@@ -132,12 +132,28 @@ class ScheduleManager
                     if (!$matchupPlayer) {
                         $matchupPlayer = new MatchupPlayer();
                         $matchupPlayer->setMatchupFranchise($matchupFranchise);
+                        $matchupPlayer->setPlayer($this->em->getRepository(Player::class)->findOneBy(['externalIdMfl' => $liveScoringMatchupPlayer['id']]));
                         $this->em->persist($matchupPlayer);
                     }
 
                     $matchupPlayer->setGameSecondsRemaining($liveScoringMatchupPlayer['gameSecondsRemaining']);
                     $matchupPlayer->setScore($liveScoringMatchupPlayer['score']);
                 }
+            }
+
+            /**
+             * Set as complete if it's complete
+             */
+            $playersLeftToPlay = 0;
+            foreach($matchup->getMatchupFranchises() as $matchupFranchise) {
+                $playersLeftToPlay += (9 - $matchupFranchise->getMatchupPlayers()->filter(function(MatchupPlayer $matchupPlayer) {
+                        return $matchupPlayer->getGameSecondsRemaining() === 0;
+                    })->count());
+            }
+
+            if ($playersLeftToPlay === 0) {
+                $matchup->setComplete(true);
+                $matchup->calculateWinner();
             }
 
             $matchups[] = $matchup;

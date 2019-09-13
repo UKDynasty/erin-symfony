@@ -32,6 +32,12 @@ class MatchupPlayer
      */
     private $gameSecondsRemaining;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Player")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $player;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +75,18 @@ class MatchupPlayer
     public function setGameSecondsRemaining(int $gameSecondsRemaining): self
     {
         $this->gameSecondsRemaining = $gameSecondsRemaining;
+
+        return $this;
+    }
+
+    public function getPlayer(): ?Player
+    {
+        return $this->player;
+    }
+
+    public function setPlayer(?Player $player): self
+    {
+        $this->player = $player;
 
         return $this;
     }

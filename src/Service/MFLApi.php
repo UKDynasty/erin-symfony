@@ -135,7 +135,7 @@ class MFLApi
      */
     public function getLiveScoring(): array
     {
-        $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=liveScoring&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
+        $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=liveScoring&L=%s&JSON=1&APIKEY=%s&W=1', $this->year, $this->mflLeagueId, $this->mflApiKey);
         $res = $this->client->request('GET', $url);
         $resBody = $res->getBody();
         $json = json_decode($resBody, true);
