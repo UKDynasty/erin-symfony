@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -152,5 +153,17 @@ class MatchupFranchise
         $this->home = $home;
 
         return $this;
+    }
+
+    public function getPlayersCurrentlyPlaying()
+    {
+        $criteria = Criteria::create()->where(Criteria::expr()->notIn('gameSecondsRemaining', [0, 3600]));
+        return $this->matchupPlayers->matching($criteria);
+    }
+
+    public function getPlayersLeftToPlay()
+    {
+        $criteria = Criteria::create()->where(Criteria::expr()->eq('gameSecondsRemaining', 3600));
+        return $this->matchupPlayers->matching($criteria);
     }
 }

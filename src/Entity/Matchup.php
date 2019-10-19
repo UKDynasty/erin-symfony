@@ -139,7 +139,23 @@ class Matchup
             })->toArray());
         } else {
             return implode("\n", $this->getMatchupFranchises()->map(function(MatchupFranchise $matchupFranchise) {
-                return sprintf('%s %s', $matchupFranchise->getFranchise()->getName(), $matchupFranchise->getScore());
+
+                $playersCurrentlyPlaying = $matchupFranchise->getPlayersCurrentlyPlaying()->count();
+                $playersLeftToPlay = $matchupFranchise->getPlayersLeftToPlay()->count();
+
+                $extra = "";
+                if ($playersLeftToPlay === 0) {
+                    $extra .= 'F';
+                } else {
+                    if ($playersCurrentlyPlaying) {
+                        $extra .= "${playersCurrentlyPlaying} playing, ";
+                    }
+                    $extra .= "${playersLeftToPlay} left to play";
+                }
+
+                $ret = sprintf('%s %s', $matchupFranchise->getFranchise()->getName(), $matchupFranchise->getScore());
+                if ($extra) $ret.= " (${extra})";
+                return $ret;
             })->toArray());
         }
     }
