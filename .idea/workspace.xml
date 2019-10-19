@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="remove hardcoded week 1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/Erin.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Erin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Command/SyncLiveScoringCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/SyncLiveScoringCommand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/MFLApi.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/MFLApi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/ScheduleManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ScheduleManager.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -204,24 +207,30 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Command" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/Repository" />
-      <recent name="$PROJECT_DIR$/src/Command/ESPN" />
-      <recent name="$PROJECT_DIR$/src/Entity" />
-      <recent name="$PROJECT_DIR$/mysql.conf.d" />
-      <recent name="$PROJECT_DIR$/src/Controller/Admin" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/Command" />
       <recent name="$PROJECT_DIR$/src/Alexa" />
       <recent name="$PROJECT_DIR$/templates/franchise" />
       <recent name="$PROJECT_DIR$/src/Repository" />
       <recent name="$PROJECT_DIR$/src/Service" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Repository" />
+      <recent name="$PROJECT_DIR$/src/Command/ESPN" />
+      <recent name="$PROJECT_DIR$/src/Entity" />
+      <recent name="$PROJECT_DIR$/mysql.conf.d" />
+      <recent name="$PROJECT_DIR$/src/Controller/Admin" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -315,13 +324,7 @@
       <workItem from="1568281685349" duration="2137000" />
       <workItem from="1568367908657" duration="151000" />
       <workItem from="1568368225638" duration="2726000" />
-    </task>
-    <task id="LOCAL-00032" summary="Add nodejs buildpack">
-      <created>1521472105810</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1521472105810</updated>
+      <workItem from="1571487528263" duration="2643000" />
     </task>
     <task id="LOCAL-00033" summary="try using this config...">
       <created>1521473264249</created>
@@ -659,7 +662,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568369524224</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="attempt fix for marking complete">
+      <created>1571489442822</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1571489442823</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -695,7 +705,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Correct some hastily refactored stuff" />
     <MESSAGE value="change tab id" />
     <MESSAGE value="More concise roster listing" />
     <MESSAGE value="Add first character of first name to rosters, and link to MFL roster" />
@@ -720,7 +729,8 @@
     <MESSAGE value="Add count" />
     <MESSAGE value="Hardcoded week 1 to fix livescoring" />
     <MESSAGE value="remove hardcoded week 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove hardcoded week 1" />
+    <MESSAGE value="attempt fix for marking complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="attempt fix for marking complete" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">

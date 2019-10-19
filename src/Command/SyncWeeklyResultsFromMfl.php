@@ -11,9 +11,9 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class SyncLiveScoringCommand extends Command
+class SyncWeeklyResultsFromMfl extends Command
 {
-    protected static $defaultName = 'app:sync-live-scoring';
+    protected static $defaultName = 'app:sync-weekly-results';
 
     /**
      * @var ScheduleManager
@@ -30,7 +30,7 @@ class SyncLiveScoringCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Sync live-scoring for the current week')
+            ->setDescription('Sync weekly results for the current week - run once every hour and mark matchups as complete as necessary')
             ->addArgument('week', InputArgument::OPTIONAL, 'week number?')
         ;
     }
@@ -40,12 +40,8 @@ class SyncLiveScoringCommand extends Command
         $io = new SymfonyStyle($input, $output);
 
         $week = $input->getArgument('week');
-        $matchups = $this->scheduleManager->syncLiveScoring($week);
+        $completed = $this->scheduleManager->syncWeeklyResults($week);
 
-        foreach($matchups as $matchup) {
-            $output->writeln($matchup->toStringForErin());
-        }
-
-        $io->success('Synced live-scoring from MFL');
+        $io->success('Synced weekly results from MFL - marked ' . $completed  . ' matchups as complete');
     }
 }

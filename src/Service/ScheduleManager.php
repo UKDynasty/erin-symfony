@@ -75,9 +75,9 @@ class ScheduleManager
     /**
      * @return array|Matchup[]
      */
-    public function syncLiveScoring(): array
+    public function syncLiveScoring(int $week = null): array
     {
-        $liveScoring = $this->MFLApi->getLiveScoring();
+        $liveScoring = $this->MFLApi->getLiveScoring($week);
 
         $season = $this->em->getRepository(Season::class)->findOneBy(['year' => $this->mflYear]);
         $week = $this->em->getRepository(Week::class)->findOneBy([
@@ -153,17 +153,55 @@ class ScheduleManager
                 }
             }
 
-            if ($playersPlayed === 18) {
-                $matchup->setComplete(true);
-                $matchup->calculateWinner();
-            }
-
             $matchups[] = $matchup;
         }
 
         $this->em->flush();
 
         return $matchups;
+
+    }
+
+    public function syncWeeklyResults(int $week = null): int
+    {
+        $weeklyResults = $this->MFLApi->getWeeklyResults($week);
+
+        $season = $this->em->getRepository(Season::class)->findOneBy(['year' => $this->mflYear]);
+        $week = $this->em->getRepository(Week::class)->findOneBy([
+            'number' => $weeklyResults['week'],
+            'season' => $season,
+        ]);
+
+        if (!$week) {
+            // In case CRON is being run without schedule being updated yet (when season is just created)
+            return 0;
+        }
+
+        $franchiseRepo = $this->em->getRepository(Franchise::class);
+        $matchupRepo = $this->em->getRepository(Matchup::class);
+
+        $completed = 0;
+
+        foreach($weeklyResults['matchup'] as $matchupData) {
+            $firstFranchise = $franchiseRepo->findOneBy([
+                'mflFranchiseId' => $matchupData['franchise'][0]['id'],
+            ]);
+            /** @var Matchup $matchup */
+            $matchup = $matchupRepo->findOneByWeekForFranchise($week, $firstFranchise);
+
+            foreach($matchupData['franchise'] as $franchiseData) {
+                if (isset($franchiseData['result'])) {
+                    $completed++;
+                    $matchup->setComplete(true);
+                    $matchup->calculateWinner();
+                    continue 2;
+                }
+            }
+        }
+
+        $this->em->flush();
+
+        return $completed;
 
     }
 

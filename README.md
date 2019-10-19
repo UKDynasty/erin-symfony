@@ -28,6 +28,12 @@ The above commands are all run on deployment if deploying via Dokku, via the pre
 - `app:createdraft year` creates a draft (must be done before running `app:syncassetsdata` for the first time)
 - `app:setdraftorder year` sets the draft order for a draft
 
+### Live scoring commands
+
+- `app:sync-schedule` - updates schedule from MFL, creates matchups for current season (run once)
+- `app:sync-live-scoring` - updates live scoring from MFL from the liveScoring endpoint, run once every 5 mins on cron
+- `app:sync-weekly-results` - to be run once per day late in the evening, sets matchups as complete
+
 ## Notes
 
 ### Draft creation/maintenance

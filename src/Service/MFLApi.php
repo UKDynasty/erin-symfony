@@ -131,14 +131,31 @@ class MFLApi
     }
 
     /**
+     * @param int|null $week
      * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getLiveScoring(): array
+    public function getLiveScoring(int $week = null): array
     {
         $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=liveScoring&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
+        if ($week !== null) {
+            $url .= '&W=' . $week;
+        }
         $res = $this->client->request('GET', $url);
         $resBody = $res->getBody();
         $json = json_decode($resBody, true);
         return $json['liveScoring'];
+    }
+
+    public function getWeeklyResults(int $week)
+    {
+        $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=weeklyResults&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
+        if ($week !== null) {
+            $url .= '&W=' . $week;
+        }
+        $res = $this->client->request('GET', $url);
+        $resBody = $res->getBody();
+        $json = json_decode($resBody, true);
+        return $json['weeklyResults'];
     }
 }
