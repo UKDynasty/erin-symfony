@@ -144,14 +144,16 @@ class ScheduleManager
             /**
              * Set as complete if it's complete
              */
-            $playersLeftToPlay = 0;
+            $playersPlayed = 0;
             foreach($matchup->getMatchupFranchises() as $matchupFranchise) {
-                $playersLeftToPlay += (9 - $matchupFranchise->getMatchupPlayers()->filter(function(MatchupPlayer $matchupPlayer) {
-                        return $matchupPlayer->getGameSecondsRemaining() === 0;
-                    })->count());
+                foreach($matchupFranchise->getMatchupPlayers() as $matchupPlayer) {
+                    if ($matchupPlayer->getGameSecondsRemaining() === 0) {
+                        $playersPlayed++;
+                    }
+                }
             }
 
-            if ($playersLeftToPlay === 0) {
+            if ($playersPlayed === 18) {
                 $matchup->setComplete(true);
                 $matchup->calculateWinner();
             }
