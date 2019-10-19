@@ -90,4 +90,18 @@ class MatchupPlayer
 
         return $this;
     }
+
+    public function getGameMinutesRemainingFormatted(): string
+    {
+        $remaining = $this->getGameSecondsRemaining();
+
+        $minutes = floor($remaining / 60);
+        $seconds = $remaining % 60;
+
+        return sprintf(
+            '%s:%s',
+            str_pad($minutes, 2, '0', STR_PAD_LEFT),
+            str_pad($seconds, 2, '0', STR_PAD_LEFT)
+        );
+    }
 }

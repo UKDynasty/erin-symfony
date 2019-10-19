@@ -423,7 +423,21 @@ class Erin
             $lines[] = $matchupFranchise->getFranchise()->getName() . ' ' . $matchupFranchise->getScore();
             $lines[] = '';
             foreach($matchupFranchise->getMatchupPlayers() as $matchupPlayer) {
-                $lines[] = $matchupPlayer->getPlayer()->getName() . ' ' . $matchupPlayer->getScore() . ($matchupPlayer->getGameSecondsRemaining() === 0 ? ' (F)' : '');
+                $gameSecondsRemaining = $matchupPlayer->getGameSecondsRemaining();
+                switch($gameSecondsRemaining) {
+                    case 0:
+                        $status = ' (F)';
+                        break;
+                    case 3600:
+                        $status = '';
+                        break;
+                    default:
+                        $formatted = $matchupPlayer->getGameMinutesRemainingFormatted();
+                        $status = " (playing, ${formatted} remaining)";
+
+                }
+
+                $lines[] = $matchupPlayer->getPlayer()->getName() . ' ' . $matchupPlayer->getScore() . $status;
             }
             $lines[] = '';
         }
