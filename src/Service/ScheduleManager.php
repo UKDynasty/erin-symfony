@@ -122,11 +122,14 @@ class ScheduleManager
                 /**
                  * Sync all the players
                  */
+                $ids = [];
                 foreach($liveScoringMatchupFranchise['players']['player'] as $liveScoringMatchupPlayer) {
                     if ($liveScoringMatchupPlayer['status'] !== 'starter') {
                         // Skip bench players for now
                         continue;
                     }
+
+                    $ids[] = $liveScoringMatchupPlayer['id'];
 
                     $matchupPlayer = $matchupPlayerRepo->findByMflPlayerIdAndMatchupFranchise($liveScoringMatchupPlayer['id'], $matchupFranchise);
                     if (!$matchupPlayer) {
@@ -138,6 +141,14 @@ class ScheduleManager
 
                     $matchupPlayer->setGameSecondsRemaining($liveScoringMatchupPlayer['gameSecondsRemaining']);
                     $matchupPlayer->setScore($liveScoringMatchupPlayer['score']);
+                }
+
+                // Find any matchupPlayers not in the updated IDs and delete them (they're players who were in lineups but swapped out)
+                $swappedOutPlayers = $matchupFranchise->getMatchupPlayers()->filter(function(MatchupPlayer $matchupPlayer) use ($ids) {
+                    return !in_array($matchupPlayer->getPlayer()->getExternalIdMfl(), $ids);
+                });
+                foreach($swappedOutPlayers as $swappedOutPlayer) {
+                    $this->em->remove($swappedOutPlayer);
                 }
             }
 

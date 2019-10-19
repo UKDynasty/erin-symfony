@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="Add left to play/currently playing to scores response">
+    <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="Add playing/remaining to individual matchup response">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/MatchupPlayer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/MatchupPlayer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/Erin.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Erin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/ScheduleManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ScheduleManager.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -327,13 +326,6 @@
       <workItem from="1568367908657" duration="151000" />
       <workItem from="1568368225638" duration="2726000" />
       <workItem from="1571487528263" duration="3202000" />
-    </task>
-    <task id="LOCAL-00035" summary="Sarcy comment to owners asking who owns their own players">
-      <created>1522489614372</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1522489614372</updated>
     </task>
     <task id="LOCAL-00036" summary="Case insensitive for 'who owns' and code cleanup">
       <created>1524655338252</created>
@@ -671,7 +663,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571497277726</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="Add playing/remaining to individual matchup response">
+      <created>1571497890822</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1571497890822</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -707,7 +706,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Add first character of first name to rosters, and link to MFL roster" />
     <MESSAGE value="lottery number generator" />
     <MESSAGE value="Erin knows about trades!" />
     <MESSAGE value="Fix indent of trade side text" />
@@ -732,7 +730,8 @@
     <MESSAGE value="attempt fix for marking complete" />
     <MESSAGE value="Add new command to sync weekly results from the weeklyResults endpoint instead of trying to work it out" />
     <MESSAGE value="Add left to play/currently playing to scores response" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add left to play/currently playing to scores response" />
+    <MESSAGE value="Add playing/remaining to individual matchup response" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add playing/remaining to individual matchup response" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
