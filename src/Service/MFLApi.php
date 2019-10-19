@@ -147,7 +147,7 @@ class MFLApi
         return $json['liveScoring'];
     }
 
-    public function getWeeklyResults(int $week)
+    public function getWeeklyResults(int $week = null): array
     {
         $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=weeklyResults&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
         if ($week !== null) {

@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="remove hardcoded week 1">
+    <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="Add new command to sync weekly results from the weeklyResults endpoint instead of trying to work it out">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Command/SyncLiveScoringCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/SyncLiveScoringCommand.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Service/MFLApi.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/MFLApi.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/ScheduleManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ScheduleManager.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -324,14 +321,7 @@
       <workItem from="1568281685349" duration="2137000" />
       <workItem from="1568367908657" duration="151000" />
       <workItem from="1568368225638" duration="2726000" />
-      <workItem from="1571487528263" duration="2643000" />
-    </task>
-    <task id="LOCAL-00033" summary="try using this config...">
-      <created>1521473264249</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1521473264249</updated>
+      <workItem from="1571487528263" duration="3202000" />
     </task>
     <task id="LOCAL-00034" summary="Move npm tasks to predeploy">
       <created>1521474848755</created>
@@ -669,7 +659,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571489442823</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Add new command to sync weekly results from the weeklyResults endpoint instead of trying to work it out">
+      <created>1571491165880</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1571491165881</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -705,7 +702,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="change tab id" />
     <MESSAGE value="More concise roster listing" />
     <MESSAGE value="Add first character of first name to rosters, and link to MFL roster" />
     <MESSAGE value="lottery number generator" />
@@ -730,7 +726,8 @@
     <MESSAGE value="Hardcoded week 1 to fix livescoring" />
     <MESSAGE value="remove hardcoded week 1" />
     <MESSAGE value="attempt fix for marking complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="attempt fix for marking complete" />
+    <MESSAGE value="Add new command to sync weekly results from the weeklyResults endpoint instead of trying to work it out" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add new command to sync weekly results from the weeklyResults endpoint instead of trying to work it out" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
