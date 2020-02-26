@@ -139,6 +139,7 @@ class MFLApi
         ]);
         $resBody = $res->getBody();
         $json = json_decode($resBody, true);
+        dump($json);
         return $json['transactions']['transaction'];
     }
 
