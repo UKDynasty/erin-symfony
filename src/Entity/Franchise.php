@@ -174,6 +174,6 @@ class Franchise
 
     public function getLatestSnapshot(): ?FranchiseSnapshot
     {
-        return $this->snapshots->first();
+        return $this->snapshots[0];
     }
 }

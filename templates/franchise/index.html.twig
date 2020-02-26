@@ -10,8 +10,10 @@
                 <div class="card-body">
                     <h5 class="card-title"><a href="{{ path('app_franchise_show', {'id': franchise.id}) }}">{{ franchise.name }}</a></h5>
                     <p class="card-text">{{ franchise.owner.name }}</p>
-                    <p>{{ franchise.latestSnapshot.bestLineupValue }} value best lineup</p>
-                    {% include 'includes/_best-lineup.html.twig' with { players: franchise.latestSnapshot.bestLineup } %}
+                    {% if franchise.latestSnapshot %}
+                        <p>{{ franchise.latestSnapshot.bestLineupValue }} value best lineup</p>
+                        {% include 'includes/_best-lineup.html.twig' with { players: franchise.latestSnapshot.bestLineup } %}
+                    {% endif %}
                 </div>
                 <div class="card-footer text-muted">
                     {{ franchise.players.count() }} players
