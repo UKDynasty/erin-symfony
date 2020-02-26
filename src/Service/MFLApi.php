@@ -33,14 +33,18 @@ class MFLApi
 
     private function request($url)
     {
-        $res = $this->client->request('GET', $url);
+        $res = $this->client->request('GET', $url, [
+            'headers' => [
+                'User-Agent' => 'UKDERIN',
+            ]
+        ]);
         $responseBody = $res->getBody();
         return json_decode($responseBody, true);
     }
 
     public function getPlayers(array $playerIds = [])
     {
-        $url = sprintf('http://www03.myfantasyleague.com/%s/export?TYPE=players&DETAILS=1&JSON=1', $this->year);
+        $url = sprintf('https://api.myfantasyleague.com/%s/export?TYPE=players&DETAILS=1&JSON=1', $this->year);
         if (\count($playerIds) > 0) {
             $url .= '&PLAYERS=' . implode(',', $playerIds);
         }
@@ -59,7 +63,7 @@ class MFLApi
 
     public function getRoster(string $leagueId, string $rosterId)
     {
-        $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=rosters&L=%s&APIKEY=&FRANCHISE=%s&JSON=1', $this->year, $leagueId, $rosterId);
+        $url = sprintf('https://api.myfantasyleague.com/%s/export?TYPE=rosters&L=%s&APIKEY=&FRANCHISE=%s&JSON=1', $this->year, $leagueId, $rosterId);
 
         $res = $this->request($url);
 
@@ -68,9 +72,13 @@ class MFLApi
 
     public function getRosters()
     {
-        $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=rosters&L=%s&JSON=1', $this->year, $this->mflLeagueId);
+        $url = sprintf('https://api.myfantasyleague.com/%s/export?TYPE=rosters&L=%s&JSON=1', $this->year, $this->mflLeagueId);
 
-        $res = $this->client->request('GET', $url);
+        $res = $this->client->request('GET', $url, [
+            'headers' => [
+                'User-Agent' => 'UKDERIN',
+            ]
+        ]);
         $resBody = $res->getBody();
         $json = json_decode($resBody, true);
         return $json['rosters']['franchise'];
@@ -78,8 +86,12 @@ class MFLApi
 
     public function getTradeBait()
     {
-        $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=tradeBait&L=%s&INCLUDE_DRAFT_PICKS=0&JSON=1', $this->year, $this->mflLeagueId);
-        $res = $this->client->request('GET', $url);
+        $url = sprintf('https://api.myfantasyleague.com/%s/export?TYPE=tradeBait&L=%s&INCLUDE_DRAFT_PICKS=0&JSON=1', $this->year, $this->mflLeagueId);
+        $res = $this->client->request('GET', $url, [
+            'headers' => [
+                'User-Agent' => 'UKDERIN',
+            ]
+        ]);
         $resBody = $res->getBody();
         $json = json_decode($resBody, true);
         return $json['tradeBaits']['tradeBait'];
@@ -87,8 +99,12 @@ class MFLApi
 
     public function getAssets()
     {
-        $url = sprintf('http://www80.myfantasyleague.com/%s/export?TYPE=assets&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
-        $res = $this->client->request('GET', $url);
+        $url = sprintf('https://api.myfantasyleague.com/%s/export?TYPE=assets&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
+        $res = $this->client->request('GET', $url, [
+            'headers' => [
+                'User-Agent' => 'UKDERIN',
+            ]
+        ]);
         $resBody = $res->getBody();
         $json = json_decode($resBody, true);
         return $json['assets']['franchise'];
@@ -99,8 +115,12 @@ class MFLApi
      */
     public function getDraftResults(): array
     {
-        $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=draftResults&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
-        $res = $this->client->request('GET', $url);
+        $url = sprintf('https://api.myfantasyleague.com/%s/export?TYPE=draftResults&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
+        $res = $this->client->request('GET', $url, [
+            'headers' => [
+                'User-Agent' => 'UKDERIN',
+            ]
+        ]);
         $resBody = $res->getBody();
         $json = json_decode($resBody, true);
         return $json['draftResults']['draftUnit']['draftPick'];
@@ -111,8 +131,12 @@ class MFLApi
      */
     public function getTrades(): array
     {
-        $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=transactions&TRANS_TYPE=TRADE&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
-        $res = $this->client->request('GET', $url);
+        $url = sprintf('https://api.myfantasyleague.com/%s/export?TYPE=transactions&TRANS_TYPE=TRADE&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
+        $res = $this->client->request('GET', $url, [
+            'headers' => [
+                'User-Agent' => 'UKDERIN',
+            ]
+        ]);
         $resBody = $res->getBody();
         $json = json_decode($resBody, true);
         return $json['transactions']['transaction'];
@@ -123,8 +147,12 @@ class MFLApi
      */
     public function getSchedule(): array
     {
-        $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=schedule&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
-        $res = $this->client->request('GET', $url);
+        $url = sprintf('https://api.myfantasyleague.com/%s/export?TYPE=schedule&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
+        $res = $this->client->request('GET', $url, [
+            'headers' => [
+                'User-Agent' => 'UKDERIN',
+            ]
+        ]);
         $resBody = $res->getBody();
         $json = json_decode($resBody, true);
         return $json['schedule']['weeklySchedule'];
@@ -137,11 +165,15 @@ class MFLApi
      */
     public function getLiveScoring(int $week = null): array
     {
-        $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=liveScoring&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
+        $url = sprintf('https://api.myfantasyleague.com/%s/export?TYPE=liveScoring&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
         if ($week !== null) {
             $url .= '&W=' . $week;
         }
-        $res = $this->client->request('GET', $url);
+        $res = $this->client->request('GET', $url, [
+            'headers' => [
+                'User-Agent' => 'UKDERIN',
+            ]
+        ]);
         $resBody = $res->getBody();
         $json = json_decode($resBody, true);
         return $json['liveScoring'];
@@ -149,11 +181,15 @@ class MFLApi
 
     public function getWeeklyResults(int $week = null): array
     {
-        $url = sprintf('http://www66.myfantasyleague.com/%s/export?TYPE=weeklyResults&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
+        $url = sprintf('https://api.myfantasyleague.com/%s/export?TYPE=weeklyResults&L=%s&JSON=1&APIKEY=%s', $this->year, $this->mflLeagueId, $this->mflApiKey);
         if ($week !== null) {
             $url .= '&W=' . $week;
         }
-        $res = $this->client->request('GET', $url);
+        $res = $this->client->request('GET', $url, [
+            'headers' => [
+                'User-Agent' => 'UKDERIN',
+            ]
+        ]);
         $resBody = $res->getBody();
         $json = json_decode($resBody, true);
         return $json['weeklyResults'];
