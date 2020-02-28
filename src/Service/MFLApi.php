@@ -139,7 +139,11 @@ class MFLApi
         ]);
         $resBody = $res->getBody();
         $json = json_decode($resBody, true);
-        dump($json);
+        // Bugfix: if there is only 1 trade returned by the API, it's not an array,
+        // it's just that one trade. Thanks MFL.
+        if (array_key_exists('franchise1_gave_up', $json['transactions']['transaction'])) {
+            return [$json['transactions']['transaction']];
+        }
         return $json['transactions']['transaction'];
     }
 

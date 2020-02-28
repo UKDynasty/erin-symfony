@@ -66,7 +66,6 @@ class SyncTradesFromMfl extends Command
     {
         // Hit MFL API endpoint and grab trade data
         $trades = $this->MFLApi->getTrades();
-        dump($trades);
         // For each one
         foreach($trades as $trade) {
             // Skip any trades with no assets on one side - these are commissioner setting draft picks
