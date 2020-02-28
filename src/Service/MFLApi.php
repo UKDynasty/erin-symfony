@@ -94,6 +94,11 @@ class MFLApi
         ]);
         $resBody = $res->getBody();
         $json = json_decode($resBody, true);
+        // Bug fix: if there is only 1 trade bait returned by the API, it's not an array,
+        // it's just that one trade bait. Thanks MFL.
+        if (array_key_exists('willGiveUp', $json['tradeBaits']['tradeBait'])) {
+            return [$json['tradeBaits']['tradeBait']];
+        }
         return $json['tradeBaits']['tradeBait'];
     }
 
@@ -139,7 +144,7 @@ class MFLApi
         ]);
         $resBody = $res->getBody();
         $json = json_decode($resBody, true);
-        // Bugfix: if there is only 1 trade returned by the API, it's not an array,
+        // Bug fix: if there is only 1 trade returned by the API, it's not an array,
         // it's just that one trade. Thanks MFL.
         if (array_key_exists('franchise1_gave_up', $json['transactions']['transaction'])) {
             return [$json['transactions']['transaction']];

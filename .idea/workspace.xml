@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="Add playing/remaining to individual matchup response">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/ScheduleManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ScheduleManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Command/SyncTradeBaitDataFromMfl.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/SyncTradeBaitDataFromMfl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/GroupMe.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/GroupMe.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/MFLApi.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/MFLApi.php" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,7 +60,6 @@
       </set>
     </option>
   </component>
-  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpServers">
     <servers>
       <server host="127.0.0.1" id="8ba3db3c-b7da-446c-a5d5-a44d1e68ec27" name="localhost" />
@@ -197,6 +197,11 @@
     </option>
   </component>
   <component name="ProjectId" id="1PxbCJfAU5Shy6IaN55O2Wcc3w5" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="SearchEverywhereHistoryKey" value="franchise&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Entity/Franchise.php&#10;erin.php&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Service/Erin.php&#10;.env&#9;FILE&#9;file:///home/dan/dev/erin-php/.env&#10;draftpickrepo&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Entity/DraftPickRepository.php&#10;doctrine.y&#9;FILE&#9;file:///home/dan/dev/erin-php/config/packages/doctrine.yaml&#10;syncassetsda&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Command/SyncAssetsDataFromMfl.php&#10;picks.php&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Service/Picks.php&#10;draftpick&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Entity/DraftPick.php&#10;erin.ph&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Service/Erin.php&#10;dr&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Entity/DraftPick.php&#10;pick&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Entity/DraftPick.php&#10;sendgroupmessage&#9;null&#9;null&#10;mflapi&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Service/MFLApi.php&#10;syncassets&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Command/SyncAssetsDataFromMfl.php&#10;player.ph&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Entity/Player.php&#10;player.p&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Entity/PlayerRepository.php&#10;playerrepo&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Entity/PlayerRepository.php&#10;kernel&#9;null&#9;null" />
@@ -233,18 +238,6 @@
       <recent name="$PROJECT_DIR$/mysql.conf.d" />
       <recent name="$PROJECT_DIR$/src/Controller/Admin" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -326,13 +319,6 @@
       <workItem from="1568367908657" duration="151000" />
       <workItem from="1568368225638" duration="2726000" />
       <workItem from="1571487528263" duration="3202000" />
-    </task>
-    <task id="LOCAL-00036" summary="Case insensitive for 'who owns' and code cleanup">
-      <created>1524655338252</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1524655338252</updated>
     </task>
     <task id="LOCAL-00037" summary=" debug on production ahoy!">
       <created>1525103561411</created>
@@ -670,7 +656,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571497890822</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="Fix bug when only 1 trade returned by API">
+      <created>1582917262763</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1582917262764</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -706,7 +699,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="lottery number generator" />
     <MESSAGE value="Erin knows about trades!" />
     <MESSAGE value="Fix indent of trade side text" />
     <MESSAGE value="Move TradeSidePlayer and TradeSideDraftPick into separate entities not many-to-many, record player/pick values as time of trade, Erin changes her analysis based on the difference between highest/lowest value in trade" />
@@ -731,7 +723,26 @@
     <MESSAGE value="Add new command to sync weekly results from the weeklyResults endpoint instead of trying to work it out" />
     <MESSAGE value="Add left to play/currently playing to scores response" />
     <MESSAGE value="Add playing/remaining to individual matchup response" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add playing/remaining to individual matchup response" />
+    <MESSAGE value="Fix bug when only 1 trade returned by API" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix bug when only 1 trade returned by API" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="561" y="62" width="857" height="990" key="CommitChangelistDialog2" timestamp="1582918198845">
+      <screen x="70" y="27" width="1850" height="1053" />
+    </state>
+    <state x="561" y="62" width="857" height="990" key="CommitChangelistDialog2/70.27.1850.1053@70.27.1850.1053" timestamp="1582918198845" />
+    <state x="590" y="285" width="800" height="543" key="Vcs.Push.Dialog.v2" timestamp="1582917273052">
+      <screen x="70" y="27" width="1850" height="1053" />
+    </state>
+    <state x="590" y="285" width="800" height="543" key="Vcs.Push.Dialog.v2/70.27.1850.1053@70.27.1850.1053" timestamp="1582917273052" />
+    <state x="631" y="248" width="727" height="610" key="find.popup" timestamp="1582918097646">
+      <screen x="70" y="27" width="1850" height="1053" />
+    </state>
+    <state x="631" y="248" width="727" height="610" key="find.popup/70.27.1850.1053@70.27.1850.1053" timestamp="1582918097646" />
+    <state x="658" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1582916984832">
+      <screen x="70" y="27" width="1850" height="1053" />
+    </state>
+    <state x="658" y="259" width="672" height="678" key="search.everywhere.popup/70.27.1850.1053@70.27.1850.1053" timestamp="1582916984832" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
