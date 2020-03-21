@@ -9,7 +9,7 @@ class DraftRepository extends EntityRepository
     public function findCurrentDraft()
     {
         return $this->createQueryBuilder("draft")
-            ->where('complete = :complete')
+            ->where('draft.complete = :complete')
             ->setParameter('complete', false)
             ->orderBy("draft.year", "ASC")
             ->setMaxResults(1)
