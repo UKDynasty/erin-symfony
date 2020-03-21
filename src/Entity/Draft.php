@@ -27,6 +27,11 @@ class Draft
     private $picks;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $complete = false;
+
+    /**
      * @return int
      */
     public function getYear(): int
@@ -48,6 +53,22 @@ class Draft
     public function getPicks()
     {
         return $this->picks;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isComplete(): bool
+    {
+        return $this->complete;
+    }
+
+    /**
+     * @param bool $complete
+     */
+    public function setComplete(bool $complete): void
+    {
+        $this->complete = $complete;
     }
 
     public function __toString()
