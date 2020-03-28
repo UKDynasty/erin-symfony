@@ -10,7 +10,7 @@ class DynastyProcessAPI
      */
     private $client;
 
-    const BASE_URL = 'https://dynastyprocess-api.danabrey.com';
+    const BASE_URL = 'https://dynastyprocess-api.abrey.dev';
 
     public function __construct()
     {
