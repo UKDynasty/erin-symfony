@@ -41,8 +41,8 @@ class FranchiseOwnerFixtures extends Fixture
         [
             'ownerName' => 'Dermy',
             'mflFranchiseId' => '0005',
-            'name' => 'Irish Flyers',
-            'identifiers' => ['irish', 'flyers'],
+            'name' => 'Lurgan Leopards',
+            'identifiers' => ['lurgan', 'leopards'],
             'groupMeUserId' => '44671697',
         ],
         [
@@ -90,8 +90,8 @@ class FranchiseOwnerFixtures extends Fixture
         [
             'ownerName' => 'Tom',
             'mflFranchiseId' => '0012',
-            'name' => 'Chippenham Packers',
-            'identifiers' => ['chippenham', 'packers'],
+            'name' => 'Chippenham Beavers',
+            'identifiers' => ['chippenham', 'beavers'],
             'groupMeUserId' => '46481551',
         ]
     ];
