@@ -6,7 +6,7 @@ easy_admin:
             form:
                 fields:
                     - 'fact'
-            disabled_actions: ['edit', 'delete', 'new']
+            disabled_actions: ['delete', 'new']
         Draft:
             class: App\Entity\Draft
             disabled_actions: ['edit', 'delete', 'new']
