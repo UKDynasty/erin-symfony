@@ -98,7 +98,7 @@ class CheckDraftResults extends Command
             $pick->setPickMadeAt(new \DateTime('@' . $draftResult['timestamp'], new \DateTimeZone('UTC')));
 
             $text = sprintf(
-                'With the %s pick in the %s round of the 2020 UK Dynasty draft, the %s select %s, %s, %s.',
+                'With the %s pick in the %s round of the 2021 UK Dynasty draft, the %s select %s, %s, %s.',
                 $this->humanReadableHelpers->ordinal($pick->getNumber()),
                 $this->humanReadableHelpers->ordinal($pick->getRound()),
                 $pick->getOwner()->getName(),

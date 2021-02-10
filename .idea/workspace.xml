@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="05f1368a-14bb-488d-b686-5cdd4b2c13b9" name="Default" comment="Add playing/remaining to individual matchup response">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Command/SyncTradeBaitDataFromMfl.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/SyncTradeBaitDataFromMfl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/GroupMe.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/GroupMe.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/MFLApi.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/MFLApi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Command/CheckDraftResults.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/CheckDraftResults.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/ScheduleManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ScheduleManager.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,26 +19,7 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable />
-    </execution>
-  </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand />
-    <select />
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="erin-symfony" />
+    <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -52,13 +38,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="IgnoredFileRootStore">
-    <option name="generatedRoots">
-      <set>
-        <option value="$PROJECT_DIR$/.idea" />
-      </set>
-    </option>
   </component>
   <component name="PhpServers">
     <servers>
@@ -187,6 +166,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/service-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/vendor/symfony/error-handler" />
     </include_path>
   </component>
   <component name="ProjectConfigurationFiles">
@@ -199,11 +179,11 @@
   <component name="ProjectId" id="1PxbCJfAU5Shy6IaN55O2Wcc3w5" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SearchEverywhereHistoryKey" value="franchise&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Entity/Franchise.php&#10;erin.php&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Service/Erin.php&#10;.env&#9;FILE&#9;file:///home/dan/dev/erin-php/.env&#10;draftpickrepo&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Entity/DraftPickRepository.php&#10;doctrine.y&#9;FILE&#9;file:///home/dan/dev/erin-php/config/packages/doctrine.yaml&#10;syncassetsda&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Command/SyncAssetsDataFromMfl.php&#10;picks.php&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Service/Picks.php&#10;draftpick&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Entity/DraftPick.php&#10;erin.ph&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Service/Erin.php&#10;dr&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Entity/DraftPick.php&#10;pick&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Entity/DraftPick.php&#10;sendgroupmessage&#9;null&#9;null&#10;mflapi&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Service/MFLApi.php&#10;syncassets&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Command/SyncAssetsDataFromMfl.php&#10;player.ph&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Entity/Player.php&#10;player.p&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Entity/PlayerRepository.php&#10;playerrepo&#9;FILE&#9;file:///home/dan/dev/erin-php/src/Entity/PlayerRepository.php&#10;kernel&#9;null&#9;null" />
     <property name="TF_FMT" value="false" />
     <property name="WebServerToolWindowFactoryState" value="true" />
@@ -212,7 +192,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Command" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -222,6 +202,7 @@
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="preferences.general" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -239,6 +220,7 @@
       <recent name="$PROJECT_DIR$/src/Controller/Admin" />
     </key>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -319,6 +301,8 @@
       <workItem from="1568367908657" duration="151000" />
       <workItem from="1568368225638" duration="2726000" />
       <workItem from="1571487528263" duration="3202000" />
+      <workItem from="1600766747211" duration="2250000" />
+      <workItem from="1612960680053" duration="368000" />
     </task>
     <task id="LOCAL-00037" summary=" debug on production ahoy!">
       <created>1525103561411</created>
@@ -667,16 +651,14 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -695,6 +677,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -727,22 +710,18 @@
     <option name="LAST_COMMIT_MESSAGE" value="Fix bug when only 1 trade returned by API" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="561" y="62" width="857" height="990" key="CommitChangelistDialog2" timestamp="1582918198845">
-      <screen x="70" y="27" width="1850" height="1053" />
+    <state x="2511" y="214" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600768859415">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="561" y="62" width="857" height="990" key="CommitChangelistDialog2/70.27.1850.1053@70.27.1850.1053" timestamp="1582918198845" />
-    <state x="590" y="285" width="800" height="543" key="Vcs.Push.Dialog.v2" timestamp="1582917273052">
-      <screen x="70" y="27" width="1850" height="1053" />
+    <state x="2511" y="214" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1080/0.26.1920.1054@1920.0.1920.1080" timestamp="1600768859415" />
+    <state x="2608" y="276" width="616" height="554" key="find.popup" timestamp="1600767744935">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="590" y="285" width="800" height="543" key="Vcs.Push.Dialog.v2/70.27.1850.1053@70.27.1850.1053" timestamp="1582917273052" />
-    <state x="631" y="248" width="727" height="610" key="find.popup" timestamp="1582918097646">
-      <screen x="70" y="27" width="1850" height="1053" />
+    <state x="2608" y="276" width="616" height="554" key="find.popup/1920.0.1920.1080/0.26.1920.1054@1920.0.1920.1080" timestamp="1600767744935" />
+    <state x="2579" y="258" width="672" height="678" key="search.everywhere.popup" timestamp="1600768441744">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="631" y="248" width="727" height="610" key="find.popup/70.27.1850.1053@70.27.1850.1053" timestamp="1582918097646" />
-    <state x="658" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1582916984832">
-      <screen x="70" y="27" width="1850" height="1053" />
-    </state>
-    <state x="658" y="259" width="672" height="678" key="search.everywhere.popup/70.27.1850.1053@70.27.1850.1053" timestamp="1582916984832" />
+    <state x="2579" y="258" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1080/0.26.1920.1054@1920.0.1920.1080" timestamp="1600768441744" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
